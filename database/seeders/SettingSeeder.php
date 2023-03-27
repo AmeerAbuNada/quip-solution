@@ -13,20 +13,53 @@ class SettingSeeder extends Seeder
      */
     public function run(): void
     {
+        //Home Page Header
         Setting::create([
-            'key' => 'developer_name_en',
-            'value' => 'Ameer Abunada',
-            'label' => 'Developer\'s Name (English)',
+            'key' => 'header_title_en',
+            'value' => 'Excellent Car Washing Solutions',
+            'label' => 'Header Title (English)',
             'type' => 'text',
-            'group' => 'general',
+            'group' => 'home',
         ]);
         Setting::create([
-            'key' => 'developer_name_ar',
-            'value' => 'أمير أبوندى',
-            'label' => 'Developer\'s Name (Arabic)',
+            'key' => 'header_title_ar',
+            'value' => 'حلول غسيل سيارات ممتازة',
+            'label' => 'Header Title (Arabic)',
             'type' => 'text',
-            'group' => 'general',
+            'group' => 'home',
         ]);
+        Setting::create([
+            'key' => 'header_description_en',
+            'value' => 'Over 50 years of experience serving service stations and washing centers around the world.',
+            'label' => 'Header Description (English)',
+            'type' => 'textarea',
+            'group' => 'home',
+        ]);
+        Setting::create([
+            'key' => 'header_description_ar',
+            'value' => 'أكثر من 50 عامًا من الخبرة في خدمة محطات الخدمة ومراكز الغسيل حول العالم.',
+            'label' => 'Header Description (Arabic)',
+            'type' => 'textarea',
+            'group' => 'home',
+        ]);
+
+
+        //Home Page About us
+        Setting::create([
+            'key' => 'about_description_en',
+            'value' => '',
+            'label' => 'About us Description (English)',
+            'type' => 'editor',
+            'group' => 'home',
+        ]);
+        Setting::create([
+            'key' => 'about_description_ar',
+            'value' => '',
+            'label' => 'About us Description (Arabic)',
+            'type' => 'editor',
+            'group' => 'home',
+        ]);
+        
 
     }
 }

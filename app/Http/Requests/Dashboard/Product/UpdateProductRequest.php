@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests\Dashboard\ProfessionalSkill;
+namespace App\Http\Requests\Dashboard\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateProfessionalSkillRequest extends FormRequest
+class UpdateProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,9 +22,7 @@ class UpdateProfessionalSkillRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_en' => 'required|string|max:150',
-            'name_ar' => 'required|string|max:150',
-            'percentage' => 'required|integer|min:0|max:100',
+            //
         ];
     }
 }

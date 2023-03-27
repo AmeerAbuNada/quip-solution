@@ -98,7 +98,25 @@
                                                 <div class="col-lg-8 fv-row">
                                                     <input type="text" id="{{ $setting->key }}"
                                                         class="form-control form-control-lg form-control-solid"
-                                                        placeholder="Ahmed Issa" value="{{ $setting->value }}" />
+                                                        value="{{ $setting->value }}" />
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <!--end::Input group-->
+                                        @break
+
+                                        @case('textarea')
+                                            <!--begin::Input group-->
+                                            <div class="row mb-6">
+                                                <!--begin::Label-->
+                                                <label
+                                                    class="col-lg-4 col-form-label required fw-bold fs-6">{{ $setting->label }}</label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-8 fv-row">
+                                                    <textarea id="" rows="5" id="{{ $setting->key }}" class="form-control form-control-lg form-control-solid">{{ $setting->value }}</textarea>
+                                                    <input type="text" id="{{ $setting->key }}"
+                                                        class="form-control form-control-lg form-control-solid"/>
                                                 </div>
                                                 <!--end::Col-->
                                             </div>
@@ -176,6 +194,7 @@
                     @break
 
                     @case('text')
+                    @case('textarea')
                     formData.append('{{ $setting->key }}', document.getElementById('{{ $setting->key }}').value);
                     @break
 

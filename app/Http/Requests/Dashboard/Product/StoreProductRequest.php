@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Dashboard\Portfolio;
+namespace App\Http\Requests\Dashboard\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatePortfolioRequest extends FormRequest
+class StoreProductRequest extends FormRequest
 {
+    protected $stopOnFirstFailure = true;
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -22,16 +24,19 @@ class UpdatePortfolioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => 'nullable|image',
+            'image' => 'required|image',
             'name_en' => 'required|string|max:150',
             'name_ar' => 'required|string|max:150',
-            'category_id' => 'nullable|integer|exists:categories,id',
+            'category_id' => 'required|integer|exists:categories,id',
+            'catalog' => 'required|file',
+            'video_link' => 'required|url|max:2048',
+            'active' => 'required|string|in:true,false',
+            'best_selling' => 'required|string|in:true,false',
+            'images' => 'nullable|array',
             'description_en' => 'required|string',
             'description_ar' => 'required|string',
-            'tags' => 'required|string|max:2000',
-            'url' => 'required|string|max:2000',
-            'images_length' => 'required|integer|min:0',
-            'descriptions' => 'required|array',
+            'features_en' => 'required|string',
+            'features_ar' => 'required|string',
         ];
     }
 }

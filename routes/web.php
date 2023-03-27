@@ -7,16 +7,8 @@ use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\ContactController;
 use App\Http\Controllers\Dashboard\DashboardController;
-use App\Http\Controllers\Dashboard\EducationController;
-use App\Http\Controllers\Dashboard\LinkController;
-use App\Http\Controllers\Dashboard\PortfolioController;
-use App\Http\Controllers\Dashboard\PricingController;
-use App\Http\Controllers\Dashboard\ProfessionalSkillController;
-use App\Http\Controllers\Dashboard\ReviewController;
-use App\Http\Controllers\Dashboard\ServiceController;
+use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\SettingController;
-use App\Http\Controllers\Dashboard\TechnicalSkillController;
-use App\Http\Controllers\Dashboard\WorkExperienceController;
 use App\Http\Controllers\Landing\MainController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +31,7 @@ Route::middleware('auth')->prefix('/dashboard')->group(function () {
   Route::resource('admins', AdminController::class)->except(['create']);
   Route::resource('categories', CategoryController::class)->except(['show', 'create', 'edit']);
   Route::resource('contacts', ContactController::class)->only(['index', 'destroy']);
+  Route::resource('products', ProductController::class)->except(['show']);
 
   Route::prefix('/account')->controller(AccountController::class)->group(function () {
     Route::get('/', 'profile')->name('account.profile');
