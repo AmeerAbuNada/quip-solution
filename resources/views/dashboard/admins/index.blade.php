@@ -376,7 +376,7 @@
                     </div>
                     <!--end::Card header-->
                     <!--begin::Card body-->
-                    <div class="card-body py-4">
+                    <div class="card-body py-4 table-responsive">
                         <!--begin::Table-->
                         <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
                             <!--begin::Table head-->
@@ -409,7 +409,12 @@
                                             <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                                 <a href="{{ route('admins.show', $admin) }}">
                                                     <div class="symbol-label">
-                                                        {!! $admin->image_tag !!}
+                                                        @if ($admin->image)
+                                                            <img src="{{Storage::url($admin->image)}}"
+                                                                class="w-100">
+                                                        @else
+                                                            {!! $admin->image_tag !!}
+                                                        @endif
                                                     </div>
                                                 </a>
                                             </div>
