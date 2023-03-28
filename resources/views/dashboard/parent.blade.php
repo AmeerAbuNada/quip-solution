@@ -53,7 +53,7 @@
                                     <!--end::Description-->
                                     <!--begin::Label-->
                                     <div class="d-flex align-items-center text-success fs-9">
-                                        <span class="bullet bullet-dot bg-success me-1"></span>online
+                                        <span class="bullet bullet-dot bg-success me-1"></span>{{__('navbar.online')}}
                                     </div>
                                     <!--end::Label-->
                                 </div>
@@ -105,14 +105,13 @@
                                         <!--end::Menu separator-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-5">
-                                            <a href="{{ route('account.profile') }}" class="menu-link px-5">My
-                                                Profile</a>
+                                            <a href="{{ route('account.profile') }}" class="menu-link px-5">{{__('navbar.my_profile')}}</a>
                                         </div>
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-5">
                                             <a href="#" class="menu-link px-5">
-                                                <span class="menu-text">Notifications</span>
+                                                <span class="menu-text">{{__('navbar.notification')}}</span>
                                                 <span class="menu-badge">
                                                     <span
                                                         class="badge badge-light-danger badge-circle fw-bolder fs-7">3</span>
@@ -127,16 +126,16 @@
                                         <div class="menu-item px-5" data-kt-menu-trigger="hover"
                                             data-kt-menu-placement="right-start">
                                             <a href="#" class="menu-link px-5">
-                                                <span class="menu-title position-relative">Language
+                                                <span class="menu-title position-relative">{{__('navbar.language')}}
                                                     @if (app()->isLocale('en'))
                                                         <span
-                                                            class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">English
+                                                            class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">{{__('navbar.english')}}
                                                             <img class="w-15px h-15px rounded-1 ms-2"
                                                                 src="{{ asset('dashboard-assets/media/flags/united-states.svg') }}"
                                                                 alt="" /></span>
                                                     @else
                                                         <span
-                                                            class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">Arabic
+                                                            class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">{{__('navbar.arabic')}}
                                                             <img class="w-15px h-15px rounded-1 ms-2"
                                                                 src="{{ asset('dashboard-assets/media/flags/kuwait.svg') }}"
                                                                 alt="" /></span>
@@ -153,7 +152,7 @@
                                                             <img class="rounded-1"
                                                                 src="{{ asset('dashboard-assets/media/flags/united-states.svg') }}"
                                                                 alt="" />
-                                                        </span>English</a>
+                                                        </span>{{__('navbar.english')}}</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
@@ -164,7 +163,7 @@
                                                             <img class="rounded-1"
                                                                 src="{{ asset('dashboard-assets/media/flags/kuwait.svg') }}"
                                                                 alt="" />
-                                                        </span>Arabic</a>
+                                                        </span>{{__('navbar.arabic')}}</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                             </div>
@@ -173,13 +172,12 @@
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-5 my-1">
-                                            <a href="{{ route('account.settings') }}" class="menu-link px-5">Account
-                                                Settings</a>
+                                            <a href="{{ route('account.settings') }}" class="menu-link px-5">{{__('navbar.account_settings')}}</a>
                                         </div>
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-5">
-                                            <a href="{{ route('logout') }}" class="menu-link px-5">Sign Out</a>
+                                            <a href="{{ route('logout') }}" class="menu-link px-5">{{__('navbar.signout')}}</a>
                                         </div>
                                         <!--end::Menu item-->
                                     </div>

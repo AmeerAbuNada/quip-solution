@@ -16,12 +16,12 @@
                 </span>
                 <!--end::Svg Icon-->
             </span>
-            <span class="menu-title">Dashboard</span>
+            <span class="menu-title">{{__('navbar.dashboard')}}</span>
         </a>
     </div>
     <div class="menu-item">
         <div class="menu-content pt-8 pb-2">
-            <span class="menu-section text-muted text-uppercase fs-8 ls-1">ADMIN MANAGEMENT</span>
+            <span class="menu-section text-muted text-uppercase fs-8 ls-1">{{__('navbar.admin_management')}}</span>
         </div>
     </div>
     <div class="menu-item">
@@ -41,12 +41,12 @@
                 </span>
                 <!--end::Svg Icon-->
             </span>
-            <span class="menu-title">Admins</span>
+            <span class="menu-title">{{__('navbar.admins')}}</span>
         </a>
     </div>
     <div class="menu-item">
         <div class="menu-content pt-8 pb-2">
-            <span class="menu-section text-muted text-uppercase fs-8 ls-1">CONTENT MANAGEMENT</span>
+            <span class="menu-section text-muted text-uppercase fs-8 ls-1">{{__('navbar.contect_management')}}</span>
         </div>
     </div>
     <div class="menu-item">
@@ -64,7 +64,7 @@
                 </span>
                 <!--end::Svg Icon-->
             </span>
-            <span class="menu-title">Projects</span>
+            <span class="menu-title">{{__('navbar.projects')}}</span>
         </a>
     </div>
     <div class="menu-item">
@@ -83,7 +83,7 @@
                 </span>
                 <!--end::Svg Icon-->
             </span>
-            <span class="menu-title">Categories</span>
+            <span class="menu-title">{{__('navbar.categories')}}</span>
         </a>
     </div>
     <div class="menu-item">
@@ -102,13 +102,13 @@
                 </span>
                 <!--end::Svg Icon-->
             </span>
-            <span class="menu-title">Products</span>
+            <span class="menu-title">{{__('navbar.products')}}</span>
         </a>
     </div>
     
     <div class="menu-item">
         <div class="menu-content pt-8 pb-2">
-            <span class="menu-section text-muted text-uppercase fs-8 ls-1">USER REQUESTS</span>
+            <span class="menu-section text-muted text-uppercase fs-8 ls-1">{{__('navbar.user_requests')}}</span>
         </div>
     </div>
     <div class="menu-item">
@@ -126,12 +126,12 @@
                 </span>
                 <!--end::Svg Icon-->
             </span>
-            <span class="menu-title">Contact Messages</span>
+            <span class="menu-title">{{__('navbar.contact_messages')}}</span>
         </a>
     </div>
     <div class="menu-item">
         <div class="menu-content pt-8 pb-2">
-            <span class="menu-section text-muted text-uppercase fs-8 ls-1">WEBSITE SETTINGS</span>
+            <span class="menu-section text-muted text-uppercase fs-8 ls-1">{{__('navbar.website_settings')}}</span>
         </div>
     </div>
     <div class="menu-item">
@@ -149,7 +149,7 @@
                 </span>
                 <!--end::Svg Icon-->
             </span>
-            <span class="menu-title">General Settings</span>
+            <span class="menu-title">{{__('navbar.general_settings')}}</span>
         </a>
     </div>
     <div class="menu-item">
@@ -167,7 +167,7 @@
                 </span>
                 <!--end::Svg Icon-->
             </span>
-            <span class="menu-title">Home Page Settings</span>
+            <span class="menu-title">{{__('navbar.home_page_settings')}}</span>
         </a>
     </div>
 </div>

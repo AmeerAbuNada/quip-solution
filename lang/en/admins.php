@@ -26,7 +26,7 @@ return [
   'settings' => 'Settings',
 
   'avatar' => 'Avatar',
-  'update' => 'Submit',
+  'update' => 'Update',
 
   'signin_methods' => 'Sign-in Method',
   'new_email' => 'Enter New Email Address',
