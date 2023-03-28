@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Dashboard\Product;
+namespace App\Http\Requests\Dashboard\Project;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ToggleOptionRequest extends FormRequest
+class StoreProjectRequest extends FormRequest
 {
     protected $stopOnFirstFailure = true;
     
@@ -24,8 +24,12 @@ class ToggleOptionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type' => 'required|string|in:is_active,is_best_selling',
-            'value' => 'required|boolean',
+            'image' => 'required|image',
+            'title_en' => 'required|string|max:150',
+            'title_ar' => 'required|string|max:150',
+            'is_active' => 'required|string|in:true,false',
+            'description_en' => 'required|string|max:1000',
+            'description_ar' => 'required|string|max:1000',
         ];
     }
 }

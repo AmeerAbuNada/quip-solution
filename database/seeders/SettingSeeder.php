@@ -47,14 +47,31 @@ class SettingSeeder extends Seeder
         //Home Page About us
         Setting::create([
             'key' => 'about_description_en',
-            'value' => '',
+            'value' => '<p>Manage your company better with us Manage your company better with us Manage Manage your company company.</p>',
             'label' => 'About us Description (English)',
             'type' => 'editor',
             'group' => 'home',
         ]);
         Setting::create([
             'key' => 'about_description_ar',
-            'value' => '',
+            'value' => '<p>إدارة شركتك بشكل أفضل معنا إدارة شركتك بشكل أفضل معنا إدارة إدارة شركتك.</p>',
+            'label' => 'About us Description (Arabic)',
+            'type' => 'editor',
+            'group' => 'home',
+        ]);
+
+
+        //Home Page Achievements
+        Setting::create([
+            'key' => 'achievements_en',
+            'value' => '<p>Manage your company better with us Manage your company better with us Manage Manage your company company.</p>',
+            'label' => 'About us Description (English)',
+            'type' => 'editor',
+            'group' => 'home',
+        ]);
+        Setting::create([
+            'key' => 'achievements_ar',
+            'value' => '<p>إدارة شركتك بشكل أفضل معنا إدارة شركتك بشكل أفضل معنا إدارة إدارة شركتك.</p>',
             'label' => 'About us Description (Arabic)',
             'type' => 'editor',
             'group' => 'home',

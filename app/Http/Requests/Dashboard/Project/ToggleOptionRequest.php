@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Dashboard\Product;
+namespace App\Http\Requests\Dashboard\Project;
 
 use Illuminate\Foundation\Http\FormRequest;
 
 class ToggleOptionRequest extends FormRequest
 {
-    protected $stopOnFirstFailure = true;
-    
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -24,7 +22,7 @@ class ToggleOptionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type' => 'required|string|in:is_active,is_best_selling',
+            'type' => 'required|string|in:is_active',
             'value' => 'required|boolean',
         ];
     }

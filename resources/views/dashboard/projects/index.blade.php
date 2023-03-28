@@ -1,6 +1,6 @@
 @extends('dashboard.parent')
 
-@section('title', 'Products')
+@section('title', 'Projects')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('landing-assets/icons/font-awesome-4.7.0/css/font-awesome.min.css') }}">
@@ -21,7 +21,7 @@
                             <!--begin::Toolbar-->
                             <div class="d-flex justify-content-end" style="gap: 20px" data-kt-user-table-toolbar="base">
                                 <!--begin::Add user-->
-                                <a href="{{route('products.create')}}" class="btn btn-primary">
+                                <a href="{{route('projects.create')}}" class="btn btn-primary">
                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                                     <span class="svg-icon svg-icon-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -68,7 +68,6 @@
                                     <th>English Name</th>
                                     <th>Arabic Name</th>
                                     <th>Active</th>
-                                    <th>Best Selling</th>
                                     <th>Created At</th>
                                     <th>Actions</th>
                                 </tr>
@@ -117,7 +116,7 @@
                 order: [
                     [0, 'desc']
                 ],
-                ajax: "{{ route('products.index') }}",
+                ajax: "{{ route('projects.index') }}",
                 columns: [{
                         data: 'id',
                         name: 'id'
@@ -129,22 +128,18 @@
                         searchable: false
                     },
                     {
-                        data: 'name_en',
-                        name: 'name_en'
+                        data: 'title_en',
+                        name: 'title_en'
                     },
                     {
-                        data: 'name_ar',
-                        name: 'name_ar',
+                        data: 'title_ar',
+                        name: 'title_ar',
                     },
                     {
                         data: 'active',
                         name: 'active',
                         orderable: false,
                         searchable: false
-                    },
-                    {
-                        data: 'best_selling',
-                        name: 'best_selling',
                     },
                     {
                         data: 'created_at',
@@ -161,7 +156,7 @@
         });
 
         function delItem(id, ref) {
-            let url = `/dashboard/products/${id}`
+            let url = `/dashboard/projects/${id}`
             swalWithBootstrapButtons
                 .fire({
                     title: "Are you sure?",
@@ -209,7 +204,7 @@
                 value: ref.checked
             }
 
-            put(`/dashboard/products/${id}/toggle`, data);
+            put(`/dashboard/projects/${id}/toggle`, data);
         }
 
         function refreshTable(ref) {

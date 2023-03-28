@@ -1,6 +1,6 @@
 @extends('dashboard.parent')
 
-@section('title', 'Add New Product')
+@section('title', 'Add New Project')
 
 @section('styles')
     <style>
@@ -26,7 +26,7 @@
                             <div class="card-header border-0">
                                 <!--begin::Card title-->
                                 <div class="card-title m-0">
-                                    <h3 class="fw-bolder m-0">Add New Product</h3>
+                                    <h3 class="fw-bolder m-0">Add New Project</h3>
                                 </div>
                                 <!--end::Card title-->
                             </div>
@@ -93,14 +93,14 @@
                                         <!--begin::Input group-->
                                         <div class="row mb-6">
                                             <!--begin::Label-->
-                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Product
+                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Project
                                                 Name (English)</label>
                                             <!--end::Label-->
                                             <!--begin::Col-->
                                             <div class="col-lg-9 fv-row">
                                                 <input type="text" id="name_en"
                                                     class="form-control form-control-lg form-control-solid"
-                                                    placeholder="Product Name in English" />
+                                                    placeholder="Project Name in English" />
                                             </div>
                                             <!--end::Col-->
                                         </div>
@@ -108,74 +108,27 @@
                                         <!--begin::Input group-->
                                         <div class="row mb-6">
                                             <!--begin::Label-->
-                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Product
+                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Project
                                                 Name (Arabic)</label>
                                             <!--end::Label-->
                                             <!--begin::Col-->
                                             <div class="col-lg-9 fv-row">
                                                 <input type="text" id="name_ar"
                                                     class="form-control form-control-lg form-control-solid"
-                                                    placeholder="Product Name in Arabic" />
+                                                    placeholder="Project Name in Arabic" />
                                             </div>
                                             <!--end::Col-->
                                         </div>
                                         <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="row mb-6">
-                                            <!--begin::Label-->
-                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Category</label>
-                                            <!--end::Label-->
-                                            <!--begin::Col-->
-                                            <div class="col-lg-9 fv-row">
-                                                <select id="category" class="form-select form-select-solid"
-                                                    data-control="select2" data-placeholder="Select an option"
-                                                    data-allow-clear="true">
-                                                    <option></option>
-                                                    @foreach ($categories as $category)
-                                                        <option value="{{ $category->id }}">{{ $category->name_en }} -
-                                                            {{ $category->name_ar }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <!--end::Col-->
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="row mb-6">
-                                            <!--begin::Label-->
-                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Catalog</label>
-                                            <!--end::Label-->
-                                            <!--begin::Col-->
-                                            <div class="col-lg-9 fv-row">
-                                                <input type="file" id="catalog"
-                                                    class="form-control form-control-lg form-control-solid" />
-                                            </div>
-                                            <!--end::Col-->
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="row mb-6">
-                                            <!--begin::Label-->
-                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Video Link</label>
-                                            <!--end::Label-->
-                                            <!--begin::Col-->
-                                            <div class="col-lg-9 fv-row">
-                                                <input type="text" id="video_link"
-                                                    class="form-control form-control-lg form-control-solid"
-                                                    placeholder="https://..." />
-                                            </div>
-                                            <!--end::Col-->
-                                        </div>
-                                        <!--end::Input group-->
+                                        
                                         <!--begin::Input group-->
                                         <div class="row mb-6" style="height: 100%">
                                             <!--begin::Label-->
-                                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Product
+                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Project
                                                 Settings</label>
                                             <!--end::Label-->
                                             <!--begin::Col-->
-                                            <div class="col-lg-4 fv-row">
+                                            <div class="col-lg-9 fv-row">
                                                 <label class="fw-bold fs-6" for="active">Active</label>
                                                 <br>
                                                 <input class="form-check-input mt-2" id="active"
@@ -183,57 +136,14 @@
                                                     value="1" checked />
                                             </div>
                                             <!--end::Col-->
-                                            <!--begin::Col-->
-                                            <div class="col-lg-4 fv-row">
-                                                <label class="fw-bold fs-6" for="best_selling">Best Selling</label>
-                                                <br>
-                                                <input class="form-check-input mt-2" id="best_selling"
-                                                    style="width: 30px !important; height: 30px !important"
-                                                    type="checkbox" value="1" />
-                                            </div>
-                                            <!--end::Col-->
                                         </div>
                                         <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="row mb-6">
-                                            <!--begin::Label-->
-                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Images</label>
-                                            <!--end::Label-->
-                                            <!--begin::Col-->
-                                            <div class="col-lg-9 fv-row">
-                                                <!--begin::Card body-->
-                                                <!--begin::Input group-->
-                                                <!--begin::Dropzone-->
-                                                <div class="card card-flush py-4">
-                                                    <div class="dropzone" id="kt_ecommerce_add_product_media">
-                                                        <!--begin::Message-->
-                                                        <div class="dz-message needsclick">
-                                                            <!--begin::Icon-->
-                                                            <i class="bi bi-file-earmark-arrow-up text-primary fs-3x"></i>
-                                                            <!--end::Icon-->
-                                                            <!--begin::Info-->
-                                                            <div class="ms-4">
-                                                                <h3 class="fs-5 fw-bolder text-gray-900 mb-1">Drop files
-                                                                    here
-                                                                    or
-                                                                    click to upload.</h3>
-                                                                <span class="fs-7 fw-bold text-gray-400">Upload images
-                                                                    only</span>
-                                                            </div>
-                                                            <!--end::Info-->
-                                                        </div>
-                                                    </div>
-                                                    <!--end::Dropzone-->
-                                                </div>
-                                                <!--end::Card header-->
-                                            </div>
-                                        </div>
-                                        <!--end::Input group-->
+                                        
                                         <!--begin::Input group-->
                                         <div class="row mb-6">
                                             <div class="col-lg-6 fv-row">
                                                 <!--begin::Label-->
-                                                <label class="col-lg-12 col-form-label required fw-bold fs-6">Product
+                                                <label class="col-lg-12 col-form-label required fw-bold fs-6">Project
                                                     Description (English)</label>
                                                 <!--end::Label-->
                                                 <!--begin::Col-->
@@ -244,7 +154,7 @@
                                             </div>
                                             <div class="col-lg-6 fv-row">
                                                 <!--begin::Label-->
-                                                <label class="col-lg-12 col-form-label required fw-bold fs-6">Product
+                                                <label class="col-lg-12 col-form-label required fw-bold fs-6">Project
                                                     Description (Arabic)</label>
                                                 <!--end::Label-->
                                                 <!--begin::Col-->
@@ -255,40 +165,8 @@
                                             </div>
                                         </div>
                                         <!--end::Input group-->
-
-
-                                        <!--begin::Input group-->
-                                        <div class="row mb-6">
-                                            <div class="col-lg-6 fv-row">
-                                                <!--begin::Label-->
-                                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Product
-                                                    Features (English)</label>
-                                                <!--end::Label-->
-                                                <!--begin::Col-->
-                                                <div class="col-lg-12 fv-row">
-                                                    <textarea id="features_en" class="form-control form-control-lg form-control-solid"></textarea>
-                                                </div>
-                                                <!--end::Col-->
-                                            </div>
-                                            <div class="col-lg-6 fv-row">
-                                                <!--begin::Label-->
-                                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Product
-                                                    Features (Arabic)</label>
-                                                <!--end::Label-->
-                                                <!--begin::Col-->
-                                                <div class="col-lg-12 fv-row">
-                                                    <textarea id="features_ar" class="form-control form-control-lg form-control-solid"></textarea>
-                                                </div>
-                                                <!--end::Col-->
-                                            </div>
-
-                                        </div>
-                                        <!--end::Input group-->
-
                                     </div>
                                     <!--end::Col-->
-
-
                                     <!--begin::Actions-->
                                     <div class="card-footer d-flex justify-content-end py-6 px-9">
                                         <button type="reset"
@@ -316,9 +194,9 @@
     <script>
         function performStore() {
 
-            let url = '{{ route('products.store') }}';
+            let url = '{{ route('projects.store') }}';
 
-            post(url, gatherData(), 'submit-btn', '{{ route('products.index') }}');
+            post(url, gatherData(), 'submit-btn', '{{ route('projects.index') }}');
         }
 
         function gatherData() {
@@ -328,44 +206,16 @@
                 formData.append('image', document.getElementById('image').files[0]);
             }
 
-            formData.append('name_en', document.getElementById('name_en').value);
-            formData.append('name_ar', document.getElementById('name_ar').value);
-
-            formData.append('category_id', document.getElementById('category').value);
-
-            if (document.getElementById('catalog').files.length > 0) {
-                formData.append('catalog', document.getElementById('catalog').files[0]);
-            }
-
-            formData.append('video_link', document.getElementById('video_link').value);
+            formData.append('title_en', document.getElementById('name_en').value);
+            formData.append('title_ar', document.getElementById('name_ar').value);
 
             formData.append('is_active', document.getElementById('active').checked);
-            formData.append('is_best_selling', document.getElementById('best_selling').checked);
-
-            let images = myDropzone.getAcceptedFiles();
-            for (var i = 0; i < images.length; i++) {
-                formData.append('images[]', images[i]);
-            }
 
             formData.append('description_en', tinymce.get("description_en").getContent());
             formData.append('description_ar', tinymce.get("description_ar").getContent());
-            formData.append('features_en', tinymce.get("features_en").getContent());
-            formData.append('features_ar', tinymce.get("features_ar").getContent());
 
             return formData;
         }
-
-        let myDropzone = new Dropzone("#kt_ecommerce_add_product_media", {
-            autoProcessQueue: false,
-            url: "https://keenthemes.com/scripts/void.php",
-            paramName: "file",
-            maxFiles: 10,
-            maxFilesize: 10,
-            addRemoveLinks: !0,
-            accept: function(e, t) {
-                "wow.jpg" == e.name ? t("Naha, you don't.") : t();
-            },
-        })
 
         tinymce.init({
             selector: '#description_en',
@@ -385,38 +235,6 @@
         });
         tinymce.init({
             selector: '#description_ar',
-            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-            tinycomments_mode: 'embedded',
-            tinycomments_author: 'Author name',
-            mergetags_list: [{
-                    value: 'First.Name',
-                    title: 'First Name'
-                },
-                {
-                    value: 'Email',
-                    title: 'Email'
-                },
-            ]
-        });
-        tinymce.init({
-            selector: '#features_en',
-            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-            tinycomments_mode: 'embedded',
-            tinycomments_author: 'Author name',
-            mergetags_list: [{
-                    value: 'First.Name',
-                    title: 'First Name'
-                },
-                {
-                    value: 'Email',
-                    title: 'Email'
-                },
-            ]
-        });
-        tinymce.init({
-            selector: '#features_ar',
             plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
             tinycomments_mode: 'embedded',
