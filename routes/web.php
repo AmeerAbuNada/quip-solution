@@ -31,7 +31,10 @@ Route::middleware('auth')->prefix('/dashboard')->group(function () {
   Route::resource('admins', AdminController::class)->except(['create']);
   Route::resource('categories', CategoryController::class)->except(['show', 'create', 'edit']);
   Route::resource('contacts', ContactController::class)->only(['index', 'destroy']);
+  
   Route::resource('products', ProductController::class)->except(['show']);
+  Route::put('/products/{product}/toggle', [ProductController::class, 'toggleOption']);
+  Route::delete('/products/images/{image}', [ProductController::class, 'deleteImage']);
 
   Route::prefix('/account')->controller(AccountController::class)->group(function () {
     Route::get('/', 'profile')->name('account.profile');

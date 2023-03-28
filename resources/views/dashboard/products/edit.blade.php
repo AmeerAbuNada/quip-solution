@@ -1,13 +1,15 @@
 @extends('dashboard.parent')
 
-@section('title', 'Add New Product')
+@section('title', 'Edit Product')
 
 @section('styles')
     <style>
         .tox-tinymce {
-            height: 1000px !important;
+            height: 500px !important;
         }
     </style>
+
+    <link href="{{ asset('dashboard-assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -19,12 +21,12 @@
                 <!--begin::Basic info-->
                 <div class="card mb-5 mb-xl-10">
                     <div class="row">
-                        <div class="col-lg-9">
+                        <div class="col-lg-12">
                             <!--begin::Card header-->
                             <div class="card-header border-0">
                                 <!--begin::Card title-->
                                 <div class="card-title m-0">
-                                    <h3 class="fw-bolder m-0">Edit Product ({{ $product->name }})</h3>
+                                    <h3 class="fw-bolder m-0">Edit Product ({{ $product->name_en }})</h3>
                                 </div>
                                 <!--end::Card title-->
                             </div>
@@ -32,7 +34,7 @@
                             <!--begin::Content-->
                             <div id="kt_account_settings_profile_details" class="collapse show">
                                 <!--begin::Form-->
-                                <form class="form" onsubmit="event.preventDefault(); performUpdate();">
+                                <form class="form" onsubmit="event.preventDefault(); performStore();">
                                     <!--begin::Card body-->
                                     <div class="card-body border-top p-9">
                                         <!--begin::Input group-->
@@ -92,13 +94,13 @@
                                         <div class="row mb-6">
                                             <!--begin::Label-->
                                             <label class="col-lg-3 col-form-label required fw-bold fs-6">Product
-                                                Name</label>
+                                                Name (English)</label>
                                             <!--end::Label-->
                                             <!--begin::Col-->
                                             <div class="col-lg-9 fv-row">
-                                                <input type="text" id="name" value="{{ $product->name }}"
+                                                <input type="text" id="name_en" value="{{ $product->name_en }}"
                                                     class="form-control form-control-lg form-control-solid"
-                                                    placeholder="MSI GE78 raider" />
+                                                    placeholder="Product Name in English" />
                                             </div>
                                             <!--end::Col-->
                                         </div>
@@ -107,23 +109,62 @@
                                         <div class="row mb-6">
                                             <!--begin::Label-->
                                             <label class="col-lg-3 col-form-label required fw-bold fs-6">Product
-                                                Price</label>
+                                                Name (Arabic)</label>
                                             <!--end::Label-->
                                             <!--begin::Col-->
-                                            <div class="col-lg-5 fv-row">
-                                                <label class="fw-bold fs-6">Original Price</label>
-                                                <input type="text" id="price" value="{{ $product->price }}"
+                                            <div class="col-lg-9 fv-row">
+                                                <input type="text" id="name_ar" value="{{ $product->name_ar }}"
                                                     class="form-control form-control-lg form-control-solid"
-                                                    placeholder="1500" />
+                                                    placeholder="Product Name in Arabic" />
                                             </div>
                                             <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Category</label>
+                                            <!--end::Label-->
                                             <!--begin::Col-->
-                                            <div class="col-lg-4 fv-row">
-                                                <label class="fw-bold fs-6">Discount Price</label>
-                                                <input type="text" id="discount_price"
-                                                    value="{{ $product->discount_price }}"
+                                            <div class="col-lg-9 fv-row">
+                                                <select id="category" class="form-select form-select-solid"
+                                                    data-control="select2" data-placeholder="Select an option"
+                                                    data-allow-clear="true">
+                                                    <option></option>
+                                                    @foreach ($categories as $category)
+                                                        <option value="{{ $category->id }}" @selected($category->id == $product->category_id)>
+                                                            {{ $category->name_en }} -
+                                                            {{ $category->name_ar }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Catalog</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-9 fv-row">
+                                                <input type="file" id="catalog"
+                                                    class="form-control form-control-lg form-control-solid" />
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Video Link</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-9 fv-row">
+                                                <input type="text" id="video_link" value="{{ $product->video_link }}"
                                                     class="form-control form-control-lg form-control-solid"
-                                                    placeholder="1350" />
+                                                    placeholder="https://..." />
                                             </div>
                                             <!--end::Col-->
                                         </div>
@@ -131,11 +172,11 @@
                                         <!--begin::Input group-->
                                         <div class="row mb-6" style="height: 100%">
                                             <!--begin::Label-->
-                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Product
+                                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Product
                                                 Settings</label>
                                             <!--end::Label-->
                                             <!--begin::Col-->
-                                            <div class="col-lg-2 fv-row">
+                                            <div class="col-lg-4 fv-row">
                                                 <label class="fw-bold fs-6" for="active">Active</label>
                                                 <br>
                                                 <input class="form-check-input mt-2" id="active"
@@ -144,39 +185,12 @@
                                             </div>
                                             <!--end::Col-->
                                             <!--begin::Col-->
-                                            <div class="col-lg-2 fv-row">
-                                                <label class="fw-bold fs-6" for="in_stock">In Stock</label>
+                                            <div class="col-lg-4 fv-row">
+                                                <label class="fw-bold fs-6" for="best_selling">Best Selling</label>
                                                 <br>
-                                                <input class="form-check-input mt-2" id="in_stock"
-                                                    style="width: 30px !important; height: 30px !important" type="checkbox"
-                                                    value="1" @checked($product->in_stock) />
-                                            </div>
-                                            <!--end::Col-->
-                                            <!--begin::Col-->
-                                            <div class="col-lg-2 fv-row">
-                                                <label class="fw-bold fs-6" for="slider">Slider</label>
-                                                <br>
-                                                <input class="form-check-input mt-2" id="slider"
-                                                    style="width: 30px !important; height: 30px !important" type="checkbox"
-                                                    value="1" @checked($product->is_slider) />
-                                            </div>
-                                            <!--end::Col-->
-                                            <!--begin::Col-->
-                                            <div class="col-lg-1 fv-row">
-                                                <label class="fw-bold fs-6" for="offer">Offer</label>
-                                                <br>
-                                                <input class="form-check-input mt-2" id="offer"
-                                                    onclick="toggleDate()"
+                                                <input class="form-check-input mt-2" id="best_selling"
                                                     style="width: 30px !important; height: 30px !important"
-                                                    type="checkbox" value="1" @checked($product->offer_date != null) />
-                                            </div>
-                                            <div id="date-div" class="col-lg-2 fv-row"
-                                                style="display: {{ $product->offer_date != null ? 'block' : 'none' }}">
-                                                <label class="fw-bold fs-6" for="offer">End Date</label>
-                                                <br>
-                                                <input type="date" id="offer_date" value="{{ $product->offer_date }}"
-                                                    class="form-control form-control-lg form-control-solid mt-2"
-                                                    placeholder="1350" />
+                                                    type="checkbox" value="1" @checked($product->is_best_selling) />
                                             </div>
                                             <!--end::Col-->
                                         </div>
@@ -251,286 +265,60 @@
                                         <!--end::Input group-->
                                         <!--begin::Input group-->
                                         <div class="row mb-6">
-                                            <!--begin::Label-->
-                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Tags</label>
-                                            <!--end::Label-->
-                                            <div class="col-lg-9 fv-row">
-                                                <input id="kt_ecommerce_add_product_tags"
-                                                    name="kt_ecommerce_add_product_tags" class="form-control mb-2"
-                                                    value="{{ $product->tags }}" />
-                                                <div class="text-muted fs-7">Add tags to a product.</div>
+                                            <div class="col-lg-6 fv-row">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-12 col-form-label required fw-bold fs-6">Product
+                                                    Description (English)</label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-12 fv-row">
+                                                    <textarea id="description_en" class="form-control form-control-lg form-control-solid">{{ $product->description_en }}</textarea>
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <div class="col-lg-6 fv-row">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-12 col-form-label required fw-bold fs-6">Product
+                                                    Description (Arabic)</label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-12 fv-row">
+                                                    <textarea id="description_ar" class="form-control form-control-lg form-control-solid">{{ $product->description_ar }}</textarea>
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                        </div>
+                                        <!--end::Input group-->
+
+
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <div class="col-lg-6 fv-row">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Product
+                                                    Features (English)</label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-12 fv-row">
+                                                    <textarea id="features_en" class="form-control form-control-lg form-control-solid">{{ $product->features_en }}</textarea>
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <div class="col-lg-6 fv-row">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Product
+                                                    Features (Arabic)</label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-12 fv-row">
+                                                    <textarea id="features_ar" class="form-control form-control-lg form-control-solid">{{ $product->features_ar }}</textarea>
+                                                </div>
+                                                <!--end::Col-->
                                             </div>
 
                                         </div>
                                         <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="row mb-6">
-                                            <!--begin::Label-->
-                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Colors</label>
-                                            <!--end::Label-->
-                                            <!--begin::Col-->
-                                            <div class="col-lg-9 fv-row">
-                                                <!--begin::Input group-->
-                                                <div class="" data-kt-ecommerce-catalog-add-product="auto-options">
-                                                    <!--begin::Repeater-->
-                                                    <div id="kt_ecommerce_add_product_options">
-                                                        <!--begin::Form group-->
-                                                        <div class="form-group">
-                                                            <div data-repeater-list="kt_ecommerce_add_product_options"
-                                                                class="d-flex flex-column gap-3">
 
-                                                                <div data-repeater-item=""
-                                                                    class="form-group d-flex flex-wrap gap-5">
-                                                                    <!--begin::Select2-->
-                                                                    <div class="col-lg-11">
-                                                                        <input type="color"
-                                                                            class="form-control form-control-lg form-control-solid">
-                                                                    </div>
-                                                                    <!--end::Select2-->
-                                                                    <button type="button" data-repeater-delete=""
-                                                                        class="btn btn-sm btn-icon btn-light-danger">
-                                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr088.svg-->
-                                                                        <span class="svg-icon svg-icon-2">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                width="24" height="24"
-                                                                                viewBox="0 0 24 24" fill="none">
-                                                                                <rect opacity="0.5" x="7.05025"
-                                                                                    y="15.5356" width="12"
-                                                                                    height="2" rx="1"
-                                                                                    transform="rotate(-45 7.05025 15.5356)"
-                                                                                    fill="black" />
-                                                                                <rect x="8.46447" y="7.05029"
-                                                                                    width="12" height="2"
-                                                                                    rx="1"
-                                                                                    transform="rotate(45 8.46447 7.05029)"
-                                                                                    fill="black" />
-                                                                            </svg>
-                                                                        </span>
-                                                                        <!--end::Svg Icon-->
-                                                                    </button>
-                                                                </div>
-                                                                @if ($product->colors != null)
-                                                                    @foreach ($product->colors as $color)
-                                                                        <div data-repeater-item=""
-                                                                            class="form-group d-flex flex-wrap gap-5">
-                                                                            <!--begin::Select2-->
-                                                                            <div class="col-lg-11">
-                                                                                <input type="color"
-                                                                                    value="{{ $color }}"
-                                                                                    class="form-control form-control-lg form-control-solid">
-                                                                            </div>
-                                                                            <!--end::Select2-->
-                                                                            <button type="button" data-repeater-delete=""
-                                                                                class="btn btn-sm btn-icon btn-light-danger">
-                                                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr088.svg-->
-                                                                                <span class="svg-icon svg-icon-2">
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                        width="24" height="24"
-                                                                                        viewBox="0 0 24 24"
-                                                                                        fill="none">
-                                                                                        <rect opacity="0.5"
-                                                                                            x="7.05025" y="15.5356"
-                                                                                            width="12" height="2"
-                                                                                            rx="1"
-                                                                                            transform="rotate(-45 7.05025 15.5356)"
-                                                                                            fill="black" />
-                                                                                        <rect x="8.46447"
-                                                                                            y="7.05029" width="12"
-                                                                                            height="2" rx="1"
-                                                                                            transform="rotate(45 8.46447 7.05029)"
-                                                                                            fill="black" />
-                                                                                    </svg>
-                                                                                </span>
-                                                                                <!--end::Svg Icon-->
-                                                                            </button>
-                                                                        </div>
-                                                                    @endforeach
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Form group-->
-                                                        <!--begin::Form group-->
-                                                        <div class="form-group mt-5">
-                                                            <button type="button" data-repeater-create=""
-                                                                class="btn btn-sm btn-light-primary">
-                                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr087.svg-->
-                                                                <span class="svg-icon svg-icon-2">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                        height="24" viewBox="0 0 24 24"
-                                                                        fill="none">
-                                                                        <rect opacity="0.5" x="11"
-                                                                            y="18" width="12" height="2"
-                                                                            rx="1" transform="rotate(-90 11 18)"
-                                                                            fill="black" />
-                                                                        <rect x="6" y="11"
-                                                                            width="12" height="2" rx="1"
-                                                                            fill="black" />
-                                                                    </svg>
-                                                                </span>
-                                                                <!--end::Svg Icon-->Add another variation
-                                                            </button>
-                                                        </div>
-                                                        <!--end::Form group-->
-                                                    </div>
-                                                    <!--end::Repeater-->
-                                                </div>
-                                                <!--end::Input group-->
-                                            </div>
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="row mb-6">
-                                            <!--begin::Label-->
-                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Sizes</label>
-                                            <!--end::Label-->
-                                            <!--begin::Col-->
-                                            <div class="col-lg-9 fv-row">
-                                                <!--begin::Input group-->
-                                                <div class="" data-kt-ecommerce-catalog-add-product="auto-options">
-                                                    <!--begin::Repeater-->
-                                                    <div id="kt_ecommerce_add_product_options_size">
-                                                        <!--begin::Form group-->
-                                                        <div class="form-group">
-                                                            <div data-repeater-list="kt_ecommerce_add_product_options_size"
-                                                                class="d-flex flex-column gap-3">
-                                                                <div data-repeater-item=""
-                                                                    class="form-group d-flex flex-wrap gap-5">
-                                                                    <!--begin::Select2-->
-                                                                    <div class="col-lg-11">
-                                                                        <input type="text"
-                                                                            class="form-control form-control-lg form-control-solid">
-                                                                    </div>
-                                                                    <!--end::Select2-->
-                                                                    <button type="button" data-repeater-delete=""
-                                                                        class="btn btn-sm btn-icon btn-light-danger">
-                                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr088.svg-->
-                                                                        <span class="svg-icon svg-icon-2">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                width="24" height="24"
-                                                                                viewBox="0 0 24 24" fill="none">
-                                                                                <rect opacity="0.5" x="7.05025"
-                                                                                    y="15.5356" width="12"
-                                                                                    height="2" rx="1"
-                                                                                    transform="rotate(-45 7.05025 15.5356)"
-                                                                                    fill="black" />
-                                                                                <rect x="8.46447" y="7.05029"
-                                                                                    width="12" height="2"
-                                                                                    rx="1"
-                                                                                    transform="rotate(45 8.46447 7.05029)"
-                                                                                    fill="black" />
-                                                                            </svg>
-                                                                        </span>
-                                                                        <!--end::Svg Icon-->
-                                                                    </button>
-                                                                </div>
-                                                                @if ($product->sizes != null)
-                                                                    @foreach ($product->sizes as $size)
-                                                                        <div data-repeater-item=""
-                                                                            class="form-group d-flex flex-wrap gap-5">
-                                                                            <!--begin::Select2-->
-                                                                            <div class="col-lg-11">
-                                                                                <input type="text"
-                                                                                    value="{{ $size }}"
-                                                                                    class="form-control form-control-lg form-control-solid">
-                                                                            </div>
-                                                                            <!--end::Select2-->
-                                                                            <button type="button" data-repeater-delete=""
-                                                                                class="btn btn-sm btn-icon btn-light-danger">
-                                                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr088.svg-->
-                                                                                <span class="svg-icon svg-icon-2">
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                        width="24" height="24"
-                                                                                        viewBox="0 0 24 24"
-                                                                                        fill="none">
-                                                                                        <rect opacity="0.5"
-                                                                                            x="7.05025" y="15.5356"
-                                                                                            width="12" height="2"
-                                                                                            rx="1"
-                                                                                            transform="rotate(-45 7.05025 15.5356)"
-                                                                                            fill="black" />
-                                                                                        <rect x="8.46447"
-                                                                                            y="7.05029" width="12"
-                                                                                            height="2" rx="1"
-                                                                                            transform="rotate(45 8.46447 7.05029)"
-                                                                                            fill="black" />
-                                                                                    </svg>
-                                                                                </span>
-                                                                                <!--end::Svg Icon-->
-                                                                            </button>
-                                                                        </div>
-                                                                    @endforeach
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Form group-->
-                                                        <!--begin::Form group-->
-                                                        <div class="form-group mt-5">
-                                                            <button type="button" data-repeater-create=""
-                                                                class="btn btn-sm btn-light-primary">
-                                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr087.svg-->
-                                                                <span class="svg-icon svg-icon-2">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                        height="24" viewBox="0 0 24 24"
-                                                                        fill="none">
-                                                                        <rect opacity="0.5" x="11"
-                                                                            y="18" width="12" height="2"
-                                                                            rx="1" transform="rotate(-90 11 18)"
-                                                                            fill="black" />
-                                                                        <rect x="6" y="11"
-                                                                            width="12" height="2" rx="1"
-                                                                            fill="black" />
-                                                                    </svg>
-                                                                </span>
-                                                                <!--end::Svg Icon-->Add another variation
-                                                            </button>
-                                                        </div>
-                                                        <!--end::Form group-->
-                                                    </div>
-                                                    <!--end::Repeater-->
-                                                </div>
-                                                <!--end::Input group-->
-                                            </div>
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="row mb-6">
-                                            <!--begin::Label-->
-                                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Product
-                                                Info</label>
-                                            <!--end::Label-->
-                                            <!--begin::Col-->
-                                            <div class="col-lg-12 fv-row">
-                                                <textarea id="product_info" class="form-control form-control-lg form-control-solid">{{ $product->product_info }}</textarea>
-                                            </div>
-                                            <!--end::Col-->
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="row mb-6">
-                                            <!--begin::Label-->
-                                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Product
-                                                Description</label>
-                                            <!--end::Label-->
-                                            <!--begin::Col-->
-                                            <div class="col-lg-12 fv-row">
-                                                <textarea id="product_description" class="form-control form-control-lg form-control-solid">{{ $product->product_description }}</textarea>
-                                            </div>
-                                            <!--end::Col-->
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="row mb-6">
-                                            <!--begin::Label-->
-                                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Additional
-                                                Information</label>
-                                            <!--end::Label-->
-                                            <!--begin::Col-->
-                                            <div class="col-lg-12 fv-row">
-                                                <textarea id="additional_information" class="form-control form-control-lg form-control-solid">{{ $product->additional_information }}</textarea>
-                                            </div>
-                                            <!--end::Col-->
-                                        </div>
-                                        <!--end::Input group-->
                                     </div>
                                     <!--end::Col-->
 
@@ -548,79 +336,6 @@
                             </div>
                             <!--end::Content-->
                         </div>
-                        <div class="col-lg-3">
-                            <!--begin::Card header-->
-                            <div class="card-header border-0">
-                                <!--begin::Card title-->
-                                <div class="card-title m-0">
-                                    <h3 class="fw-bolder m-0">Product Categories</h3>
-                                </div>
-                                <!--end::Card title-->
-
-                            </div>
-                            <!--begin::Card header-->
-                            <!--begin::Content-->
-                            <div id="kt_account_settings_profile_details" class="collapse show">
-                                <!--begin::Form-->
-                                <form class="form" onsubmit="event.preventDefault();">
-                                    <!--begin::Card body-->
-                                    <div class="card-body border-top p-9">
-                                        <!--begin::Input group-->
-                                        <div class="row mb-6">
-                                            <!--begin::Label-->
-                                            <!--end::Label-->
-                                            @foreach ($categories->where('category_id', null) as $category)
-                                                <!--begin::Col-->
-                                                <div class="col-lg-12 fv-row mt-3"
-                                                    style="display: flex; align-items: center; gap: 10px">
-                                                    <input class="form-check-input" id="category_{{ $category->slug }}"
-                                                        style="width: 30px !important; height: 30px !important"
-                                                        type="checkbox" value="1" @checked($product->categories->contains($category->id)) />
-                                                    <label class="fw-bold fs-6"
-                                                        for="category_{{ $category->slug }}">{{ $category->name }}</label>
-                                                </div>
-                                                <!--end::Col-->
-                                                @foreach ($category->categories as $subCategory)
-                                                    <!--begin::Col-->
-                                                    <div class="col-lg-12 fv-row mt-3"
-                                                        style="display: flex; align-items: center; gap: 10px; margin-left: 20px">
-                                                        &#x21B3;
-                                                        <input class="form-check-input"
-                                                            id="category_{{ $subCategory->slug }}"
-                                                            style="width: 30px !important; height: 30px !important"
-                                                            type="checkbox" value="1" @checked($product->categories->contains($subCategory->id)) />
-                                                        <label class="fw-bold fs-6"
-                                                            for="category_{{ $subCategory->slug }}">{{ $subCategory->name }}</label>
-                                                    </div>
-                                                    <!--end::Col-->
-                                                    @foreach ($subCategory->categories as $subSubCategory)
-                                                        <!--begin::Col-->
-                                                        <div class="col-lg-12 fv-row mt-3"
-                                                            style="display: flex; align-items: center; gap: 10px; margin-left: 40px">
-                                                            &#x21B3;
-                                                            <input class="form-check-input"
-                                                                id="category_{{ $subSubCategory->slug }}"
-                                                                style="width: 30px !important; height: 30px !important"
-                                                                type="checkbox" value="1"
-                                                                @checked($product->categories->contains($subSubCategory->id)) />
-                                                            <label class="fw-bold fs-6"
-                                                                for="category_{{ $subSubCategory->slug }}">{{ $subSubCategory->name }}</label>
-                                                        </div>
-                                                        <!--end::Col-->
-                                                    @endforeach
-                                                @endforeach
-                                            @endforeach
-
-                                        </div>
-                                        <!--end::Input group-->
-                                    </div>
-                                    <!--end::Col-->
-
-                                </form>
-                                <!--end::Form-->
-                            </div>
-                            <!--end::Content-->
-                        </div>
                     </div>
                 </div>
             </div>
@@ -631,117 +346,53 @@
 
 @section('scripts')
     <script src="{{ asset('dashboard-assets/js/editor.js') }}"></script>
-    <script src="{{ asset('dashboard-assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
+    <script src="{{ asset('dashboard-assets/plugins/global/plugins.bundle.js') }}"></script>
     <script>
-        function getTags() {
-            let str = document.getElementById('kt_ecommerce_add_product_tags').value;
-            if (str != '') {
-                str = JSON.parse(str);
-                var keyword = "";
-                for (var i = 0; i < str.length; i++) {
-                    if (i !== str.length - 1) {
-                        keyword += str[i]["value"] + ",";
-                    } else {
-                        keyword += str[i]["value"];
-                    }
-                }
-                return keyword;
-            }
-            return '';
-        }
+        function performStore() {
 
-        function getColors() {
-            var repeater = document.getElementById("kt_ecommerce_add_product_options");
-            var inputs = repeater.getElementsByTagName("input");
-            var data = [];
-            for (var i = 0; i < inputs.length; i++) {
-                data.push(inputs[i].value);
-            }
-            return data;
-        }
+            let url = '{{ route('products.update', $product) }}';
 
-        function getSizes() {
-            var repeater = document.getElementById("kt_ecommerce_add_product_options_size");
-            var inputs = repeater.getElementsByTagName("input");
-            var data = [];
-            for (var i = 0; i < inputs.length; i++) {
-                data.push(inputs[i].value);
-            }
-            return data;
-        }
-
-        function performUpdate() {
-            let url = '{{ route('products.update', $product->slug) }}';
             post(url, gatherData(), 'submit-btn', '{{ route('products.index') }}');
-        }
-
-        function toggleDate() {
-            let dateDiv = document.getElementById('date-div');
-            let checkBox = document.getElementById('offer');
-            if (checkBox.checked) {
-                dateDiv.style.display = 'block';
-            } else {
-                dateDiv.style.display = 'none';
-            }
-
-        }
-
-        function getCategoriesArr() {
-            let result = [];
-            @foreach ($categories as $category)
-                if (document.getElementById('category_{{ $category->slug }}').checked) {
-                    result.push({{ $category->id }});
-                }
-            @endforeach
-            return result;
-        }
-
-        function gatherData() {
-            let formData = new FormData();
-            formData.append('_method', 'PUT');
-            if (document.getElementById('image').files.length > 0) {
-                formData.append('image', document.getElementById('image').files[0]);
-            }
-            formData.append('name', document.getElementById('name').value);
-            formData.append('price', document.getElementById('price').value);
-            formData.append('discount_price', document.getElementById('discount_price').value);
-            formData.append('is_active', document.getElementById('active').checked);
-            formData.append('in_stock', document.getElementById('in_stock').checked);
-            formData.append('slider', document.getElementById('slider').checked);
-            formData.append('offer', document.getElementById('offer').checked);
-            if (document.getElementById('offer').checked) {
-                formData.append('offer_date', document.getElementById('offer_date').value);
-            }
-            let images = myDropzone.getAcceptedFiles();
-            for (var i = 0; i < images.length; i++) {
-                formData.append('images[]', images[i]);
-            }
-            formData.append('tags', getTags());
-
-            let colors = getColors();
-            for (var i = 0; i < colors.length; i++) {
-                formData.append('colors[]', colors[i]);
-            }
-
-            let sizes = getSizes();
-            for (var i = 0; i < sizes.length; i++) {
-                formData.append('sizes[]', sizes[i]);
-            }
-
-            let categories = getCategoriesArr();
-            for (var i = 0; i < categories.length; i++) {
-                formData.append('categories[]', categories[i]);
-            }
-            formData.append('product_info', tinymce.get("product_info").getContent());
-            formData.append('product_description', tinymce.get("product_description").getContent());
-            formData.append('additional_information', tinymce.get("additional_information").getContent());
-
-            return formData;
         }
 
         function confirmDelete(id, ref) {
             let url = `/dashboard/products/images/${id}`;
             deleteItem(url, ref)
+        }
+
+        function gatherData() {
+            let formData = new FormData();
+            formData.append('_method', 'PUT');
+
+            if (document.getElementById('image').files.length > 0) {
+                formData.append('image', document.getElementById('image').files[0]);
+            }
+
+            formData.append('name_en', document.getElementById('name_en').value);
+            formData.append('name_ar', document.getElementById('name_ar').value);
+
+            formData.append('category_id', document.getElementById('category').value);
+
+            if (document.getElementById('catalog').files.length > 0) {
+                formData.append('catalog', document.getElementById('catalog').files[0]);
+            }
+
+            formData.append('video_link', document.getElementById('video_link').value);
+
+            formData.append('is_active', document.getElementById('active').checked);
+            formData.append('is_best_selling', document.getElementById('best_selling').checked);
+
+            let images = myDropzone.getAcceptedFiles();
+            for (var i = 0; i < images.length; i++) {
+                formData.append('images[]', images[i]);
+            }
+
+            formData.append('description_en', tinymce.get("description_en").getContent());
+            formData.append('description_ar', tinymce.get("description_ar").getContent());
+            formData.append('features_en', tinymce.get("features_en").getContent());
+            formData.append('features_ar', tinymce.get("features_ar").getContent());
+
+            return formData;
         }
 
         let myDropzone = new Dropzone("#kt_ecommerce_add_product_media", {
@@ -756,56 +407,8 @@
             },
         })
 
-        $("#kt_ecommerce_add_product_options").repeater({
-            initEmpty: false,
-            defaultValues: {
-                "text-input": "foo"
-            },
-            show: function() {
-                $(this).slideDown();
-            },
-            hide: function(e) {
-                $(this).slideUp(e);
-            },
-        });
-        document.querySelector("div[data-repeater-list='kt_ecommerce_add_product_options']").firstElementChild.remove();
-
-        $("#kt_ecommerce_add_product_options_size").repeater({
-            initEmpty: false,
-            defaultValues: {
-                "text-input": "foo"
-            },
-            show: function() {
-                $(this).slideDown();
-            },
-            hide: function(e) {
-                $(this).slideUp(e);
-            },
-        });
-        document.querySelector("div[data-repeater-list='kt_ecommerce_add_product_options_size']").firstElementChild
-            .remove();
-
-        const t = document.querySelector('#kt_ecommerce_add_product_tags');
-        t &&
-            new Tagify(t, {
-                whitelist: [
-                    "new",
-                    "trending",
-                    "sale",
-                    "discounted",
-                    "selling fast",
-                    "last 10",
-                ],
-                dropdown: {
-                    maxItems: 20,
-                    classname: "tagify__inline__suggestions",
-                    enabled: 0,
-                    closeOnSelect: !1,
-                },
-            });
-
         tinymce.init({
-            selector: '#product_info',
+            selector: '#description_en',
             plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
             tinycomments_mode: 'embedded',
@@ -821,7 +424,7 @@
             ]
         });
         tinymce.init({
-            selector: '#product_description',
+            selector: '#description_ar',
             plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
             tinycomments_mode: 'embedded',
@@ -837,7 +440,23 @@
             ]
         });
         tinymce.init({
-            selector: '#additional_information',
+            selector: '#features_en',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [{
+                    value: 'First.Name',
+                    title: 'First Name'
+                },
+                {
+                    value: 'Email',
+                    title: 'Email'
+                },
+            ]
+        });
+        tinymce.init({
+            selector: '#features_ar',
             plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
             tinycomments_mode: 'embedded',

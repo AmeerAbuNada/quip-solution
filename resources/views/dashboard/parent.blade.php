@@ -38,7 +38,7 @@
 										<a href="#" class="text-white text-hover-primary fs-6 fw-bold">{{auth()->user()->name}}</a>
 										<!--end::Username-->
 										<!--begin::Description-->
-										<span class="text-gray-600 fw-bold d-block fs-8 mb-1">Python Dev</span>
+										<span class="text-gray-600 fw-bold d-block fs-8 mb-1"></span>
 										<!--end::Description-->
 										<!--begin::Label-->
 										<div class="d-flex align-items-center text-success fs-9">

@@ -189,7 +189,7 @@
                                                 <br>
                                                 <input class="form-check-input mt-2" id="best_selling"
                                                     style="width: 30px !important; height: 30px !important"
-                                                    type="checkbox" value="1" checked />
+                                                    type="checkbox" value="1" />
                                             </div>
                                             <!--end::Col-->
                                         </div>
@@ -321,27 +321,6 @@
             post(url, gatherData(), 'submit-btn', '{{ route('products.index') }}');
         }
 
-        function toggleDate() {
-            let dateDiv = document.getElementById('date-div');
-            let checkBox = document.getElementById('offer');
-            if (checkBox.checked) {
-                dateDiv.style.display = 'block';
-            } else {
-                dateDiv.style.display = 'none';
-            }
-
-        }
-
-        function getCategoriesArr() {
-            let result = [];
-            @foreach ($categories as $category)
-                if (document.getElementById('category_{{ $category->slug }}').checked) {
-                    result.push({{ $category->id }});
-                }
-            @endforeach
-            return result;
-        }
-
         function gatherData() {
             let formData = new FormData();
 
@@ -360,8 +339,8 @@
 
             formData.append('video_link', document.getElementById('video_link').value);
 
-            formData.append('active', document.getElementById('active').checked);
-            formData.append('best_selling', document.getElementById('best_selling').checked);
+            formData.append('is_active', document.getElementById('active').checked);
+            formData.append('is_best_selling', document.getElementById('best_selling').checked);
 
             let images = myDropzone.getAcceptedFiles();
             for (var i = 0; i < images.length; i++) {
