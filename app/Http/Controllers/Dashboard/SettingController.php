@@ -19,6 +19,13 @@ class SettingController extends Controller
         return response()->view('dashboard.settings.settings', compact('settings', 'title'));
     }
 
+    public function home()
+    {
+        $settings = Setting::where('group', 'home')->get();
+        $title = 'Home Page Settings';
+        return response()->view('dashboard.settings.settings', compact('settings', 'title'));
+    }
+
     public function update(Request $request)
     {
         $validationResult = $this->validateSettings($request);

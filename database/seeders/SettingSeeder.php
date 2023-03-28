@@ -65,14 +65,14 @@ class SettingSeeder extends Seeder
         Setting::create([
             'key' => 'achievements_en',
             'value' => '<p>Manage your company better with us Manage your company better with us Manage Manage your company company.</p>',
-            'label' => 'About us Description (English)',
+            'label' => 'Our Achievements (English)',
             'type' => 'editor',
             'group' => 'home',
         ]);
         Setting::create([
             'key' => 'achievements_ar',
             'value' => '<p>إدارة شركتك بشكل أفضل معنا إدارة شركتك بشكل أفضل معنا إدارة إدارة شركتك.</p>',
-            'label' => 'About us Description (Arabic)',
+            'label' => 'Our Achievements (Arabic)',
             'type' => 'editor',
             'group' => 'home',
         ]);

@@ -28,8 +28,8 @@ class StoreProjectRequest extends FormRequest
             'title_en' => 'required|string|max:150',
             'title_ar' => 'required|string|max:150',
             'is_active' => 'required|string|in:true,false',
-            'description_en' => 'required|string|max:1000',
-            'description_ar' => 'required|string|max:1000',
+            'description_en' => 'required|string',
+            'description_ar' => 'required|string',
         ];
     }
 }

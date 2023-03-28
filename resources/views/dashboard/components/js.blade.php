@@ -24,3 +24,9 @@
 <script src="{{ asset('dashboard-assets/js/axios.js') }}"></script>
 
 <script src="{{asset('dashboard-assets/js/crud.js')}}"></script>
+
+<script>
+    function changeLocale(locale) {
+        
+    }
+</script>

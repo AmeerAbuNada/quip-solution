@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 
 class LanguageMiddleware
@@ -16,10 +17,8 @@ class LanguageMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(in_array($request->locale, ['en', 'ar'])) {
-            App::setLocale($request->locale);
-            return $next($request);
-        }
-        return abort(Response::HTTP_NOT_FOUND);
+        $locale = Session::get('locale') ?? 'en';
+        App::setLocale($locale);
+        return $next($request);
     }
 }

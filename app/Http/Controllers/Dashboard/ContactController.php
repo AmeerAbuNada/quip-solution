@@ -24,9 +24,6 @@ class ContactController extends Controller
                     return '<button type="button" onclick="delItem(\'' . $row->id . '\',this)"
                                             class="btn btn-icon btn-danger"><i class="fas fa-trash fs-4"></i></button>';
                 })
-                ->addColumn('name', function ($row) {
-                    return $row->first_name . ' ' . $row->last_name;
-                })
                 ->addColumn('created_at', function ($row) {
                     return $row->created_at->format('Y-m-d h:i a');
                 })

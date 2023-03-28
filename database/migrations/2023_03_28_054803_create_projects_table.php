@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('image');
             $table->string('title_en');
             $table->string('title_ar');
-            $table->text('description_en');
-            $table->text('description_ar');
+            $table->longText('description_en');
+            $table->longText('description_ar');
             $table->boolean('is_active');
             $table->timestamps();
         });
