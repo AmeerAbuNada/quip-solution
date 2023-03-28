@@ -70,38 +70,64 @@ const swalWithBootstrapButtons = Swal.mixin({
     buttonsStyling: false,
 });
 
-function deleteItem(url, ref) {
-    swalWithBootstrapButtons
-        .fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Yes, delete it!",
-            cancelButtonText: "No, cancel!",
-            reverseButtons: true,
-        })
-        .then((result) => {
-            if (result.isConfirmed) {
-                performDelete(url, ref);
-            }
-        });
+function deleteItem(url, ref, locale) {
+    if (locale == "en") {
+        swalWithBootstrapButtons
+            .fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel!",
+                reverseButtons: true,
+            })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    performDelete(url, ref, locale);
+                }
+            });
+    } else {
+        swalWithBootstrapButtons
+            .fire({
+                title: "هل أنت متأكد من الحذف؟",
+                text: "لا يمكن الترجاع عن عمليات الحذف!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "حذف",
+                cancelButtonText: "إلغاء",
+                reverseButtons: true,
+            })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    performDelete(url, ref, locale);
+                }
+            });
+    }
 }
 
-function performDelete(url, ref) {
+function performDelete(url, ref, locale) {
     axios
         .delete(url)
         .then((response) => {
             ref.closest("tr").remove();
-            swalWithBootstrapButtons.fire(
-                "Deleted!",
-                response.data.message,
-                "success"
-            );
+            if(locale == 'en') {
+                swalWithBootstrapButtons.fire(
+                    "Deleted!",
+                    response.data.message,
+                    "success"
+                );
+            } else {
+                swalWithBootstrapButtons.fire(
+                    "تم الحذف",
+                    response.data.message,
+                    "success"
+                );
+            }
         })
         .catch((error) => {
             swalWithBootstrapButtons.fire(
-                "Error",
+                "حذف خلل",
                 error.response.data.message,
                 "error"
             );

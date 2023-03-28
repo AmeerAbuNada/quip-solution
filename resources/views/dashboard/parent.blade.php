@@ -144,7 +144,7 @@
                                                 </span>
                                             </a>
                                             <!--begin::Menu sub-->
-                                            {{-- <div class="menu-sub menu-sub-dropdown w-175px py-4">
+                                            <div class="menu-sub menu-sub-dropdown w-175px py-4">
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
                                                     <a href="{{ route('dashboard.locale', 'en') }}"
@@ -167,7 +167,7 @@
                                                         </span>Arabic</a>
                                                 </div>
                                                 <!--end::Menu item-->
-                                            </div> --}}
+                                            </div>
                                             <!--end::Menu sub-->
                                         </div>
                                         <!--end::Menu item-->

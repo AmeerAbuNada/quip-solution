@@ -8,6 +8,7 @@ use App\Http\Requests\Dashboard\Admin\UpdateAdminRequest;
 use App\Mail\AdminCreatedEmail;
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -54,9 +55,8 @@ class AdminController extends Controller
         $admin->password = Hash::make($password);
         $isSaved = $admin->save();
         if ($isSaved) Mail::to($admin->email)->send(new AdminCreatedEmail($admin->name, $password));
-        return response()->json([
-            'message' => $isSaved ? 'Admin Created Successfully!' : 'Failed to create admin, Please try again.',
-        ], $isSaved ? Response::HTTP_CREATED : Response::HTTP_BAD_REQUEST);
+
+        return $isSaved ? parent::successResponse() : parent::errorResponse();
     }
 
     /**
@@ -104,9 +104,7 @@ class AdminController extends Controller
             $admin->image = $image;
         }
         $isSaved = $admin->save();
-        return response()->json([
-            'message' => $isSaved ? 'Admin Updated Successfully!' : 'Failed to update admin, Please try again.',
-        ], $isSaved ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+        return $isSaved ? parent::successResponse() : parent::errorResponse();
     }
 
     /**
@@ -122,8 +120,6 @@ class AdminController extends Controller
         if ($deleted && $admin->image != null) {
             Storage::disk('public')->delete('' . $admin->image);
         }
-        return response()->json([
-            'message' => $deleted ? 'Admin Deleted Successfully!' : 'Failed to delete admin, Please try again.',
-        ], $deleted ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+        return $deleted ? parent::successResponse() : parent::errorResponse();
     }
 }

@@ -20,12 +20,12 @@
                     <div class="card-header cursor-pointer">
                         <!--begin::Card title-->
                         <div class="card-title m-0">
-                            <h3 class="fw-bolder m-0">Profile Details</h3>
+                            <h3 class="fw-bolder m-0">{{ __('admins.details') }}</h3>
                         </div>
                         <!--end::Card title-->
                         <!--begin::Action-->
-                        <a href="{{ route('admins.edit', $admin) }}" class="btn btn-primary align-self-center">Edit
-                            Profile</a>
+                        <a href="{{ route('admins.edit', $admin) }}"
+                            class="btn btn-primary align-self-center">{{ __('admins.edit_profile') }}</a>
                         <!--end::Action-->
                     </div>
                     <!--begin::Card header-->
@@ -34,7 +34,7 @@
                         <!--begin::Row-->
                         <div class="row mb-7">
                             <!--begin::Label-->
-                            <label class="col-lg-4 fw-bold text-muted">Account ID</label>
+                            <label class="col-lg-4 fw-bold text-muted">{{__('admins.id')}}</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8">
@@ -46,7 +46,7 @@
                         <!--begin::Row-->
                         <div class="row mb-7">
                             <!--begin::Label-->
-                            <label class="col-lg-4 fw-bold text-muted">Full Name</label>
+                            <label class="col-lg-4 fw-bold text-muted">{{ __('admins.full_name') }}</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8">
@@ -58,7 +58,7 @@
                         <!--begin::Row-->
                         <div class="row mb-7">
                             <!--begin::Label-->
-                            <label class="col-lg-4 fw-bold text-muted">Email Address</label>
+                            <label class="col-lg-4 fw-bold text-muted">{{ __('admins.email') }}</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8">
@@ -70,7 +70,7 @@
                         <!--begin::Row-->
                         <div class="row mb-7">
                             <!--begin::Label-->
-                            <label class="col-lg-4 fw-bold text-muted">Last Seen</label>
+                            <label class="col-lg-4 fw-bold text-muted">{{ __('admins.last_seen') }}</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8">
@@ -78,7 +78,7 @@
                                     @if ($admin->last_seen != null)
                                         {{ \Carbon\Carbon::parse($admin->last_seen)->diffForHumans() }}
                                     @else
-                                        Never Logged In
+                                        {{ app()->isLocale('en') ? 'Never Logged In' : 'لم يسجل دخول' }}
                                     @endif
                                 </span>
                             </div>
@@ -88,7 +88,7 @@
                         <!--begin::Row-->
                         <div class="row mb-7">
                             <!--begin::Label-->
-                            <label class="col-lg-4 fw-bold text-muted">Created At</label>
+                            <label class="col-lg-4 fw-bold text-muted">{{__('admins.join_date')}}</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8">

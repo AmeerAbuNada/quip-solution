@@ -22,7 +22,7 @@
                         aria-controls="kt_account_profile_details">
                         <!--begin::Card title-->
                         <div class="card-title m-0">
-                            <h3 class="fw-bolder m-0">Account Settings</h3>
+                            <h3 class="fw-bolder m-0">{{__('admins.settings')}}</h3>
                         </div>
                         <!--end::Card title-->
                     </div>
@@ -36,7 +36,7 @@
                                 <!--begin::Input group-->
                                 <div class="row mb-6">
                                     <!--begin::Label-->
-                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Avatar</label>
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">{{__('admins.avatar')}}</label>
                                     <!--end::Label-->
                                     <!--begin::Col-->
                                     <div class="col-lg-8">
@@ -88,7 +88,7 @@
                                 <!--begin::Input group-->
                                 <div class="row mb-6">
                                     <!--begin::Label-->
-                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Full Name</label>
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">{{__('admins.full_name')}}</label>
                                     <!--end::Label-->
                                     <!--begin::Col-->
                                     <div class="col-lg-8 fv-row">
@@ -103,9 +103,8 @@
                             <!--end::Card body-->
                             <!--begin::Actions-->
                             <div class="card-footer d-flex justify-content-end py-6 px-9">
-                                <button type="reset" class="btn btn-light btn-active-light-primary me-2">Reset</button>
-                                <button type="submit" class="btn btn-primary" id="submit-btn">Save
-                                    Changes</button>
+                                <button type="reset" class="btn btn-light btn-active-light-primary me-2">{{__('admins.clear')}}</button>
+                                <button type="submit" class="btn btn-primary" id="submit-btn">{{__('admins.update')}}</button>
                             </div>
                             <!--end::Actions-->
                         </form>
@@ -121,7 +120,7 @@
                         <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
                             data-bs-target="#kt_account_signin_method">
                             <div class="card-title m-0">
-                                <h3 class="fw-bolder m-0">Sign-in Method</h3>
+                                <h3 class="fw-bolder m-0">{{__('admins.signin_methods')}}</h3>
                             </div>
                         </div>
                         <!--end::Card header-->
@@ -134,7 +133,7 @@
                                 <div class="d-flex flex-wrap align-items-center">
                                     <!--begin::Label-->
                                     <div id="kt_signin_email">
-                                        <div class="fs-6 fw-bolder mb-1">Email Address</div>
+                                        <div class="fs-6 fw-bolder mb-1">{{__('admins.email')}}</div>
                                         <div class="fw-bold text-gray-600">{{ auth()->user()->email }}</div>
                                     </div>
                                     <!--end::Label-->
@@ -146,9 +145,7 @@
                                                 <div class="col-lg-6 mb-4 mb-lg-0">
                                                     <div class="fv-row mb-0">
                                                         <label for="emailaddress"
-                                                            class="form-label fs-6 fw-bolder mb-3">Enter
-                                                            New Email
-                                                            Address</label>
+                                                            class="form-label fs-6 fw-bolder mb-3">{{__('admins.new_email')}}</label>
                                                         <input type="email"
                                                             class="form-control form-control-lg form-control-solid"
                                                             id="emailaddress" placeholder="Email Address"
@@ -158,7 +155,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="fv-row mb-0">
                                                         <label for="confirmemailpassword"
-                                                            class="form-label fs-6 fw-bolder mb-3">Confirm Password</label>
+                                                            class="form-label fs-6 fw-bolder mb-3">{{__('admins.current_password')}}</label>
                                                         <input type="password"
                                                             class="form-control form-control-lg form-control-solid"
                                                             name="confirmemailpassword" id="confirmemailpassword" />
@@ -167,9 +164,9 @@
                                             </div>
                                             <div class="d-flex">
                                                 <button id="kt_signin_submit" type="submit"
-                                                    class="btn btn-primary me-2 px-6">Update Email</button>
+                                                    class="btn btn-primary me-2 px-6">{{__('admins.update')}}</button>
                                                 <button id="kt_signin_cancel" type="button"
-                                                    class="btn btn-color-gray-400 btn-active-light-primary px-6">Cancel</button>
+                                                    class="btn btn-color-gray-400 btn-active-light-primary px-6">{{__('admins.discard')}}</button>
                                             </div>
                                         </form>
                                         <!--end::Form-->
@@ -177,7 +174,7 @@
                                     <!--end::Edit-->
                                     <!--begin::Action-->
                                     <div id="kt_signin_email_button" class="ms-auto">
-                                        <button class="btn btn-light btn-active-light-primary">Change Email</button>
+                                        <button class="btn btn-light btn-active-light-primary">{{__('admins.update')}}</button>
                                     </div>
                                     <!--end::Action-->
                                 </div>
@@ -189,7 +186,7 @@
                                 <div class="d-flex flex-wrap align-items-center mb-10">
                                     <!--begin::Label-->
                                     <div id="kt_signin_password">
-                                        <div class="fs-6 fw-bolder mb-1">Password</div>
+                                        <div class="fs-6 fw-bolder mb-1">{{__('admins.password')}}</div>
                                         <div class="fw-bold text-gray-600">************</div>
                                     </div>
                                     <!--end::Label-->
@@ -201,7 +198,7 @@
                                                 <div class="col-lg-4">
                                                     <div class="fv-row mb-0">
                                                         <label for="currentpassword"
-                                                            class="form-label fs-6 fw-bolder mb-3">Current Password</label>
+                                                            class="form-label fs-6 fw-bolder mb-3">{{__('admins.current_password')}}</label>
                                                         <input type="password"
                                                             class="form-control form-control-lg form-control-solid"
                                                             name="currentpassword" id="currentpassword" />
@@ -210,8 +207,7 @@
                                                 <div class="col-lg-4">
                                                     <div class="fv-row mb-0">
                                                         <label for="newpassword"
-                                                            class="form-label fs-6 fw-bolder mb-3">New
-                                                            Password</label>
+                                                            class="form-label fs-6 fw-bolder mb-3">{{__('admins.new_password')}}</label>
                                                         <input type="password"
                                                             class="form-control form-control-lg form-control-solid"
                                                             name="newpassword" id="newpassword" />
@@ -220,20 +216,19 @@
                                                 <div class="col-lg-4">
                                                     <div class="fv-row mb-0">
                                                         <label for="confirmpassword"
-                                                            class="form-label fs-6 fw-bolder mb-3">Confirm New
-                                                            Password</label>
+                                                            class="form-label fs-6 fw-bolder mb-3">{{__('admins.confirm_new_password')}}</label>
                                                         <input type="password"
                                                             class="form-control form-control-lg form-control-solid"
                                                             name="confirmpassword" id="confirmpassword" />
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-text mb-5">Password must be at least 8 characters.</div>
+                                            <div class="form-text mb-5">{{__('admins.password_rules')}}</div>
                                             <div class="d-flex">
                                                 <button id="kt_password_submit" type="submit"
-                                                    class="btn btn-primary me-2 px-6">Change Password</button>
+                                                    class="btn btn-primary me-2 px-6">{{__('admins.change_password')}}</button>
                                                 <button id="kt_password_cancel" type="button"
-                                                    class="btn btn-color-gray-400 btn-active-light-primary px-6">Cancel</button>
+                                                    class="btn btn-color-gray-400 btn-active-light-primary px-6">{{__('admins.discard')}}</button>
                                             </div>
                                         </form>
                                         <!--end::Form-->
@@ -241,7 +236,7 @@
                                     <!--end::Edit-->
                                     <!--begin::Action-->
                                     <div id="kt_signin_password_button" class="ms-auto">
-                                        <button class="btn btn-light btn-active-light-primary">Change Password</button>
+                                        <button class="btn btn-light btn-active-light-primary">{{__('admins.change_password')}}</button>
                                     </div>
                                     <!--end::Action-->
                                 </div>

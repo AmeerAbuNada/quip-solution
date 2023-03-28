@@ -27,8 +27,8 @@ Route::middleware('guest')->group(function () {
   });
 });
 
-// Route::middleware(['auth', 'locale'])->prefix('/dashboard')->group(function () {
-Route::middleware('auth')->prefix('/dashboard')->group(function () {
+Route::middleware(['auth', 'locale'])->prefix('/dashboard')->group(function () {
+// Route::middleware('auth')->prefix('/dashboard')->group(function () {
   Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
   Route::resource('admins', AdminController::class)->except(['create']);
   Route::resource('categories', CategoryController::class)->except(['show', 'create', 'edit']);
@@ -55,7 +55,7 @@ Route::middleware('auth')->prefix('/dashboard')->group(function () {
     Route::post('/', 'update')->name('settings.update');
   });
 
-  // Route::get('/language/{locale}', [DashboardController::class, 'changeLocale'])->name('dashboard.locale');
+  Route::get('/language/{locale}', [DashboardController::class, 'changeLocale'])->name('dashboard.locale');
 
   Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });

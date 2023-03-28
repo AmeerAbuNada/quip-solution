@@ -70,39 +70,18 @@
                                 <!--begin::Heading-->
                                 <div class="menu-item px-3">
                                     <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">
-                                        Manage</div>
+                                        {{__('admins.actions')}}</div>
                                 </div>
                                 <!--end::Heading-->
                                 <!--begin::Menu item-->
                                 <div class="menu-item px-3">
-                                    <a href="{{route('admins.show', $admin)}}" class="menu-link px-3">Overview</a>
+                                    <a href="{{route('admins.show', $admin)}}" class="menu-link px-3">{{__('admins.overview')}}</a>
                                 </div>
                                 <!--end::Menu item-->
                                 <!--begin::Menu item-->
                                 <div class="menu-item px-3">
-                                    <a href="{{route('admins.edit', $admin)}}" class="menu-link px-3">Settings</a>
+                                    <a href="{{route('admins.edit', $admin)}}" class="menu-link px-3">{{__('admins.settings')}}</a>
                                 </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3">Logs</a>
-                                </div>
-                                @if ($admin->id != auth()->user()->id)
-                                    <!--end::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <hr>
-                                    </div>
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3">Edit</a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3">Delete</a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                @endif
                             </div>
                             <!--end::Menu 3-->
                         </div>
@@ -120,18 +99,13 @@
             <!--begin::Nav item-->
             <li class="nav-item mt-2">
                 <a class="nav-link text-active-primary ms-0 me-10 py-5 {{ Route::currentRouteName() == 'admins.show' || Route::currentRouteName() == 'account.profile' ? 'active' : '' }}"
-                    href="{{ Route::currentRouteName() == 'admins.edit' || Route::currentRouteName() == 'admins.show' ? route('admins.show', $admin) : route('account.profile') }}">Overview</a>
+                    href="{{ Route::currentRouteName() == 'admins.edit' || Route::currentRouteName() == 'admins.show' ? route('admins.show', $admin) : route('account.profile') }}">{{__('admins.overview')}}</a>
             </li>
             <!--end::Nav item-->
             <!--begin::Nav item-->
             <li class="nav-item mt-2">
                 <a class="nav-link text-active-primary ms-0 me-10 py-5 {{ Route::currentRouteName() == 'admins.edit' || Route::currentRouteName() == 'account.settings' ? 'active' : '' }}"
-                    href="{{ Route::currentRouteName() == 'admins.edit' || Route::currentRouteName() == 'admins.show' ? route('admins.edit', $admin) : route('account.settings') }}">Settings</a>
-            </li>
-            <!--end::Nav item-->
-            <!--begin::Nav item-->
-            <li class="nav-item mt-2">
-                <a class="nav-link text-active-primary ms-0 me-10 py-5" href="#">Logs</a>
+                    href="{{ Route::currentRouteName() == 'admins.edit' || Route::currentRouteName() == 'admins.show' ? route('admins.edit', $admin) : route('account.settings') }}">{{__('admins.settings')}}</a>
             </li>
             <!--end::Nav item-->
         </ul>

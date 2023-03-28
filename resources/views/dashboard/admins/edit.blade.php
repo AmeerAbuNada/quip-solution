@@ -22,7 +22,7 @@
                         aria-controls="kt_account_profile_details">
                         <!--begin::Card title-->
                         <div class="card-title m-0">
-                            <h3 class="fw-bolder m-0">Account Settings</h3>
+                            <h3 class="fw-bolder m-0">{{__('admins.settings')}}</h3>
                         </div>
                         <!--end::Card title-->
                     </div>
@@ -36,7 +36,7 @@
                                 <!--begin::Input group-->
                                 <div class="row mb-6">
                                     <!--begin::Label-->
-                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Avatar</label>
+                                    <label class="col-lg-4 col-form-label fw-bold fs-6">{{__('admins.avatar')}}</label>
                                     <!--end::Label-->
                                     <!--begin::Col-->
                                     <div class="col-lg-8">
@@ -88,7 +88,7 @@
                                 <!--begin::Input group-->
                                 <div class="row mb-6">
                                     <!--begin::Label-->
-                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Full Name</label>
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">{{__('admins.full_name')}}</label>
                                     <!--end::Label-->
                                     <!--begin::Col-->
                                     <div class="col-lg-8 fv-row">
@@ -102,7 +102,7 @@
                                 <!--begin::Input group-->
                                 <div class="row mb-6">
                                     <!--begin::Label-->
-                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Email</label>
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">{{__('admins.email')}}</label>
                                     <!--end::Label-->
                                     <!--begin::Col-->
                                     <div class="col-lg-8 fv-row">
@@ -117,9 +117,8 @@
                             <!--end::Card body-->
                             <!--begin::Actions-->
                             <div class="card-footer d-flex justify-content-end py-6 px-9">
-                                <button type="reset" class="btn btn-light btn-active-light-primary me-2">Reset</button>
-                                <button type="submit" class="btn btn-primary" id="submit-btn">Save
-                                    Changes</button>
+                                <button type="reset" class="btn btn-light btn-active-light-primary me-2">{{__('admins.clear')}}</button>
+                                <button type="submit" class="btn btn-primary" id="submit-btn">{{__('admins.update')}}</button>
                             </div>
                             <!--end::Actions-->
                         </form>

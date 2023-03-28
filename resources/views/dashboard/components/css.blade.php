@@ -17,7 +17,8 @@
         type="text/css">
 
     <!--begin::Global Stylesheets Bundle(used by all pages)-->
-    <link href="{{ asset('dashboard-assets/plugins/global/plugins.bundle.rtl.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('dashboard-assets/plugins/global/plugins.bundle.rtl.css') }}" rel="stylesheet"
+        type="text/css" />
     <link href="{{ asset('dashboard-assets/css/style.bundle.rtl.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
 @endif
@@ -26,5 +27,24 @@
     .tox-notification--warning {
         display: none !important;
         visibility: hidden !important;
+    }
+
+    @font-face {
+        font-family: myFirstFont;
+        src: url("{{ asset('dashboard-assets/fonts/Alexandria-VariableFont_wght.ttf') }}");
+    }
+
+    @font-face {
+        font-family: fbold;
+        src: url("{{ asset('dashboard-assets/fonts/Alexandria-Bold.ttf') }}");
+
+    }
+
+    * {
+        font-family: myFirstFont;
+    }
+
+    .fBold {
+        font-family: fbold;
     }
 </style>
