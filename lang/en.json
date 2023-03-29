@@ -1,3 +1,6 @@
 {
-  
+  "add_new": "Add New",
+  "refresh_data": "Refresh Data",
+  "save_changes": "Save Changes",
+  "reset": "Reset"
 }

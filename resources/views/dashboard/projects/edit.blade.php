@@ -26,7 +26,7 @@
                             <div class="card-header border-0">
                                 <!--begin::Card title-->
                                 <div class="card-title m-0">
-                                    <h3 class="fw-bolder m-0">Edit Project ({{ $project->title_en }})</h3>
+                                    <h3 class="fw-bolder m-0">{{__('projects.edit')}} ({{ $project['title_'.app()->getLocale()] }})</h3>
                                 </div>
                                 <!--end::Card title-->
                             </div>
@@ -40,7 +40,7 @@
                                         <!--begin::Input group-->
                                         <div class="row mb-6">
                                             <!--begin::Label-->
-                                            <label class="col-lg-3 col-form-label fw-bold fs-6">Main Image</label>
+                                            <label class="col-lg-3 col-form-label fw-bold fs-6">{{ __('projects.image') }}</label>
                                             <!--end::Label-->
                                             <!--begin::Col-->
                                             <div class="col-lg-9">
@@ -84,7 +84,7 @@
                                                 </div>
                                                 <!--end::Image input-->
                                                 <!--begin::Hint-->
-                                                <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+                                                <div class="form-text">{{__('projects.image_rules')}}</div>
                                                 <!--end::Hint-->
                                             </div>
                                             <!--end::Col-->
@@ -93,14 +93,13 @@
                                         <!--begin::Input group-->
                                         <div class="row mb-6">
                                             <!--begin::Label-->
-                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Project
-                                                Name (English)</label>
+                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">{{__('projects.english_name')}}</label>
                                             <!--end::Label-->
                                             <!--begin::Col-->
                                             <div class="col-lg-9 fv-row">
                                                 <input type="text" id="name_en" value="{{ $project->title_en }}"
                                                     class="form-control form-control-lg form-control-solid"
-                                                    placeholder="Project Name in English" />
+                                                    placeholder="{{__('projects.english_name')}}" />
                                             </div>
                                             <!--end::Col-->
                                         </div>
@@ -108,14 +107,13 @@
                                         <!--begin::Input group-->
                                         <div class="row mb-6">
                                             <!--begin::Label-->
-                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Project
-                                                Name (Arabic)</label>
+                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">{{__('projects.arabic_name')}}</label>
                                             <!--end::Label-->
                                             <!--begin::Col-->
                                             <div class="col-lg-9 fv-row">
                                                 <input type="text" id="name_ar" value="{{ $project->title_ar }}"
                                                     class="form-control form-control-lg form-control-solid"
-                                                    placeholder="Project Name in Arabic" />
+                                                    placeholder="{{__('projects.arabic_name')}}" />
                                             </div>
                                             <!--end::Col-->
                                         </div>
@@ -124,12 +122,11 @@
                                         <!--begin::Input group-->
                                         <div class="row mb-6" style="height: 100%">
                                             <!--begin::Label-->
-                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Project
-                                                Settings</label>
+                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">{{__('projects.settings')}}</label>
                                             <!--end::Label-->
                                             <!--begin::Col-->
                                             <div class="col-lg-9 fv-row">
-                                                <label class="fw-bold fs-6" for="active">Active</label>
+                                                <label class="fw-bold fs-6" for="active">{{__('projects.active')}}</label>
                                                 <br>
                                                 <input class="form-check-input mt-2" id="active"
                                                     style="width: 30px !important; height: 30px !important" type="checkbox"
@@ -143,8 +140,7 @@
                                         <div class="row mb-6">
                                             <div class="col-lg-6 fv-row">
                                                 <!--begin::Label-->
-                                                <label class="col-lg-12 col-form-label required fw-bold fs-6">Project
-                                                    Description (English)</label>
+                                                <label class="col-lg-12 col-form-label required fw-bold fs-6">{{__('projects.description_en')}}</label>
                                                 <!--end::Label-->
                                                 <!--begin::Col-->
                                                 <div class="col-lg-12 fv-row">
@@ -154,8 +150,7 @@
                                             </div>
                                             <div class="col-lg-6 fv-row">
                                                 <!--begin::Label-->
-                                                <label class="col-lg-12 col-form-label required fw-bold fs-6">Project
-                                                    Description (Arabic)</label>
+                                                <label class="col-lg-12 col-form-label required fw-bold fs-6">{{__('projects.description_ar')}}</label>
                                                 <!--end::Label-->
                                                 <!--begin::Col-->
                                                 <div class="col-lg-12 fv-row">
@@ -170,9 +165,8 @@
                                     <!--begin::Actions-->
                                     <div class="card-footer d-flex justify-content-end py-6 px-9">
                                         <button type="reset"
-                                            class="btn btn-light btn-active-light-primary me-2">Reset</button>
-                                        <button type="submit" class="btn btn-primary" id="submit-btn">Save
-                                            Changes</button>
+                                            class="btn btn-light btn-active-light-primary me-2">{{__('reset')}}</button>
+                                        <button type="submit" class="btn btn-primary" id="submit-btn">{{__('save_changes')}}</button>
                                     </div>
                                     <!--end::Actions-->
                                 </form>

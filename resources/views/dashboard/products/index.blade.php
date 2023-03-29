@@ -3,7 +3,6 @@
 @section('title', 'Products')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('landing-assets/icons/font-awesome-4.7.0/css/font-awesome.min.css') }}">
 @endsection
 
 @section('content')

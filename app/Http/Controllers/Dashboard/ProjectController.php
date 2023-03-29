@@ -73,9 +73,7 @@ class ProjectController extends Controller
         }
         $project = new Project($data);
         $isSaved = $project->save();
-        return response()->json([
-            'message' => $isSaved ? 'Project Created Successfully!' : 'Failed to create project, Please try again.',
-        ], $isSaved ? Response::HTTP_CREATED : Response::HTTP_BAD_REQUEST);
+        return $isSaved ? parent::successResponse() : parent::errorResponse();
     }
 
     /**
@@ -101,9 +99,7 @@ class ProjectController extends Controller
             $data['image'] = $image;
         }
         $updated = $project->update($data);
-        return response()->json([
-            'message' => $updated ? 'Project Updated Successfully!' : 'Failed to update project, Please try again.',
-        ], $updated ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+        return $updated ? parent::successResponse() : parent::errorResponse();
     }
 
     /**
@@ -113,17 +109,13 @@ class ProjectController extends Controller
     {
         $deleted = $project->delete();
         if($deleted) Storage::disk('public')->delete('' . $project->image);
-        return response()->json([
-            'message' => $deleted ? 'Project Deleted Successfully!' : 'Failed to delete project, Please try again.',
-        ], $deleted ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+        return $deleted ? parent::successResponse() : parent::errorResponse();
     }
 
     public function toggleOption(Project $project, ToggleOptionRequest $request)
     {
         $project[$request->input('type')] = $request->input('value');
         $isSaved = $project->save();
-        return response()->json([
-            'message' => $isSaved ? 'Option Updated Successfully!' : 'Failed to update option, please try again.',
-        ], $isSaved ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+        return $isSaved ? parent::successResponse() : parent::errorResponse();
     }
 }

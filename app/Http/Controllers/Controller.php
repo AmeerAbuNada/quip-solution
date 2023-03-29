@@ -12,13 +12,13 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    public function successResponse() {
+    public static function successResponse() {
         return response()->json([
             'message' => App::isLocale('en') ? 'Operation Ran Successfully!' : 'تمت العملية بنجاح',
         ], Response::HTTP_OK);
     }
 
-    public function errorResponse() {
+    public static function errorResponse() {
         return response()->json([
             'message' => App::isLocale('en') ? 'Something went wrong, Please try again.' : 'فشلت العملية, يرجى المحاولة مرة أخرى',
         ], Response::HTTP_BAD_REQUEST);

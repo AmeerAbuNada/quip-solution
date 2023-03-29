@@ -3,7 +3,6 @@
 @section('title', 'Projects')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('landing-assets/icons/font-awesome-4.7.0/css/font-awesome.min.css') }}">
 @endsection
 
 @section('content')
@@ -21,7 +20,7 @@
                             <!--begin::Toolbar-->
                             <div class="d-flex justify-content-end" style="gap: 20px" data-kt-user-table-toolbar="base">
                                 <!--begin::Add user-->
-                                <a href="{{route('projects.create')}}" class="btn btn-primary">
+                                <a href="{{ route('projects.create') }}" class="btn btn-primary">
                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                                     <span class="svg-icon svg-icon-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -32,7 +31,7 @@
                                                 fill="black" />
                                         </svg>
                                     </span>
-                                    <!--end::Svg Icon-->Add New Review
+                                    <!--end::Svg Icon-->{{ __('add_new') }}
                                 </a>
                                 <!--end::Add user-->
                                 <!--begin::Add user-->
@@ -46,7 +45,7 @@
                                         </svg>
 
                                     </span>
-                                    <!--end::Svg Icon-->Refresh Data
+                                    <!--end::Svg Icon-->{{ __('refresh_data') }}
                                 </button>
                                 <!--end::Add user-->
                             </div>
@@ -64,12 +63,12 @@
                                 <!--begin::Table row-->
                                 <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
                                     <th>#</th>
-                                    <th>Image</th>
-                                    <th>English Name</th>
-                                    <th>Arabic Name</th>
-                                    <th>Active</th>
-                                    <th>Created At</th>
-                                    <th>Actions</th>
+                                    <th>{{ __('projects.image') }}</th>
+                                    <th>{{ __('projects.name_en') }}</th>
+                                    <th>{{ __('projects.name_ar') }}</th>
+                                    <th>{{ __('projects.active') }}</th>
+                                    <th>{{ __('projects.created_at') }}</th>
+                                    <th>{{ __('projects.actions') }}</th>
                                 </tr>
                                 <!--end::Table row-->
                             </thead>
@@ -116,6 +115,37 @@
                 order: [
                     [0, 'desc']
                 ],
+
+                @if (app()->isLocale('ar'))
+                    language: {
+                        "sEmptyTable": "ليست هناك بيانات متاحة في الجدول",
+                        "sLoadingRecords": "جارٍ التحميل...",
+                        "sProcessing": "جارٍ التحميل...",
+                        "sLengthMenu": "أظهر _MENU_ مدخلات",
+                        "sZeroRecords": "لم يعثر على أية سجلات",
+                        "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                        "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                        "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                        "sSearch": "ابحث:",
+                        "oPaginate": {
+                            "sFirst": "الأول",
+                            "sPrevious": "السابق",
+                            "sNext": "التالي",
+                            "sLast": "الأخير"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                            "sSortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                        },
+                        "select": {
+                            "rows": {
+                                "_": "%d قيمة محددة",
+                                "0": "",
+                                "1": "1 قيمة محددة"
+                            }
+                        },
+                    },
+                @endif
                 ajax: "{{ route('projects.index') }}",
                 columns: [{
                         data: 'id',
@@ -153,6 +183,9 @@
                     }
                 ]
             });
+            // table.on('processing.dt', function(e, settings, processing) {
+            //     $('#loader').css('display', processing ? 'block' : 'none');
+            // });
         });
 
         function delItem(id, ref) {
