@@ -9,7 +9,6 @@
         }
     </style>
 
-    <link href="{{ asset('dashboard-assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -184,7 +183,6 @@
 
 @section('scripts')
     <script src="{{ asset('dashboard-assets/js/editor.js') }}"></script>
-    <script src="{{ asset('dashboard-assets/plugins/global/plugins.bundle.js') }}"></script>
     <script>
         function performStore() {
 

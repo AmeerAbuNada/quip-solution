@@ -17,7 +17,7 @@
         type="text/css">
 
     <!--begin::Global Stylesheets Bundle(used by all pages)-->
-    <link href="{{ asset('dashboard-assets/plugins/global/plugins.bundle.rtl.css') }}" rel="stylesheet"
+    <link href="{{ asset('dashboard-assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet"
         type="text/css" />
     <link href="{{ asset('dashboard-assets/css/style.bundle.rtl.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->

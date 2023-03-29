@@ -9,7 +9,6 @@
         }
     </style>
 
-    <link href="{{ asset('dashboard-assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -26,7 +25,7 @@
                             <div class="card-header border-0">
                                 <!--begin::Card title-->
                                 <div class="card-title m-0">
-                                    <h3 class="fw-bolder m-0">Edit Product ({{ $product->name_en }})</h3>
+                                    <h3 class="fw-bolder m-0">{{__('products.edit')}} ({{ $product->name_en }})</h3>
                                 </div>
                                 <!--end::Card title-->
                             </div>
@@ -40,7 +39,7 @@
                                         <!--begin::Input group-->
                                         <div class="row mb-6">
                                             <!--begin::Label-->
-                                            <label class="col-lg-3 col-form-label fw-bold fs-6">Main Image</label>
+                                            <label class="col-lg-3 col-form-label fw-bold fs-6">{{__('products.image')}}</label>
                                             <!--end::Label-->
                                             <!--begin::Col-->
                                             <div class="col-lg-9">
@@ -84,7 +83,7 @@
                                                 </div>
                                                 <!--end::Image input-->
                                                 <!--begin::Hint-->
-                                                <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+                                                <div class="form-text">{{__('products.image_rules')}}</div>
                                                 <!--end::Hint-->
                                             </div>
                                             <!--end::Col-->
@@ -93,14 +92,13 @@
                                         <!--begin::Input group-->
                                         <div class="row mb-6">
                                             <!--begin::Label-->
-                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Product
-                                                Name (English)</label>
+                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">{{ __('products.en_name') }}</label>
                                             <!--end::Label-->
                                             <!--begin::Col-->
                                             <div class="col-lg-9 fv-row">
                                                 <input type="text" id="name_en" value="{{ $product->name_en }}"
                                                     class="form-control form-control-lg form-control-solid"
-                                                    placeholder="Product Name in English" />
+                                                    placeholder="{{ __('products.en_name') }}" />
                                             </div>
                                             <!--end::Col-->
                                         </div>
@@ -108,14 +106,13 @@
                                         <!--begin::Input group-->
                                         <div class="row mb-6">
                                             <!--begin::Label-->
-                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Product
-                                                Name (Arabic)</label>
+                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">{{ __('products.ar_name') }}</label>
                                             <!--end::Label-->
                                             <!--begin::Col-->
                                             <div class="col-lg-9 fv-row">
                                                 <input type="text" id="name_ar" value="{{ $product->name_ar }}"
                                                     class="form-control form-control-lg form-control-solid"
-                                                    placeholder="Product Name in Arabic" />
+                                                    placeholder="{{ __('products.ar_name') }}" />
                                             </div>
                                             <!--end::Col-->
                                         </div>
@@ -123,12 +120,12 @@
                                         <!--begin::Input group-->
                                         <div class="row mb-6">
                                             <!--begin::Label-->
-                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Category</label>
+                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">{{ __('products.category') }}</label>
                                             <!--end::Label-->
                                             <!--begin::Col-->
                                             <div class="col-lg-9 fv-row">
                                                 <select id="category" class="form-select form-select-solid"
-                                                    data-control="select2" data-placeholder="Select an option"
+                                                    data-control="select2" data-placeholder="{{ __('products.select_category') }}"
                                                     data-allow-clear="true">
                                                     <option></option>
                                                     @foreach ($categories as $category)
@@ -145,7 +142,7 @@
                                         <!--begin::Input group-->
                                         <div class="row mb-6">
                                             <!--begin::Label-->
-                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Catalog</label>
+                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">{{ __('products.catalog') }}</label>
                                             <!--end::Label-->
                                             <!--begin::Col-->
                                             <div class="col-lg-9 fv-row">
@@ -158,7 +155,7 @@
                                         <!--begin::Input group-->
                                         <div class="row mb-6">
                                             <!--begin::Label-->
-                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Video Link</label>
+                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">{{ __('products.video_link') }}</label>
                                             <!--end::Label-->
                                             <!--begin::Col-->
                                             <div class="col-lg-9 fv-row">
@@ -172,12 +169,11 @@
                                         <!--begin::Input group-->
                                         <div class="row mb-6" style="height: 100%">
                                             <!--begin::Label-->
-                                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Product
-                                                Settings</label>
+                                            <label class="col-lg-4 col-form-label required fw-bold fs-6">{{ __('products.settings') }}</label>
                                             <!--end::Label-->
                                             <!--begin::Col-->
                                             <div class="col-lg-4 fv-row">
-                                                <label class="fw-bold fs-6" for="active">Active</label>
+                                                <label class="fw-bold fs-6" for="active">{{ __('products.active') }}</label>
                                                 <br>
                                                 <input class="form-check-input mt-2" id="active"
                                                     style="width: 30px !important; height: 30px !important" type="checkbox"
@@ -186,7 +182,7 @@
                                             <!--end::Col-->
                                             <!--begin::Col-->
                                             <div class="col-lg-4 fv-row">
-                                                <label class="fw-bold fs-6" for="best_selling">Best Selling</label>
+                                                <label class="fw-bold fs-6" for="best_selling">{{ __('products.best_selling') }}</label>
                                                 <br>
                                                 <input class="form-check-input mt-2" id="best_selling"
                                                     style="width: 30px !important; height: 30px !important"
@@ -198,7 +194,7 @@
                                         <!--begin::Input group-->
                                         <div class="row mb-6">
                                             <!--begin::Label-->
-                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">Images</label>
+                                            <label class="col-lg-3 col-form-label required fw-bold fs-6">{{ __('products.images') }}</label>
                                             <!--end::Label-->
                                             <!--begin::Col-->
                                             <div class="col-lg-9 fv-row">
@@ -214,12 +210,8 @@
                                                             <!--end::Icon-->
                                                             <!--begin::Info-->
                                                             <div class="ms-4">
-                                                                <h3 class="fs-5 fw-bolder text-gray-900 mb-1">Drop files
-                                                                    here
-                                                                    or
-                                                                    click to upload.</h3>
-                                                                <span class="fs-7 fw-bold text-gray-400">Upload images
-                                                                    only</span>
+                                                                <h3 class="fs-5 fw-bolder text-gray-900 mb-1">{{ __('products.drop_file') }}</h3>
+                                                                <span class="fs-7 fw-bold text-gray-400">{{ __('products.images_rules') }}</span>
                                                             </div>
                                                             <!--end::Info-->
                                                         </div>
@@ -231,8 +223,8 @@
                                                             class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
                                                             <thead>
                                                                 <tr>
-                                                                    <th scope="col">Image</th>
-                                                                    <th scope="col">Delete</th>
+                                                                    <th scope="col">{{__('products.image')}}</th>
+                                                                    <th scope="col">{{__('products.delete_image')}}</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -267,8 +259,7 @@
                                         <div class="row mb-6">
                                             <div class="col-lg-6 fv-row">
                                                 <!--begin::Label-->
-                                                <label class="col-lg-12 col-form-label required fw-bold fs-6">Product
-                                                    Description (English)</label>
+                                                <label class="col-lg-12 col-form-label required fw-bold fs-6">{{ __('products.description_en') }}</label>
                                                 <!--end::Label-->
                                                 <!--begin::Col-->
                                                 <div class="col-lg-12 fv-row">
@@ -278,8 +269,7 @@
                                             </div>
                                             <div class="col-lg-6 fv-row">
                                                 <!--begin::Label-->
-                                                <label class="col-lg-12 col-form-label required fw-bold fs-6">Product
-                                                    Description (Arabic)</label>
+                                                <label class="col-lg-12 col-form-label required fw-bold fs-6">{{ __('products.description_ar') }}</label>
                                                 <!--end::Label-->
                                                 <!--begin::Col-->
                                                 <div class="col-lg-12 fv-row">
@@ -295,8 +285,7 @@
                                         <div class="row mb-6">
                                             <div class="col-lg-6 fv-row">
                                                 <!--begin::Label-->
-                                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Product
-                                                    Features (English)</label>
+                                                <label class="col-lg-4 col-form-label required fw-bold fs-6">{{ __('products.freatures_en') }}</label>
                                                 <!--end::Label-->
                                                 <!--begin::Col-->
                                                 <div class="col-lg-12 fv-row">
@@ -306,8 +295,7 @@
                                             </div>
                                             <div class="col-lg-6 fv-row">
                                                 <!--begin::Label-->
-                                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Product
-                                                    Features (Arabic)</label>
+                                                <label class="col-lg-4 col-form-label required fw-bold fs-6">{{ __('products.freatures_ar') }}</label>
                                                 <!--end::Label-->
                                                 <!--begin::Col-->
                                                 <div class="col-lg-12 fv-row">
@@ -326,9 +314,8 @@
                                     <!--begin::Actions-->
                                     <div class="card-footer d-flex justify-content-end py-6 px-9">
                                         <button type="reset"
-                                            class="btn btn-light btn-active-light-primary me-2">Reset</button>
-                                        <button type="submit" class="btn btn-primary" id="submit-btn">Save
-                                            Changes</button>
+                                            class="btn btn-light btn-active-light-primary me-2">{{__('reset')}}</button>
+                                        <button type="submit" class="btn btn-primary" id="submit-btn">{{__('save_changes')}}</button>
                                     </div>
                                     <!--end::Actions-->
                                 </form>
@@ -346,7 +333,6 @@
 
 @section('scripts')
     <script src="{{ asset('dashboard-assets/js/editor.js') }}"></script>
-    <script src="{{ asset('dashboard-assets/plugins/global/plugins.bundle.js') }}"></script>
     <script>
         function performStore() {
 
@@ -357,7 +343,7 @@
 
         function confirmDelete(id, ref) {
             let url = `/dashboard/products/images/${id}`;
-            deleteItem(url, ref)
+            deleteItem(url, ref, '{{app()->getLocale()}}')
         }
 
         function gatherData() {

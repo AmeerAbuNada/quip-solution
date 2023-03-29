@@ -191,6 +191,7 @@
         function delItem(id, ref) {
             let url = `/dashboard/projects/${id}`
             swalWithBootstrapButtons
+            @if (app()->isLocale('en'))
                 .fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",
@@ -200,35 +201,62 @@
                     cancelButtonText: "No, cancel!",
                     reverseButtons: true,
                 })
-                .then((result) => {
-                    if (result.isConfirmed) {
-                        axios
-                            .delete(url)
-                            .then((response) => {
-                                // ref.closest("tr").remove();
-                                swalWithBootstrapButtons.fire(
-                                    "Deleted!",
-                                    response.data.message,
-                                    "success"
-                                );
-                                let table = $('#kt_table_users').DataTable();
-                                let currentPage = table.page();
-                                table.ajax.reload(function() {
-                                    // Check if current page is still available
-                                    if (currentPage > table.page.info().pages - 1) {
-                                        table.page('last').draw(false); // Return to last available page
-                                    }
-                                }, false);
-                            })
-                            .catch((error) => {
-                                swalWithBootstrapButtons.fire(
-                                    "Error",
-                                    error.response.data.message,
-                                    "error"
-                                );
-                            });
-                    }
-                });
+                @else
+                .fire({
+                    title: "هل أنت متأكد من عملية الحذف؟",
+                    text: "لا يمكن التراجع بعد الحذف",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "حذف",
+                    cancelButtonText: "إلغاء",
+                    reverseButtons: true,
+                })
+            @endif
+            .then((result) => {
+                if (result.isConfirmed) {
+                    axios
+                        .delete(url)
+                        .then((response) => {
+                            // ref.closest("tr").remove();
+                            @if(app()->isLocale('en'))
+                            swalWithBootstrapButtons.fire(
+                                "Deleted!",
+                                response.data.message,
+                                "success"
+                            );
+                            @else
+                            swalWithBootstrapButtons.fire(
+                                "تمت عملية الحذف",
+                                response.data.message,
+                                "success"
+                            );
+                            @endif
+                            let table = $('#kt_table_users').DataTable();
+                            let currentPage = table.page();
+                            table.ajax.reload(function() {
+                                // Check if current page is still available
+                                if (currentPage > table.page.info().pages - 1) {
+                                    table.page('last').draw(false); // Return to last available page
+                                }
+                            }, false);
+                        })
+                        .catch((error) => {
+                            @if(app()->isLocale('en'))
+                            swalWithBootstrapButtons.fire(
+                                "Error",
+                                error.response.data.message,
+                                "error"
+                            );
+                            @else
+                            swalWithBootstrapButtons.fire(
+                                "حذف خلل",
+                                error.response.data.message,
+                                "error"
+                            );
+                            @endif
+                        });
+                }
+            });
         }
 
         function toggleOptions(id, type, ref) {

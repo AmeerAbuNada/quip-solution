@@ -114,20 +114,13 @@ class ProductController extends Controller
                     $product->images()->saveMany($images);
                 }
                 DB::commit();
-                return response()->json([
-                    'message' => 'Product Created Successfully!',
-                ], Response::HTTP_CREATED);
+                return parent::successResponse();
             } else {
-                return response()->json([
-                    'message' => 'Something went wrong, Please try again.',
-                ], Response::HTTP_INTERNAL_SERVER_ERROR);
+                return parent::errorResponse();
             }
         } catch (Exception $ex) {
             DB::rollBack();
-            return response()->json([
-                'message' => 'Something went wrong, Please try again.',
-                'error' => $ex
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+            return parent::errorResponse();
         }
     }
 
@@ -191,20 +184,13 @@ class ProductController extends Controller
                     $product->images()->saveMany($images);
                 }
                 DB::commit();
-                return response()->json([
-                    'message' => 'Product Updated Successfully!',
-                ], Response::HTTP_CREATED);
+                return parent::successResponse();
             } else {
-                return response()->json([
-                    'message' => 'Something went wrong, Please try again.',
-                ], Response::HTTP_INTERNAL_SERVER_ERROR);
+                return parent::errorResponse();
             }
         } catch (Exception $ex) {
             DB::rollBack();
-            return response()->json([
-                'message' => 'Something went wrong, Please try again.',
-                'error' => $ex
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+            return parent::errorResponse();
         }
     }
 
@@ -219,9 +205,7 @@ class ProductController extends Controller
             Storage::disk('public')->delete('' . $product->catalog);
             Storage::disk('public')->deleteDirectory('files/products/product_' . $product->id);
         }
-        return response()->json([
-            'message' => $deleted ? 'Product Deleted Successfully!' : 'Failed to delete product, Please try again.',
-        ], $deleted ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+        return $deleted ? parent::successResponse() : parent::errorResponse();
     }
 
 
@@ -230,9 +214,7 @@ class ProductController extends Controller
     {
         $product[$request->input('type')] = $request->input('value');
         $isSaved = $product->save();
-        return response()->json([
-            'message' => $isSaved ? 'Option Updated Successfully!' : 'Failed to update option, please try again.',
-        ], $isSaved ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+        return $isSaved ? parent::successResponse() : parent::errorResponse();
     }
 
     
@@ -241,8 +223,6 @@ class ProductController extends Controller
     {
         $deleted = $image->delete();
         if ($deleted) Storage::disk('public')->delete('' . $image->path);
-        return response()->json([
-            'message' => $deleted ? 'Image Deleted Successfully!' : 'Failed to delete image, Please try again.',
-        ], $deleted ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+        return $deleted ? parent::successResponse() : parent::errorResponse();
     }
 }
