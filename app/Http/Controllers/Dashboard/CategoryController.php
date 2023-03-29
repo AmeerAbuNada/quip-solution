@@ -44,9 +44,7 @@ class CategoryController extends Controller
     {
         $category = new Category($request->validated());
         $isSaved = $category->save();
-        return response()->json([
-            'message' => $isSaved ? 'Category Created Successfully!' : 'Failed to create category, Please try again later.'
-        ], $isSaved ? Response::HTTP_CREATED : Response::HTTP_BAD_REQUEST);
+        return $isSaved ? parent::successResponse() : parent::errorResponse();
     }
 
     /**
@@ -55,9 +53,7 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         $updated = $category->update($request->validated());
-        return response()->json([
-            'message' => $updated ? 'Category Updated Successfully!' : 'Failed to update category, Please try again later.'
-        ], $updated ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+        return $updated ? parent::successResponse() : parent::errorResponse();
     }
 
     /**
@@ -66,8 +62,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $deleted = $category->delete();
-        return response()->json([
-            'message' => $deleted ? 'Category Deleted Successfully!' : 'Failed to delete category, Please try again later.'
-        ], $deleted ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+        return $deleted ? parent::successResponse() : parent::errorResponse();
     }
 }

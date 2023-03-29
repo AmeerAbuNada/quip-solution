@@ -32,7 +32,7 @@
                                                 fill="black" />
                                         </svg>
                                     </span>
-                                    <!--end::Svg Icon-->Add New Category
+                                    <!--end::Svg Icon-->{{ __('add_new') }}
                                 </button>
                                 <!--end::Add user-->
                                 <!--begin::Add user-->
@@ -46,21 +46,11 @@
                                         </svg>
 
                                     </span>
-                                    <!--end::Svg Icon-->Refresh Data
+                                    <!--end::Svg Icon-->{{ __('refresh_data') }}
                                 </button>
                                 <!--end::Add user-->
                             </div>
                             <!--end::Toolbar-->
-                            <!--begin::Group actions-->
-                            <div class="d-flex justify-content-end align-items-center d-none"
-                                data-kt-user-table-toolbar="selected">
-                                <div class="fw-bolder me-5">
-                                    <span class="me-2" data-kt-user-table-select="selected_count"></span>Selected
-                                </div>
-                                <button type="button" class="btn btn-danger"
-                                    data-kt-user-table-select="delete_selected">Delete Selected</button>
-                            </div>
-                            <!--end::Group actions-->
                             <!--begin::Modal - Add task-->
                             <div class="modal fade" id="kt_modal_add_user" tabindex="-1" aria-hidden="true">
                                 <!--begin::Modal dialog-->
@@ -70,7 +60,7 @@
                                         <!--begin::Modal header-->
                                         <div class="modal-header" id="kt_modal_add_user_header">
                                             <!--begin::Modal title-->
-                                            <h2 class="fw-bolder">Add Category</h2>
+                                            <h2 class="fw-bolder">{{ __('categories.add') }}</h2>
                                             <!--end::Modal title-->
                                             <!--begin::Close-->
                                             <div class="btn btn-icon btn-sm btn-active-icon-primary"
@@ -108,24 +98,26 @@
                                                     <!--begin::Input group-->
                                                     <div class="fv-row mb-7">
                                                         <!--begin::Label-->
-                                                        <label class="required fw-bold fs-6 mb-2">Name (English)</label>
+                                                        <label
+                                                            class="required fw-bold fs-6 mb-2">{{ __('categories.en_name') }}</label>
                                                         <!--end::Label-->
                                                         <!--begin::Input-->
                                                         <input type="text" id="name_en"
                                                             class="form-control form-control-solid mb-3 mb-lg-0"
-                                                            placeholder="Name in English" />
+                                                            placeholder="{{ __('categories.en_name') }}" />
                                                         <!--end::Input-->
                                                     </div>
                                                     <!--end::Input group-->
                                                     <!--begin::Input group-->
                                                     <div class="fv-row mb-7">
                                                         <!--begin::Label-->
-                                                        <label class="required fw-bold fs-6 mb-2">Name (Arabic)</label>
+                                                        <label
+                                                            class="required fw-bold fs-6 mb-2">{{ __('categories.ar_name') }}</label>
                                                         <!--end::Label-->
                                                         <!--begin::Input-->
                                                         <input type="text" id="name_ar"
                                                             class="form-control form-control-solid mb-3 mb-lg-0"
-                                                            placeholder="Name in Arabic" />
+                                                            placeholder="{{ __('categories.ar_name') }}" />
                                                         <!--end::Input-->
                                                     </div>
                                                     <!--end::Input group-->
@@ -135,10 +127,10 @@
                                                 <!--begin::Actions-->
                                                 <div class="text-center pt-15">
                                                     <button type="reset" class="btn btn-danger me-3"
-                                                        data-kt-users-modal-action="cancel">Discard</button>
+                                                        data-kt-users-modal-action="cancel">{{ __('admins.discard') }}</button>
                                                     <button type="submit" id="submit-btn" class="btn btn-success"
                                                         data-kt-users-modal-action="submit">
-                                                        <span class="indicator-label">Submit</span>
+                                                        <span class="indicator-label">{{ __('admins.submit') }}</span>
                                                         <span class="indicator-progress">
                                                             <span
                                                                 class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -162,7 +154,8 @@
                                         <!--begin::Modal header-->
                                         <div class="modal-header" id="kt_modal_edit_item_header">
                                             <!--begin::Modal title-->
-                                            <h2 class="fw-bolder">Edit Item ( <span id="edit_name"></span> )</h2>
+                                            <h2 class="fw-bolder">{{ __('categories.edit') }} ( <span
+                                                    id="edit_name"></span> )</h2>
                                             <!--end::Modal title-->
                                             <!--begin::Close-->
                                             <div class="btn btn-icon btn-sm btn-active-icon-primary"
@@ -199,24 +192,26 @@
                                                     <!--begin::Input group-->
                                                     <div class="fv-row mb-7">
                                                         <!--begin::Label-->
-                                                        <label class="required fw-bold fs-6 mb-2">Name (English)</label>
+                                                        <label
+                                                            class="required fw-bold fs-6 mb-2">{{ __('categories.en_name') }}</label>
                                                         <!--end::Label-->
                                                         <!--begin::Input-->
                                                         <input type="text" id="name_en_update"
                                                             class="form-control form-control-solid mb-3 mb-lg-0"
-                                                            placeholder="Name in English" />
+                                                            placeholder="{{ __('categories.en_name') }}" />
                                                         <!--end::Input-->
                                                     </div>
                                                     <!--end::Input group-->
                                                     <!--begin::Input group-->
                                                     <div class="fv-row mb-7">
                                                         <!--begin::Label-->
-                                                        <label class="required fw-bold fs-6 mb-2">Name (Arabic)</label>
+                                                        <label
+                                                            class="required fw-bold fs-6 mb-2">{{ __('categories.ar_name') }}</label>
                                                         <!--end::Label-->
                                                         <!--begin::Input-->
                                                         <input type="text" id="name_ar_update"
                                                             class="form-control form-control-solid mb-3 mb-lg-0"
-                                                            placeholder="Name in Arabic" />
+                                                            placeholder="{{ __('categories.ar_name') }}" />
                                                         <!--end::Input-->
                                                     </div>
                                                     <!--end::Input group-->
@@ -225,10 +220,10 @@
                                                 <!--begin::Actions-->
                                                 <div class="text-center pt-15">
                                                     <button type="reset" class="btn btn-light me-3"
-                                                        data-kt-items-modal-action="cancel">Cancel</button>
+                                                        data-kt-items-modal-action="cancel">{{ __('admins.discard') }}</button>
                                                     <button type="submit" id="submit-btn-update" class="btn btn-success"
                                                         data-kt-items-modal-action="submit">
-                                                        <span class="indicator-label">Save</span>
+                                                        <span class="indicator-label">{{ __('admins.update') }}</span>
                                                         <span class="indicator-progress">Please wait...
                                                             <span
                                                                 class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -258,10 +253,10 @@
                                 <!--begin::Table row-->
                                 <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
                                     <th>#</th>
-                                    <th>English Name</th>
-                                    <th>Arabic Name</th>
-                                    <th>Created At</th>
-                                    <th>Actions</th>
+                                    <th>{{ __('categories.en_name') }}</th>
+                                    <th>{{ __('categories.ar_name') }}</th>
+                                    <th>{{ __('categories.created_at') }}</th>
+                                    <th>{{ __('categories.actions') }}</th>
                                 </tr>
                                 <!--end::Table row-->
                             </thead>
@@ -309,6 +304,36 @@
                 order: [
                     [0, 'desc']
                 ],
+                @if (app()->isLocale('ar'))
+                    language: {
+                        "sEmptyTable": "ليست هناك بيانات متاحة في الجدول",
+                        "sLoadingRecords": "جارٍ التحميل...",
+                        "sProcessing": "جارٍ التحميل...",
+                        "sLengthMenu": "أظهر _MENU_ مدخلات",
+                        "sZeroRecords": "لم يعثر على أية سجلات",
+                        "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                        "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                        "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                        "sSearch": "ابحث:",
+                        "oPaginate": {
+                            "sFirst": "الأول",
+                            "sPrevious": "السابق",
+                            "sNext": "التالي",
+                            "sLast": "الأخير"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                            "sSortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                        },
+                        "select": {
+                            "rows": {
+                                "_": "%d قيمة محددة",
+                                "0": "",
+                                "1": "1 قيمة محددة"
+                            }
+                        },
+                    },
+                @endif
                 ajax: "{{ route('categories.index') }}",
                 columns: [{
                         data: 'id',
@@ -383,6 +408,7 @@
         function delItem(id, ref) {
             let url = `/dashboard/categories/${id}`
             swalWithBootstrapButtons
+            @if (app()->isLocale('en'))
                 .fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",
@@ -392,35 +418,62 @@
                     cancelButtonText: "No, cancel!",
                     reverseButtons: true,
                 })
-                .then((result) => {
-                    if (result.isConfirmed) {
-                        axios
-                            .delete(url)
-                            .then((response) => {
-                                // ref.closest("tr").remove();
-                                swalWithBootstrapButtons.fire(
-                                    "Deleted!",
-                                    response.data.message,
-                                    "success"
-                                );
-                                let table = $('#kt_table_users').DataTable();
-                                let currentPage = table.page();
-                                table.ajax.reload(function() {
-                                    // Check if current page is still available
-                                    if (currentPage > table.page.info().pages - 1) {
-                                        table.page('last').draw(false); // Return to last available page
-                                    }
-                                }, false);
-                            })
-                            .catch((error) => {
-                                swalWithBootstrapButtons.fire(
-                                    "Error",
-                                    error.response.data.message,
-                                    "error"
-                                );
-                            });
-                    }
-                });
+                @else
+                .fire({
+                    title: "هل أنت متأكد من عملية الحذف؟",
+                    text: "لا يمكن التراجع بعد الحذف",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "حذف",
+                    cancelButtonText: "إلغاء",
+                    reverseButtons: true,
+                })
+            @endif
+            .then((result) => {
+                if (result.isConfirmed) {
+                    axios
+                        .delete(url)
+                        .then((response) => {
+                            // ref.closest("tr").remove();
+                            @if(app()->isLocale('en'))
+                            swalWithBootstrapButtons.fire(
+                                "Deleted!",
+                                response.data.message,
+                                "success"
+                            );
+                            @else
+                            swalWithBootstrapButtons.fire(
+                                "تمت عملية الحذف",
+                                response.data.message,
+                                "success"
+                            );
+                            @endif
+                            let table = $('#kt_table_users').DataTable();
+                            let currentPage = table.page();
+                            table.ajax.reload(function() {
+                                // Check if current page is still available
+                                if (currentPage > table.page.info().pages - 1) {
+                                    table.page('last').draw(false); // Return to last available page
+                                }
+                            }, false);
+                        })
+                        .catch((error) => {
+                            @if(app()->isLocale('en'))
+                            swalWithBootstrapButtons.fire(
+                                "Error",
+                                error.response.data.message,
+                                "error"
+                            );
+                            @else
+                            swalWithBootstrapButtons.fire(
+                                "حذف خلل",
+                                error.response.data.message,
+                                "error"
+                            );
+                            @endif
+                        });
+                }
+            });
         }
 
         "use strict";
