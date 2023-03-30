@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,14 +16,14 @@ class SettingController extends Controller
     public function general()
     {
         $settings = Setting::where('group', 'general')->get();
-        $title = 'General Settings';
+        $title = __('navbar.general_settings');
         return response()->view('dashboard.settings.settings', compact('settings', 'title'));
     }
 
     public function home()
     {
         $settings = Setting::where('group', 'home')->get();
-        $title = 'Home Page Settings';
+        $title = __('navbar.home_page_settings');
         return response()->view('dashboard.settings.settings', compact('settings', 'title'));
     }
 

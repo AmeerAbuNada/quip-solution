@@ -36,7 +36,7 @@
                                             <!--begin::Input group-->
                                             <div class="row mb-6">
                                                 <!--begin::Label-->
-                                                <label class="col-lg-4 col-form-label fw-bold fs-6">{{ $setting->label }}</label>
+                                                <label class="col-lg-4 col-form-label fw-bold fs-6">{{ $setting['label_'.app()->getLocale()] }}</label>
                                                 <!--end::Label-->
                                                 <!--begin::Col-->
                                                 <div class="col-lg-8">
@@ -92,7 +92,7 @@
                                             <div class="row mb-6">
                                                 <!--begin::Label-->
                                                 <label
-                                                    class="col-lg-4 col-form-label required fw-bold fs-6">{{ $setting->label }}</label>
+                                                    class="col-lg-4 col-form-label required fw-bold fs-6">{{ $setting['label_'.app()->getLocale()] }}</label>
                                                 <!--end::Label-->
                                                 <!--begin::Col-->
                                                 <div class="col-lg-8 fv-row">
@@ -110,13 +110,11 @@
                                             <div class="row mb-6">
                                                 <!--begin::Label-->
                                                 <label
-                                                    class="col-lg-4 col-form-label required fw-bold fs-6">{{ $setting->label }}</label>
+                                                    class="col-lg-4 col-form-label required fw-bold fs-6">{{ $setting['label_'.app()->getLocale()] }}</label>
                                                 <!--end::Label-->
                                                 <!--begin::Col-->
                                                 <div class="col-lg-8 fv-row">
                                                     <textarea id="" rows="5" id="{{ $setting->key }}" class="form-control form-control-lg form-control-solid">{{ $setting->value }}</textarea>
-                                                    <input type="text" id="{{ $setting->key }}"
-                                                        class="form-control form-control-lg form-control-solid"/>
                                                 </div>
                                                 <!--end::Col-->
                                             </div>
@@ -128,7 +126,7 @@
                                             <div class="row mb-6">
                                                 <!--begin::Label-->
                                                 <label
-                                                    class="col-lg-4 col-form-label required fw-bold fs-6">{{ $setting->label }}</label>
+                                                    class="col-lg-4 col-form-label required fw-bold fs-6">{{ $setting['label_'.app()->getLocale()] }}</label>
                                                 <!--end::Label-->
                                                 <!--begin::Col-->
                                                 <div class="col-lg-8 fv-row">
@@ -145,7 +143,7 @@
                                             <div class="row mb-6">
                                                 <!--begin::Label-->
                                                 <label
-                                                    class="col-lg-4 col-form-label required fw-bold fs-6">{{ $setting->label }}</label>
+                                                    class="col-lg-4 col-form-label required fw-bold fs-6">{{ $setting['label_'.app()->getLocale()] }}</label>
                                                 <!--end::Label-->
                                                 <!--begin::Col-->
                                                 <div class="col-lg-12 fv-row">
@@ -161,9 +159,8 @@
                             <!--end::Card body-->
                             <!--begin::Actions-->
                             <div class="card-footer d-flex justify-content-end py-6 px-9">
-                                <button type="reset" class="btn btn-light btn-active-light-primary me-2">Reset</button>
-                                <button type="submit" class="btn btn-primary" id="submit-btn">Save
-                                    Changes</button>
+                                <button type="reset" class="btn btn-light btn-active-light-primary me-2">{{__('reset')}}</button>
+                                <button type="submit" class="btn btn-primary" id="submit-btn">{{__('save_changes')}}</button>
                             </div>
                             <!--end::Actions-->
                         </form>

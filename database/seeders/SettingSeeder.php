@@ -17,28 +17,32 @@ class SettingSeeder extends Seeder
         Setting::create([
             'key' => 'header_title_en',
             'value' => 'Excellent Car Washing Solutions',
-            'label' => 'Header Title (English)',
+            'label_en' => 'Header Title (English)',
+            'label_ar' => 'عنوان الرئيسية بالإنجليزية',
             'type' => 'text',
             'group' => 'home',
         ]);
         Setting::create([
             'key' => 'header_title_ar',
             'value' => 'حلول غسيل سيارات ممتازة',
-            'label' => 'Header Title (Arabic)',
+            'label_en' => 'Header Title (Arabic)',
+            'label_ar' => 'عنوان الرئيسية بالعربية',
             'type' => 'text',
             'group' => 'home',
         ]);
         Setting::create([
             'key' => 'header_description_en',
             'value' => 'Over 50 years of experience serving service stations and washing centers around the world.',
-            'label' => 'Header Description (English)',
+            'label_en' => 'Header Description (English)',
+            'label_ar' => 'وصف الرئيسية بالإنجليزية',
             'type' => 'textarea',
             'group' => 'home',
         ]);
         Setting::create([
             'key' => 'header_description_ar',
             'value' => 'أكثر من 50 عامًا من الخبرة في خدمة محطات الخدمة ومراكز الغسيل حول العالم.',
-            'label' => 'Header Description (Arabic)',
+            'label_en' => 'Header Description (Arabic)',
+            'label_ar' => 'وصف الرئيسية بالعربية',
             'type' => 'textarea',
             'group' => 'home',
         ]);
@@ -48,14 +52,16 @@ class SettingSeeder extends Seeder
         Setting::create([
             'key' => 'about_description_en',
             'value' => '<p>Manage your company better with us Manage your company better with us Manage Manage your company company.</p>',
-            'label' => 'About us Description (English)',
+            'label_en' => 'About us Description (English)',
+            'label_ar' => 'وصف عن الشركة بالإنجليزية',
             'type' => 'editor',
             'group' => 'home',
         ]);
         Setting::create([
             'key' => 'about_description_ar',
             'value' => '<p>إدارة شركتك بشكل أفضل معنا إدارة شركتك بشكل أفضل معنا إدارة إدارة شركتك.</p>',
-            'label' => 'About us Description (Arabic)',
+            'label_en' => 'About us Description (Arabic)',
+            'label_ar' => 'وصف عن الشركة بالعربية',
             'type' => 'editor',
             'group' => 'home',
         ]);
@@ -65,14 +71,16 @@ class SettingSeeder extends Seeder
         Setting::create([
             'key' => 'achievements_en',
             'value' => '<p>Manage your company better with us Manage your company better with us Manage Manage your company company.</p>',
-            'label' => 'Our Achievements (English)',
+            'label_en' => 'Our Achievements (English)',
+            'label_ar' => 'إنجازاتنا بالإنجليزية',
             'type' => 'editor',
             'group' => 'home',
         ]);
         Setting::create([
             'key' => 'achievements_ar',
             'value' => '<p>إدارة شركتك بشكل أفضل معنا إدارة شركتك بشكل أفضل معنا إدارة إدارة شركتك.</p>',
-            'label' => 'Our Achievements (Arabic)',
+            'label_en' => 'Our Achievements (Arabic)',
+            'label_ar' => 'إنجازاتنا بالعربية',
             'type' => 'editor',
             'group' => 'home',
         ]);

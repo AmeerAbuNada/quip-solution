@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('key')->unique();
             $table->longText('value')->nullable();
-            $table->string('label');
+            $table->string('label_en');
+            $table->string('label_ar');
             $table->string('type');
             $table->string('group');
             $table->timestamps();
