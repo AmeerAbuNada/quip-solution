@@ -10,7 +10,7 @@
         <!--begin::Post-->
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <!--begin::Container-->
-            <div id="kt_content_container" class="container-xxl">
+            <div id="kt_content_container" class="container-xxl" style="max-width: 1800px">
                 <!--begin::Card-->
                 <div class="card">
                     <!--begin::Card header-->
@@ -18,8 +18,7 @@
                         <!--begin::Card toolbar-->
                         <div class="card-toolbar">
                             <!--begin::Toolbar-->
-                            <div class="d-flex justify-content-end" style="gap: 20px" data-kt-user-table-toolbar="base">
-                                <!--begin::Add user-->
+                            <div class="d-flex justify-content-end" style="gap: 10px" data-kt-user-table-toolbar="base">
                                 <button type="button" class="btn btn-secondary" onclick="refreshTable(this)">
                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                                     <span class="svg-icon svg-icon-2">
@@ -30,9 +29,47 @@
                                         </svg>
 
                                     </span>
-                                    <!--end::Svg Icon-->Refresh Data
+                                    <!--end::Svg Icon-->{{ __('refresh_data') }}
                                 </button>
-                                <!--end::Add user-->
+
+                                <button type="button" class="btn btn-info" onclick="filterTable('', this)">
+                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                                        </svg>
+
+                                    </span>
+                                    <!--end::Svg Icon-->{{__('contacts.all')}}
+                                </button>
+
+                                <button type="button" class="btn btn-success" onclick="filterTable('answered', this)">
+                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                                        </svg>
+
+                                    </span>
+                                    <!--end::Svg Icon-->{{__('contacts.answered')}}
+                                </button>
+
+                                <button type="button" class="btn btn-warning" onclick="filterTable('pending', this)">
+                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                                        </svg>
+
+                                    </span>
+                                    <!--end::Svg Icon-->{{__('contacts.pending')}}
+                                </button>
                             </div>
                             <!--end::Toolbar-->
                             <!--begin::Modal - Add task-->
@@ -53,12 +90,12 @@
                                                 <span class="svg-icon svg-icon-1">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                         viewBox="0 0 24 24" fill="none">
-                                                        <rect opacity="0.5" x="6" y="17.3137"
-                                                            width="16" height="2" rx="1"
-                                                            transform="rotate(-45 6 17.3137)" fill="black" />
-                                                        <rect x="7.41422" y="6" width="16"
-                                                            height="2" rx="1"
-                                                            transform="rotate(45 7.41422 6)" fill="black" />
+                                                        <rect opacity="0.5" x="6" y="17.3137" width="16"
+                                                            height="2" rx="1" transform="rotate(-45 6 17.3137)"
+                                                            fill="black" />
+                                                        <rect x="7.41422" y="6" width="16" height="2"
+                                                            rx="1" transform="rotate(45 7.41422 6)"
+                                                            fill="black" />
                                                     </svg>
                                                 </span>
                                                 <!--end::Svg Icon-->
@@ -94,11 +131,12 @@
                                 <!--begin::Table row-->
                                 <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
                                     <th>#</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Message</th>
-                                    <th>Sent At</th>
-                                    <th>Actions</th>
+                                    <th>{{ __('contacts.name') }}</th>
+                                    <th>{{ __('contacts.email') }}</th>
+                                    <th>{{ __('contacts.message') }}</th>
+                                    <th>{{ __('contacts.status') }}</th>
+                                    <th>{{ __('contacts.sent_at') }}</th>
+                                    <th>{{ __('contacts.actions') }}</th>
                                 </tr>
                                 <!--end::Table row-->
                             </thead>
@@ -142,9 +180,41 @@
                     ">",
                 processing: true,
                 serverSide: true,
+                responsive: true,
+                responsivePriority: 1,
                 order: [
                     [0, 'desc']
                 ],
+                @if (app()->isLocale('ar'))
+                    language: {
+                        "sEmptyTable": "ليست هناك بيانات متاحة في الجدول",
+                        "sLoadingRecords": "جارٍ التحميل...",
+                        "sProcessing": "جارٍ التحميل...",
+                        "sLengthMenu": "أظهر _MENU_ مدخلات",
+                        "sZeroRecords": "لم يعثر على أية سجلات",
+                        "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                        "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                        "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                        "sSearch": "ابحث:",
+                        "oPaginate": {
+                            "sFirst": "الأول",
+                            "sPrevious": "السابق",
+                            "sNext": "التالي",
+                            "sLast": "الأخير"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                            "sSortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                        },
+                        "select": {
+                            "rows": {
+                                "_": "%d قيمة محددة",
+                                "0": "",
+                                "1": "1 قيمة محددة"
+                            }
+                        },
+                    },
+                @endif
                 ajax: "{{ route('contacts.index') }}",
                 columns: [{
                         data: 'id',
@@ -159,8 +229,12 @@
                         name: 'email',
                     },
                     {
-                        data: 'message',
+                        data: 'message_raw',
                         name: 'message',
+                    },
+                    {
+                        data: 'status_raw',
+                        name: 'status',
                     },
                     {
                         data: 'created_at',
@@ -174,11 +248,13 @@
                     }
                 ]
             });
+
         });
 
         function delItem(id, ref) {
             let url = `/dashboard/contacts/${id}`
             swalWithBootstrapButtons
+            @if (app()->isLocale('en'))
                 .fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",
@@ -188,40 +264,75 @@
                     cancelButtonText: "No, cancel!",
                     reverseButtons: true,
                 })
-                .then((result) => {
-                    if (result.isConfirmed) {
-                        axios
-                            .delete(url)
-                            .then((response) => {
-                                // ref.closest("tr").remove();
+            @else
+                .fire({
+                    title: "هل أنت متأكد من عملية الحذف؟",
+                    text: "لا يمكن التراجع بعد الحذف",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "حذف",
+                    cancelButtonText: "إلغاء",
+                    reverseButtons: true,
+                })
+            @endif
+            .then((result) => {
+                if (result.isConfirmed) {
+                    axios
+                        .delete(url)
+                        .then((response) => {
+                            // ref.closest("tr").remove();
+                            @if (app()->isLocale('en'))
                                 swalWithBootstrapButtons.fire(
                                     "Deleted!",
                                     response.data.message,
                                     "success"
                                 );
-                                let table = $('#kt_table_users').DataTable();
-                                let currentPage = table.page();
-                                table.ajax.reload(function() {
-                                    // Check if current page is still available
-                                    if (currentPage > table.page.info().pages - 1) {
-                                        table.page('last').draw(false); // Return to last available page
-                                    }
-                                }, false);
-                            })
-                            .catch((error) => {
+                            @else
+                                swalWithBootstrapButtons.fire(
+                                    "تمت عملية الحذف",
+                                    response.data.message,
+                                    "success"
+                                );
+                            @endif
+                            let table = $('#kt_table_users').DataTable();
+                            let currentPage = table.page();
+                            table.ajax.reload(function() {
+                                // Check if current page is still available
+                                if (currentPage > table.page.info().pages - 1) {
+                                    table.page('last').draw(false); // Return to last available page
+                                }
+                            }, false);
+                        })
+                        .catch((error) => {
+                            @if (app()->isLocale('en'))
                                 swalWithBootstrapButtons.fire(
                                     "Error",
                                     error.response.data.message,
                                     "error"
                                 );
-                            });
-                    }
-                });
+                            @else
+                                swalWithBootstrapButtons.fire(
+                                    "حذف خلل",
+                                    error.response.data.message,
+                                    "error"
+                                );
+                            @endif
+                        });
+                }
+            });
         }
 
         function refreshTable(ref) {
             ref.disabled = true;
             $('#kt_table_users').DataTable().ajax.reload();
+            setTimeout(() => {
+                ref.disabled = false;
+            }, 300);
+        }
+
+        function filterTable(type, ref) {
+            ref.disabled = true;
+            $('#kt_table_users').DataTable().search(type).draw();
             setTimeout(() => {
                 ref.disabled = false;
             }, 300);

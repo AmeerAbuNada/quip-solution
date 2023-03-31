@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('email');
+            $table->string('name');
+            $table->string('email', 400);
             $table->text('message');
+            $table->longText('reply')->nullable();
+            $table->foreignId('admin_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->enum('status', ['pending', 'answered'])->default('pending');
             $table->timestamps();
         });
     }

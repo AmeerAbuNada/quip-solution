@@ -13,5 +13,12 @@ class Contact extends Model
         'name',
         'email',
         'message',
+        'admin_id',
+        'status',
+        'reply',
     ];
+
+    public function admin() {
+        return $this->belongsTo(Admin::class);
+    }
 }
