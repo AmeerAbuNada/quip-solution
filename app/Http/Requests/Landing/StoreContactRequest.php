@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Dashboard\Contact;
+namespace App\Http\Requests\Landing;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\App;
 
 class StoreContactRequest extends FormRequest
 {
-    protected $stopOnFirstFailure = true;
-    
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -40,17 +38,13 @@ class StoreContactRequest extends FormRequest
     {
         if (App::isLocale('en')) {
             return [
-                'first_name.required' => 'The first name field is required.',
-                'first_name.string' => 'The first name field have to be a string.',
-                'first_name.max' => 'The first name must be less than 50 characters',
-
-                'last_name.required' => 'The last name field is required.',
-                'last_name.string' => 'The last name field have to be a string.',
-                'last_name.max' => 'The last name must be less than 50 characters',
+                'name.required' => 'The first name field is required.',
+                'name.string' => 'The first name field have to be a string.',
+                'name.max' => 'The first name must be less than 150 characters',
 
                 'email.required' => 'The email field is required.',
                 'email.email' => 'The email field have to be a valid email.',
-                'email.max' => 'The email must be less than 180 characters',
+                'email.max' => 'The email must be less than 320 characters',
 
                 'message.required' => 'The message field is required.',
                 'message.string' => 'The message field have to be a string.',

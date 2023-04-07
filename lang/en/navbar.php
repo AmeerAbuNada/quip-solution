@@ -12,6 +12,7 @@ return [
 
   'user_requests' => 'USER REQUESTS',
   'contact_messages' => 'Contact Messages',
+  'maintenances' => 'Maintenance Requests',
   
   'website_settings' => 'WEBSITE SETTINGS',
   'general_settings' => 'General Settings',
@@ -25,4 +26,5 @@ return [
   'english' => 'English',
   'account_settings' => 'Account Settings',
   'signout' => 'Sign Out',
+
 ];

@@ -2,5 +2,6 @@
   "add_new": "إنشاء جديد",
   "refresh_data": "تحديث البيانات",
   "save_changes": "تعديل",
-  "reset": "تفريغ"
+  "reset": "تفريغ",
+  "close": "إغلاق"
 }

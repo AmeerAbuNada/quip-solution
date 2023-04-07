@@ -12,6 +12,7 @@ return [
 
   'user_requests' => 'طلبات الزبائن',
   'contact_messages' => 'طلبات التواصل',
+  'maintenances' => 'طلبات الصيانة',
   
   'website_settings' => 'إعدادات الموقع',
   'general_settings' => 'الإعدادات العامة',

@@ -20,3 +20,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::post('/contact', [MainController::class, 'sendContactMessage']);
+Route::post('/maintenance', [MainController::class, 'sendMaintenance']);
