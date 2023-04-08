@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\LanguageMiddleware;
+use App\Http\Middleware\LocationMiddleware;
 use App\Http\Middleware\TestingMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -67,5 +68,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'locale' => LanguageMiddleware::class,
+        'location' => LocationMiddleware::class,
     ];
 }

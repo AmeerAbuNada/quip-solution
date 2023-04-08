@@ -13,6 +13,7 @@ use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\ProjectController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Landing\MainController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -68,4 +69,6 @@ Route::middleware(['auth', 'locale'])->prefix('/dashboard')->group(function () {
   Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
-Route::redirect('/', '/login');
+Route::middleware('location')->get('/', function(Request $request) {
+  echo 'landing page here............';
+});
