@@ -9,6 +9,7 @@ return [
   'projects' => 'Projects',
   'categories' => 'Categories',
   'products' => 'Products',
+  'features' => 'Features',
 
   'user_requests' => 'USER REQUESTS',
   'contact_messages' => 'Contact Messages',

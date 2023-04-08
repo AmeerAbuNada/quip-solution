@@ -9,6 +9,7 @@ return [
   'projects' => 'المشاريع',
   'categories' => 'الفئات',
   'products' => 'المنتجات',
+  'features' => 'الميزات',
 
   'user_requests' => 'طلبات الزبائن',
   'contact_messages' => 'طلبات التواصل',

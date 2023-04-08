@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Dashboard\Project;
+namespace App\Http\Requests\Dashboard\Feature;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ToggleOptionRequest extends FormRequest
+class UpdateFeatureRequest extends FormRequest
 {
     protected $stopOnFirstFailure = true;
     
@@ -24,8 +24,11 @@ class ToggleOptionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type' => 'required|string|in:is_active',
-            'value' => 'required|boolean',
+            'title_en' => 'required|string|max:180',
+            'title_ar' => 'required|string|max:180',
+            'is_active' => 'required|boolean',
+            'description_en' => 'required|string|max:1000',
+            'description_ar' => 'required|string|max:1000',
         ];
     }
 }

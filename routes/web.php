@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\ContactController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\FeatureController;
 use App\Http\Controllers\Dashboard\MaintenanceController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\ProjectController;
@@ -42,8 +43,11 @@ Route::middleware(['auth', 'locale'])->prefix('/dashboard')->group(function () {
   
   Route::resource('projects', ProjectController::class)->except(['show']);
   Route::put('/projects/{project}/toggle', [ProjectController::class, 'toggleOption']);
-
+  
   Route::resource('maintenances', MaintenanceController::class)->except(['create', 'edit', 'store']);
+
+  Route::resource('features', FeatureController::class)->except(['show']);
+  Route::put('/features/{feature}/toggle', [FeatureController::class, 'toggleOption']);
 
   Route::prefix('/account')->controller(AccountController::class)->group(function () {
     Route::get('/', 'profile')->name('account.profile');
