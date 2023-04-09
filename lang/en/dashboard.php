@@ -19,4 +19,6 @@ return [
   'friday' => 'Friday',
   'saturday' => 'Saturday',
   'sunday' => 'Sunday',
+
+  'most_visited' => 'Most Visited Countries',
 ];

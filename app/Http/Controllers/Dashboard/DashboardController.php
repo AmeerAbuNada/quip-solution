@@ -24,8 +24,9 @@ class DashboardController extends Controller
         $categories = Category::all();
         $visitsCount = Visit::count();
 
+
+        // begin::Last Seven Days Visits Statistics
         $startDate = Carbon::now()->subDays(7);
-        // Get all records created between $startDate and now
         $lastSevenDaysVisits = Visit::whereBetween('created_at', [$startDate, Carbon::now()])
             ->selectRaw('DATE(created_at) as date, COUNT(*) as count')
             ->groupBy('date')
@@ -33,7 +34,6 @@ class DashboardController extends Controller
             ->get();
         $lastSevenDaysVisitsCount = Visit::whereBetween('created_at', [$startDate, Carbon::now()])
             ->count();
-
         $maxLastSevenDaysVisitsValue = 0;
         $minLastSevenDaysVisitsValue = 0;
         foreach ($lastSevenDaysVisits as $visit) {
@@ -44,6 +44,16 @@ class DashboardController extends Controller
                 $minLastSevenDaysVisitsValue = $visit->count;
             }
         }
+        // end::Last Seven Days Visits Statistics
+
+        $mostVisitedCountries = Visit::selectRaw('countryName, COUNT(*) as count')
+        ->groupBy('countryName')
+        ->orderBy('count', 'DESC')
+        ->limit(15)
+        ->get();
+
+
+        // dd($mostVisitedCountries);
 
         // dd(Carbon::parse($visitsThisWeek[1]->date)->format('l'));
 
@@ -57,6 +67,7 @@ class DashboardController extends Controller
             'lastSevenDaysVisitsCount',
             'maxLastSevenDaysVisitsValue',
             'minLastSevenDaysVisitsValue',
+            'mostVisitedCountries',
         ));
     }
 

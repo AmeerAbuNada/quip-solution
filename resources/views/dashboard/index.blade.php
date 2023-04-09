@@ -224,7 +224,7 @@
                         </div>
                         <!--end::Card widget 4-->
                         <!--begin::Card widget 5-->
-                        <div class="card card-flush h-md-40 mb-xl-10">
+                        <div class="card card-flush h-md-50 mb-xl-10">
                             <!--begin::Header-->
                             <div class="card-header pt-5">
                                 <!--begin::Title-->
@@ -289,7 +289,7 @@
                                 </div>
                                 <!--end::Statistics-->
                                 <!--begin::Chart-->
-                                <div id="kt_charts_widget_3" class="min-h-auto ps-4 pe-6" style="height: 300px"></div>
+                                <div id="visits-chart" class="min-h-auto ps-4 pe-6" style="height: 300px"></div>
                                 <!--end::Chart-->
                             </div>
                             <!--end::Card body-->
@@ -297,6 +297,29 @@
                         <!--end::Chart widget 3-->
                     </div>
                     <!--end::Col-->
+
+                    <div class="col-xl-12 mb-5 mb-xl-10">
+                        <!--begin::Chart widget 15-->
+                        <div class="card card-flush h-xl-100">
+                            <!--begin::Header-->
+                            <div class="card-header pt-7">
+                                <!--begin::Title-->
+                                <h3 class="card-title align-items-start flex-column">
+                                    <span class="card-label fw-bolder text-dark">{{__('dashboard.most_visited')}}</span>
+                                </h3>
+                                <!--end::Title-->
+                            </div>
+                            <!--end::Header-->
+                            <!--begin::Body-->
+                            <div class="card-body pt-5">
+                                <!--begin::Chart container-->
+                                <div id="kt_charts_widget_15_chart" class="w-100 h-400px"></div>
+                                <!--end::Chart container-->
+                            </div>
+                            <!--end::Body-->
+                        </div>
+                        <!--end::Chart widget 15-->
+                    </div>
                 </div>
                 <!--end::Row-->
             </div>
@@ -308,6 +331,18 @@
 
 @section('scripts')
     {{-- <script src="{{ asset('dashboard-assets/js/widgets.bundle.js') }}"></script> --}}
+    
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/continentsLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
     <script>
         var e = document.getElementById("projects-chart");
         if (e) {
@@ -452,7 +487,7 @@
         }
 
 
-        var e = document.getElementById("kt_charts_widget_3");
+        var e = document.getElementById("visits-chart");
         if (e) {
             var t = parseInt(KTUtil.css(e, "height")),
                 a = KTUtil.getCssVariableValue("--bs-gray-500"),
@@ -546,8 +581,8 @@
                     },
                     yaxis: {
                         tickAmount: 10,
-                        max: {{$maxLastSevenDaysVisitsValue}},
-                        min: {{$minLastSevenDaysVisitsValue}},
+                        max: {{ $maxLastSevenDaysVisitsValue }},
+                        min: {{ $minLastSevenDaysVisitsValue }},
                         labels: {
                             style: {
                                 colors: a,
@@ -604,5 +639,114 @@
                 s.render();
             }, 300);
         }
+
+        var e = document.getElementById("kt_charts_widget_15_chart");
+        e &&
+            am5.ready(function() {
+                var t = am5.Root.new(e);
+                t.setThemes([am5themes_Animated.new(t)]);
+                var a = t.container.children.push(
+                        am5xy.XYChart.new(t, {
+                            panX: !1,
+                            panY: !1,
+                            layout: t.verticalLayout,
+                        })
+                    ),
+                    r =
+                    (a.get("colors"),
+                        [
+                            @foreach ($mostVisitedCountries as $country)
+                            {
+                                country: "{{$country->countryName}}",
+                                visits: {{$country->count}},
+                                columnSettings: {
+                                    fill: am5.color(
+                                        KTUtil.getCssVariableValue(
+                                            "--bs-primary"
+                                        )
+                                    ),
+                                },
+                            },
+                            @endforeach
+                        ]),
+                    o = a.xAxes.push(
+                        am5xy.CategoryAxis.new(t, {
+                            categoryField: "country",
+                            renderer: am5xy.AxisRendererX.new(t, {
+                                minGridDistance: 30,
+                            }),
+                            bullet: function(e, t, a) {
+                                return am5xy.AxisBullet.new(e, {
+                                    location: 0.5,
+                                    sprite: am5.Picture.new(e, {
+                                        width: 24,
+                                        height: 24,
+                                        centerY: am5.p50,
+                                        centerX: am5.p50,
+                                        src: a.dataContext.icon,
+                                    }),
+                                });
+                            },
+                        })
+                    );
+                o.get("renderer").labels.template.setAll({
+                        paddingTop: 20,
+                        fontWeight: "400",
+                        fontSize: 13,
+                        fill: am5.color(
+                            KTUtil.getCssVariableValue("--bs-gray-500")
+                        ),
+                    }),
+                    o.get("renderer").grid.template.setAll({
+                        disabled: !0,
+                        strokeOpacity: 0,
+                    }),
+                    o.data.setAll(r);
+                var i = a.yAxes.push(
+                    am5xy.ValueAxis.new(t, {
+                        renderer: am5xy.AxisRendererY.new(t, {}),
+                    })
+                );
+                i.get("renderer").grid.template.setAll({
+                        stroke: am5.color(
+                            KTUtil.getCssVariableValue("--bs-gray-300")
+                        ),
+                        strokeWidth: 1,
+                        strokeOpacity: 1,
+                        strokeDasharray: [3],
+                    }),
+                    i.get("renderer").labels.template.setAll({
+                        fontWeight: "400",
+                        fontSize: 13,
+                        fill: am5.color(
+                            KTUtil.getCssVariableValue("--bs-gray-500")
+                        ),
+                    });
+                var s = a.series.push(
+                    am5xy.ColumnSeries.new(t, {
+                        xAxis: o,
+                        yAxis: i,
+                        valueYField: "visits",
+                        categoryXField: "country",
+                    })
+                );
+                s.columns.template.setAll({
+                        tooltipText: "{categoryX}: {valueY}",
+                        tooltipY: 0,
+                        strokeOpacity: 0,
+                        templateField: "columnSettings",
+                    }),
+                    s.columns.template.setAll({
+                        strokeOpacity: 0,
+                        cornerRadiusBR: 0,
+                        cornerRadiusTR: 6,
+                        cornerRadiusBL: 0,
+                        cornerRadiusTL: 6,
+                    }),
+                    s.data.setAll(r),
+                    s.appear(),
+                    a.appear(1e3, 100);
+            });
     </script>
+
 @endsection

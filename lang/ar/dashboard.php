@@ -19,4 +19,6 @@ return [
   'friday' => 'الجمعة',
   'saturday' => 'السبت',
   'sunday' => 'الأحد',
+
+  'most_visited' => 'الدول الأكثر زيارة',
 ];
