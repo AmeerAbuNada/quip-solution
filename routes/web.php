@@ -33,6 +33,10 @@ Route::middleware('guest')->group(function () {
 Route::middleware(['auth', 'locale'])->prefix('/dashboard')->group(function () {
 // Route::middleware('auth')->prefix('/dashboard')->group(function () {
   Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+  Route::get('/contacts/api', [DashboardController::class, 'contacts'])->name('dashboard.contacts');
+  Route::get('/maintenances/api', [DashboardController::class, 'maintenances'])->name('dashboard.maintenances');
+
+
   Route::resource('admins', AdminController::class)->except(['create']);
   Route::resource('categories', CategoryController::class)->except(['show', 'create', 'edit']);
   Route::resource('contacts', ContactController::class)->only(['index', 'show', 'destroy']);

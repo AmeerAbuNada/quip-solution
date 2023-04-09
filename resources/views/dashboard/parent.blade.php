@@ -45,7 +45,7 @@
                                 <!--begin::Info-->
                                 <div class="flex-grow-1 me-2">
                                     <!--begin::Username-->
-                                    <a href="#"
+                                    <a href="{{route('account.settings')}}"
                                         class="text-white text-hover-primary fs-6 fw-bold">{{ auth()->user()->name }}</a>
                                     <!--end::Username-->
                                     <!--begin::Description-->
@@ -106,17 +106,6 @@
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-5">
                                             <a href="{{ route('account.profile') }}" class="menu-link px-5">{{__('navbar.my_profile')}}</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-5">
-                                            <a href="#" class="menu-link px-5">
-                                                <span class="menu-text">{{__('navbar.notification')}}</span>
-                                                <span class="menu-badge">
-                                                    <span
-                                                        class="badge badge-light-danger badge-circle fw-bolder fs-7">3</span>
-                                                </span>
-                                            </a>
                                         </div>
                                         <!--end::Menu item-->
                                         <!--begin::Menu separator-->

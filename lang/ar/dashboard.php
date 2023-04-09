@@ -21,4 +21,6 @@ return [
   'sunday' => 'الأحد',
 
   'most_visited' => 'الدول الأكثر زيارة',
+  'notification_contact' => 'وصلت رسالة تواصل جديدة',
+  'notification_maintenance' => 'وصل طلب صيانة جديد',
 ];

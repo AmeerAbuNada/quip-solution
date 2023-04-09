@@ -12,4 +12,5 @@ return [
   'completed' => 'Completed',
   'all' => 'All',
   'mark-completed' => 'Mark as Completed',
+  'title' => 'Maintanence Requests',
 ];

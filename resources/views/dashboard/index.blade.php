@@ -305,7 +305,7 @@
                             <div class="card-header pt-7">
                                 <!--begin::Title-->
                                 <h3 class="card-title align-items-start flex-column">
-                                    <span class="card-label fw-bolder text-dark">{{__('dashboard.most_visited')}}</span>
+                                    <span class="card-label fw-bolder text-dark">{{ __('dashboard.most_visited') }}</span>
                                 </h3>
                                 <!--end::Title-->
                             </div>
@@ -320,6 +320,118 @@
                         </div>
                         <!--end::Chart widget 15-->
                     </div>
+
+                    <div class="col-xl-6 mb-5 mb-xl-10">
+                        <div class="card card-flush h-xl-100">
+                            <!--begin::Header-->
+                            <div class="card-header pt-7">
+                                <!--begin::Title-->
+                                <h3 class="card-title align-items-start flex-column">
+                                    <span class="card-label fw-bolder text-dark">{{ __('contacts.title') }}</span>
+                                </h3>
+                                <!--end::Title-->
+                            </div>
+                            <!--end::Header-->
+                            <!--begin::Body-->
+                            <div class="card-body pt-5">
+                                <!--begin::Table-->
+                                <table class="table align-middle table-row-dashed table-hover fs-6 gy-5"
+                                    id="contact_table">
+                                    <!--begin::Table head-->
+                                    <thead>
+                                        <!--begin::Table row-->
+                                        <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
+                                            <th>#</th>
+                                            <th>{{ __('contacts.name') }}</th>
+                                            <th>{{ __('contacts.email') }}</th>
+                                            <th>{{ __('contacts.message') }}</th>
+                                            <th>{{ __('contacts.status') }}</th>
+                                            <th>{{ __('contacts.sent_at') }}</th>
+                                            <th>{{ __('contacts.actions') }}</th>
+                                        </tr>
+                                        <!--end::Table row-->
+                                    </thead>
+                                    <!--end::Table head-->
+                                    <!--begin::Table body-->
+                                    <tbody class="text-gray-600 fw-bold">
+
+                                    </tbody>
+                                    <!--end::Table body-->
+                                </table>
+                                <!--end::Table-->
+                            </div>
+                            <!--end::Body-->
+                        </div>
+                    </div>
+                    <div class="col-xl-6 mb-5 mb-xl-10">
+                        <div class="card card-flush h-xl-100">
+                            <!--begin::Header-->
+                            <div class="card-header pt-7">
+                                <!--begin::Title-->
+                                <h3 class="card-title align-items-start flex-column">
+                                    <span class="card-label fw-bolder text-dark">{{ __('maintenances.title') }}</span>
+                                </h3>
+                                <!--end::Title-->
+                            </div>
+                            <!--end::Header-->
+                            <!--begin::Body-->
+                            <div class="card-body pt-5">
+                                <!--begin::Table-->
+                                <table class="table align-middle table-row-dashed table-hover fs-6 gy-5"
+                                    id="maintetance_table">
+                                    <!--begin::Table head-->
+                                    <thead>
+                                        <!--begin::Table row-->
+                                        <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
+                                            <th>#</th>
+                                            <th>{{ __('maintenances.email') }}</th>
+                                            <th>{{ __('maintenances.phone_number') }}</th>
+                                            <th>{{ __('maintenances.message') }}</th>
+                                            <th>{{ __('maintenances.status') }}</th>
+                                            <th>{{ __('maintenances.sent_at') }}</th>
+                                            <th>{{ __('maintenances.actions') }}</th>
+                                        </tr>
+                                        <!--end::Table row-->
+                                    </thead>
+                                    <!--end::Table head-->
+                                    <!--begin::Table body-->
+                                    <tbody class="text-gray-600 fw-bold">
+
+                                    </tbody>
+                                    <!--end::Table body-->
+                                </table>
+                                <!--end::Table-->
+                            </div>
+                            <!--end::Body-->
+                        </div>
+                        <div class="modal fade" tabindex="-1" id="kt_modal_1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">{{ __('maintenances.message') }}</h5>
+
+                                        <!--begin::Close-->
+                                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2"
+                                            data-bs-dismiss="modal" aria-label="Close">
+                                            <span class="svg-icon svg-icon-2x"></span>
+                                        </div>
+                                        <!--end::Close-->
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <p id="description-p"></p>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger"
+                                            data-bs-dismiss="modal">{{ __('close') }}</button>
+                                        <button style="display: none" id="mark-btn" type="button"
+                                            class="btn btn-success">{{ __('maintenances.mark-completed') }}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!--end::Row-->
             </div>
@@ -331,7 +443,8 @@
 
 @section('scripts')
     {{-- <script src="{{ asset('dashboard-assets/js/widgets.bundle.js') }}"></script> --}}
-    
+    <script src="{{ asset('dashboard-assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+
     <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
@@ -656,17 +769,17 @@
                     (a.get("colors"),
                         [
                             @foreach ($mostVisitedCountries as $country)
-                            {
-                                country: "{{$country->countryName}}",
-                                visits: {{$country->count}},
-                                columnSettings: {
-                                    fill: am5.color(
-                                        KTUtil.getCssVariableValue(
-                                            "--bs-primary"
-                                        )
-                                    ),
+                                {
+                                    country: "{{ $country->countryName }}",
+                                    visits: {{ $country->count }},
+                                    columnSettings: {
+                                        fill: am5.color(
+                                            KTUtil.getCssVariableValue(
+                                                "--bs-primary"
+                                            )
+                                        ),
+                                    },
                                 },
-                            },
                             @endforeach
                         ]),
                     o = a.xAxes.push(
@@ -747,6 +860,383 @@
                     s.appear(),
                     a.appear(1e3, 100);
             });
+
+        $(function() {
+            var contactTable = $('#contact_table').DataTable({
+                language: {
+                    "lengthMenu": "Show _MENU_",
+                },
+                dom: "<'row'" +
+                    "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                    "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
+                    ">" +
+
+                    "<'table-responsive'tr>" +
+
+                    "<'row'" +
+                    "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                    "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                    ">",
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                responsivePriority: 1,
+                order: [
+                    [0, 'desc']
+                ],
+                @if (app()->isLocale('ar'))
+                    language: {
+                        "sEmptyTable": "ليست هناك بيانات متاحة في الجدول",
+                        "sLoadingRecords": "جارٍ التحميل...",
+                        "sProcessing": "جارٍ التحميل...",
+                        "sLengthMenu": "أظهر _MENU_ مدخلات",
+                        "sZeroRecords": "لم يعثر على أية سجلات",
+                        "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                        "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                        "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                        "sSearch": "ابحث:",
+                        "oPaginate": {
+                            "sFirst": "الأول",
+                            "sPrevious": "السابق",
+                            "sNext": "التالي",
+                            "sLast": "الأخير"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                            "sSortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                        },
+                        "select": {
+                            "rows": {
+                                "_": "%d قيمة محددة",
+                                "0": "",
+                                "1": "1 قيمة محددة"
+                            }
+                        },
+                    },
+                @endif
+                ajax: "{{ route('dashboard.contacts') }}",
+                columns: [{
+                        data: 'id',
+                        name: 'id'
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email',
+                    },
+                    {
+                        data: 'message_raw',
+                        name: 'message',
+                    },
+                    {
+                        data: 'status_raw',
+                        name: 'status',
+                    },
+                    {
+                        data: 'created_at',
+                        name: 'created_at',
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
+                    }
+                ]
+            });
+
+            var maintetanceTable = $('#maintetance_table').DataTable({
+                language: {
+                    "lengthMenu": "Show _MENU_",
+                },
+                dom: "<'row'" +
+                    "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                    "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
+                    ">" +
+
+                    "<'table-responsive'tr>" +
+
+                    "<'row'" +
+                    "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                    "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                    ">",
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                responsivePriority: 1,
+                order: [
+                    [0, 'desc']
+                ],
+                @if (app()->isLocale('ar'))
+                    language: {
+                        "sEmptyTable": "ليست هناك بيانات متاحة في الجدول",
+                        "sLoadingRecords": "جارٍ التحميل...",
+                        "sProcessing": "جارٍ التحميل...",
+                        "sLengthMenu": "أظهر _MENU_ مدخلات",
+                        "sZeroRecords": "لم يعثر على أية سجلات",
+                        "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                        "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                        "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                        "sSearch": "ابحث:",
+                        "oPaginate": {
+                            "sFirst": "الأول",
+                            "sPrevious": "السابق",
+                            "sNext": "التالي",
+                            "sLast": "الأخير"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                            "sSortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                        },
+                        "select": {
+                            "rows": {
+                                "_": "%d قيمة محددة",
+                                "0": "",
+                                "1": "1 قيمة محددة"
+                            }
+                        },
+                    },
+                @endif
+                ajax: "{{ route('dashboard.maintenances') }}",
+                columns: [{
+                        data: 'id',
+                        name: 'id'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email',
+                    },
+                    {
+                        data: 'phone_number',
+                        name: 'phone_number',
+                    },
+                    {
+                        data: 'message_raw',
+                        name: 'description',
+                    },
+                    {
+                        data: 'status_raw',
+                        name: 'status',
+                    },
+                    {
+                        data: 'created_at',
+                        name: 'created_at',
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
+                    }
+                ]
+            });
+
+        });
+
+        function delContact(id, ref) {
+            let url = `/dashboard/contacts/${id}`
+            swalWithBootstrapButtons
+            @if (app()->isLocale('en'))
+                .fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes, delete it!",
+                    cancelButtonText: "No, cancel!",
+                    reverseButtons: true,
+                })
+            @else
+                .fire({
+                    title: "هل أنت متأكد من عملية الحذف؟",
+                    text: "لا يمكن التراجع بعد الحذف",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "حذف",
+                    cancelButtonText: "إلغاء",
+                    reverseButtons: true,
+                })
+            @endif
+            .then((result) => {
+                if (result.isConfirmed) {
+                    axios
+                        .delete(url)
+                        .then((response) => {
+                            // ref.closest("tr").remove();
+                            @if (app()->isLocale('en'))
+                                swalWithBootstrapButtons.fire(
+                                    "Deleted!",
+                                    response.data.message,
+                                    "success"
+                                );
+                            @else
+                                swalWithBootstrapButtons.fire(
+                                    "تمت عملية الحذف",
+                                    response.data.message,
+                                    "success"
+                                );
+                            @endif
+                            let table = $('#contact_table').DataTable();
+                            let currentPage = table.page();
+                            table.ajax.reload(function() {
+                                // Check if current page is still available
+                                if (currentPage > table.page.info().pages - 1) {
+                                    table.page('last').draw(false); // Return to last available page
+                                }
+                            }, false);
+                        })
+                        .catch((error) => {
+                            @if (app()->isLocale('en'))
+                                swalWithBootstrapButtons.fire(
+                                    "Error",
+                                    error.response.data.message,
+                                    "error"
+                                );
+                            @else
+                                swalWithBootstrapButtons.fire(
+                                    "حذف خلل",
+                                    error.response.data.message,
+                                    "error"
+                                );
+                            @endif
+                        });
+                }
+            });
+        }
+
+        function getDescription(id, ref) {
+            ref.disabled = true;
+            axios.get(`/dashboard/maintenances/${id}`)
+                .then((response) => {
+                    document.getElementById('description-p').textContent = response.data.description;
+                    let markBtn = document.getElementById('mark-btn');
+                    if (response.data.status == 'pending') {
+                        markBtn.style.display = 'block';
+                        markBtn.setAttribute('onclick', `markAsRead(${response.data.id}, this)`);
+                    } else {
+                        markBtn.style.display = 'none';
+                        markBtn.setAttribute('onclick', `markAsRead(-1, this)`);
+                    }
+                    ref.disabled = false;
+                    openModal();
+                })
+                .catch((error) => {
+                    ref.disabled = false;
+                    Toast.fire({
+                        icon: "error",
+                        title: error.response.data.message,
+                    });
+                })
+        }
+
+        function openModal() {
+            var modal = document.getElementById('kt_modal_1');
+            var modalInstance = new bootstrap.Modal(modal);
+            modalInstance.show();
+        }
+
+        function markAsRead(id, ref) {
+            if (id == -1) return;
+
+            ref.disabled = true;
+            let url = `/dashboard/maintenances/${id}`;
+            axios.put(url)
+                .then((response) => {
+                    $('#maintetance_table').DataTable().ajax.reload(null, false);
+                    Toast.fire({
+                        icon: "success",
+                        title: response.data.message,
+                    });
+                    ref.style.display = 'none';
+                })
+                .catch((error) => {
+                    Toast.fire({
+                        icon: "error",
+                        title: error.response.data.message,
+                    });
+                })
+                .finally(() => {
+                    ref.disabled = false;
+                })
+        }
+
+        function delMaintenance(id, ref) {
+            let url = `/dashboard/maintenances/${id}`
+            swalWithBootstrapButtons
+            @if (app()->isLocale('en'))
+                .fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes, delete it!",
+                    cancelButtonText: "No, cancel!",
+                    reverseButtons: true,
+                })
+            @else
+                .fire({
+                    title: "هل أنت متأكد من عملية الحذف؟",
+                    text: "لا يمكن التراجع بعد الحذف",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "حذف",
+                    cancelButtonText: "إلغاء",
+                    reverseButtons: true,
+                })
+            @endif
+            .then((result) => {
+                if (result.isConfirmed) {
+                    axios
+                        .delete(url)
+                        .then((response) => {
+                            // ref.closest("tr").remove();
+                            @if (app()->isLocale('en'))
+                                swalWithBootstrapButtons.fire(
+                                    "Deleted!",
+                                    response.data.message,
+                                    "success"
+                                );
+                            @else
+                                swalWithBootstrapButtons.fire(
+                                    "تمت عملية الحذف",
+                                    response.data.message,
+                                    "success"
+                                );
+                            @endif
+                            let table = $('#maintetance_table').DataTable();
+                            let currentPage = table.page();
+                            table.ajax.reload(function() {
+                                // Check if current page is still available
+                                if (currentPage > table.page.info().pages - 1) {
+                                    table.page('last').draw(false); // Return to last available page
+                                }
+                            }, false);
+                        })
+                        .catch((error) => {
+                            @if (app()->isLocale('en'))
+                                swalWithBootstrapButtons.fire(
+                                    "Error",
+                                    error.response.data.message,
+                                    "error"
+                                );
+                            @else
+                                swalWithBootstrapButtons.fire(
+                                    "حذف خلل",
+                                    error.response.data.message,
+                                    "error"
+                                );
+                            @endif
+                        });
+                }
+            });
+        }
+
+        
+
+        
     </script>
 
 @endsection

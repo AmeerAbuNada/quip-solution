@@ -21,4 +21,6 @@ return [
   'sunday' => 'Sunday',
 
   'most_visited' => 'Most Visited Countries',
+  'notification_contact' => 'New Contact Message has been recieved!',
+  'notification_maintenance' => 'New Maintenance Request has been recieved!',
 ];

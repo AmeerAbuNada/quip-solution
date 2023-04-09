@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Landing;
 
+use App\Events\NewContactEvent;
+use App\Events\NewMaintenanceRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Landing\StoreContactRequest;
 use App\Http\Requests\Landing\StoreMaintenaceRequest;
+use App\Models\Admin;
 use App\Models\Contact;
 use App\Models\Maintenance;
 use Illuminate\Http\Request;
@@ -18,6 +21,7 @@ class MainController extends Controller
     $contact = new Contact($request->validated());
     $isSaved = $contact->save();
     if ($isSaved) {
+      event(new NewContactEvent());
       return response()->json([
         'message' => App::isLocale('en') ? 'Message Sent Successfully!' : 'تم إرسال الرسالة بنجاح'
       ], Response::HTTP_CREATED);
@@ -33,6 +37,7 @@ class MainController extends Controller
     $maintenance = new Maintenance($request->validated());
     $isSaved = $maintenance->save();
     if ($isSaved) {
+      event(new NewMaintenanceRequest());
       return response()->json([
         'message' => App::isLocale('en') ? 'Maintenace Request Sent Successfully!' : 'تم إرسال طلب الصيانة بنجاح'
       ], Response::HTTP_CREATED);
