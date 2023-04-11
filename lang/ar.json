@@ -3,5 +3,29 @@
   "refresh_data": "تحديث البيانات",
   "save_changes": "تعديل",
   "reset": "تفريغ",
-  "close": "إغلاق"
+  "close": "إغلاق",
+
+  "learn_more": "المزيد",
+  "home": "الرئيسية",
+  "why_acw": "لماذا غسيل السيارات الأوتوماتيكي",
+  "products": "المنتجات",
+  "all_products": "جميع المنتجات",
+  "maintenance": "الصيانة",
+  "contact_us": "تواصل معنا",
+
+  "about_us": "من نحن",
+  "our_achievements": "إنجازاتنا",
+  "best_selling": "الأفضل مبيعاً",
+  "see_more": "المزيد",
+
+  "get_in_touch": "توصل معنا",
+  "email": "البريد الإلكتروني",
+  "phone_number": "رقم الهاتف",
+  "location": "العنوان",
+
+  "your_name": "إسمك",
+  "your_email": "بريدك الإلكتروني",
+  "the_message": "الرسالة",
+  "send": "إرسال",
+  "write_your_message": "أكتب رسالتك هنا"
 }

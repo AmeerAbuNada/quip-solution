@@ -18,6 +18,8 @@ return [
   'website_settings' => 'WEBSITE SETTINGS',
   'general_settings' => 'General Settings',
   'home_page_settings' => 'Home Page Settings',
+
+  'landing_page' => 'Landing Page',
   
   'online' => 'online',
   'my_profile' => 'My Profile',

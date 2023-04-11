@@ -48,5 +48,3 @@
         font-family: fbold;
     }
 </style>
-
-@vite(['resources/css/app.css'])

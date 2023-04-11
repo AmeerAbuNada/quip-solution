@@ -31,7 +31,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware(['auth', 'locale'])->prefix('/dashboard')->group(function () {
-// Route::middleware('auth')->prefix('/dashboard')->group(function () {
+  // Route::middleware('auth')->prefix('/dashboard')->group(function () {
   Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
   Route::get('/contacts/api', [DashboardController::class, 'contacts'])->name('dashboard.contacts');
   Route::get('/maintenances/api', [DashboardController::class, 'maintenances'])->name('dashboard.maintenances');
@@ -45,10 +45,10 @@ Route::middleware(['auth', 'locale'])->prefix('/dashboard')->group(function () {
   Route::resource('products', ProductController::class)->except(['show']);
   Route::put('/products/{product}/toggle', [ProductController::class, 'toggleOption']);
   Route::delete('/products/images/{image}', [ProductController::class, 'deleteImage']);
-  
+
   Route::resource('projects', ProjectController::class)->except(['show']);
   Route::put('/projects/{project}/toggle', [ProjectController::class, 'toggleOption']);
-  
+
   Route::resource('maintenances', MaintenanceController::class)->except(['create', 'edit', 'store']);
 
   Route::resource('features', FeatureController::class)->except(['show']);
@@ -73,6 +73,9 @@ Route::middleware(['auth', 'locale'])->prefix('/dashboard')->group(function () {
   Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
-Route::middleware('location')->get('/', function(Request $request) {
-  echo 'landing page here............';
+Route::middleware(['locale', 'location'])->group(function () {
+  Route::get('/', [MainController::class, 'index'])->name('landing.index');
+  Route::get('/language/{locale}', [MainController::class, 'changeLocale'])->name('landing.locale');
+  Route::post('/contact', [MainController::class, 'sendContactMessage'])->name('contact.post');
+  Route::post('/maintenance', [MainController::class, 'sendMaintenance']);
 });

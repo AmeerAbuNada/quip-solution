@@ -19,5 +19,4 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::post('/contact', [MainController::class, 'sendContactMessage']);
-Route::post('/maintenance', [MainController::class, 'sendMaintenance']);
+

@@ -84,6 +84,41 @@ class SettingSeeder extends Seeder
             'type' => 'editor',
             'group' => 'home',
         ]);
+
+
+        //General Settings
+        Setting::create([
+            'key' => 'email',
+            'value' => 'quipsolution@gmail.com',
+            'label_en' => 'Email Address',
+            'label_ar' => 'البريد الإلكتروني',
+            'type' => 'text',
+            'group' => 'general',
+        ]);
+        Setting::create([
+            'key' => 'phone_number',
+            'value' => '+956125476258',
+            'label_en' => 'Phone Number',
+            'label_ar' => 'رقم الهاتف',
+            'type' => 'text',
+            'group' => 'general',
+        ]);
+        Setting::create([
+            'key' => 'location_en',
+            'value' => 'Test Str, 314 building',
+            'label_en' => 'Company Location (English)',
+            'label_ar' => 'عنوان الشركة بالإنجليزية',
+            'type' => 'text',
+            'group' => 'general',
+        ]);
+        Setting::create([
+            'key' => 'location_ar',
+            'value' => 'شارع رقم 314 مبنى 50',
+            'label_en' => 'Company Location (Arabic)',
+            'label_ar' => 'عنوان الشركة بالعربية',
+            'type' => 'text',
+            'group' => 'general',
+        ]);
         
 
     }

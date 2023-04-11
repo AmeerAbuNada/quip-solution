@@ -20,7 +20,6 @@ class LocationMiddleware
     {
         if(!Session::get('location_saved')) {
             $ip = $request->ip();
-            $ip = '103.219.78.51';
             $locationInfo = Location::get($ip);
             if($locationInfo) {
                 $data = [

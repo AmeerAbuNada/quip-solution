@@ -8,14 +8,34 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Landing\StoreContactRequest;
 use App\Http\Requests\Landing\StoreMaintenaceRequest;
 use App\Models\Admin;
+use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Maintenance;
+use App\Models\Product;
+use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 
 class MainController extends Controller
 {
+
+  public function index()
+  {
+    $categories = Category::all();
+    $projects = Project::where('is_active', true)->get();
+    $products = Product::where('is_active', true)->where('is_best_selling', true)->get();
+    return response()->view('landing.index', compact('categories', 'projects', 'products'));
+  }
+
+  public function changeLocale($locale)
+  {
+    if (!in_array($locale, ['en', 'ar'])) return abort(Response::HTTP_NOT_FOUND);
+    Session::put('locale', $locale);
+    return redirect()->back();
+  }
+
   public function sendContactMessage(StoreContactRequest $request)
   {
     $contact = new Contact($request->validated());

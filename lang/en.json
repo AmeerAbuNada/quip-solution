@@ -3,5 +3,29 @@
   "refresh_data": "Refresh Data",
   "save_changes": "Save Changes",
   "reset": "Reset",
-  "close": "Close"
+  "close": "Close",
+
+  "learn_more": "Learn More",
+  "home": "Home",
+  "why_acw": "Why ACW",
+  "products": "Products",
+  "all_products": "All Products",
+  "maintenance": "Maintenance",
+  "contact_us": "Contact us",
+
+  "about_us": "About Us",
+  "our_achievements": "Our Achievements",
+  "best_selling": "Best Selling",
+  "see_more": "See More",
+
+  "get_in_touch": "Get In Touch",
+  "email": "Email",
+  "phone_number": "Phone Number",
+  "location": "Location",
+
+  "your_name": "Your Name",
+  "your_email": "Your Email Address",
+  "the_message": "The Message",
+  "send": "Send",
+  "write_your_message": "Write your message for us..."
 }

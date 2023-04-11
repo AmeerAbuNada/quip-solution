@@ -7,6 +7,7 @@ use App\Models\Setting;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,6 +52,7 @@ class SettingController extends Controller
                     $setting->save();
                 }
                 DB::commit();
+                Artisan::call('cache:clear');
                 return response()->json([
                     'message' => 'Settings Updated Successfully!',
                 ], Response::HTTP_OK);

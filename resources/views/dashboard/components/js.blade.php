@@ -25,8 +25,8 @@
 
 <script src="{{ asset('dashboard-assets/js/crud.js') }}"></script>
 
-<script src="{{ asset('build/assets/app-4ed993c7.js') }}"></script>
-<script src="{{ asset('build/assets/app-fe63ef28.js') }}"></script>
+<script src="{{ asset('build-assets/assets/app-4ed993c7.js') }}"></script>
+<script src="{{ asset('build-assets/assets/app-fe63ef28.js') }}"></script>
 
 <script>
     const Toast2 = Swal.mixin({

@@ -1,0 +1,42 @@
+.projects-text .projects-number {
+    right: 22px;
+}
+.selling-text .sahem {
+    transform: rotate(182deg);
+}
+.form-conc .form-control {
+    text-align: right;
+}
+.dall-automatic .automatic-div .projects-number {
+    left: auto;
+    right: 0px;
+    color: #000000;
+}
+.dall-automatic.dall-automatic-right .automatic-div .projects-number {
+    color: #000000;
+    right: auto;
+    left: -90px;
+}
+.form-control{
+    text-align: right;
+}
+.fa-rotate-180 svg{
+    transform: rotate(180deg);
+}
+.bg-imgfooter.page-f {
+    background: linear-gradient(110deg, #0D151F 59.26%, #F59378 59.78%, #101A26 60.43%);
+}
+.bg-linear {
+    background: linear-gradient(96.99deg, #0D151F 45.36%, #F59378 45.85%, #101A26 46.45%);
+}
+@media (min-width: 992px){
+.my-element {
+    position: relative;
+    width: 70%;
+    margin: auto;
+}
+}
+
+.home-text .fa-rotate-180{
+    transform: rotate(0deg);
+}
