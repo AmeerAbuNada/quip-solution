@@ -33,5 +33,6 @@
   "machine_description": "وصف الجهاز",
   "ask_for_price": "الإستفسار عن السعر",
   "download_catalog": "تنزيل الكاتالوج",
-  "machine_features": "مزايا الجهاز"
+  "machine_features": "مزايا الجهاز",
+  "related_products": "الأجهزة المماثلة"
 }
