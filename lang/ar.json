@@ -40,5 +40,9 @@
   "your_phone_number": "رقمك الهاتف",
   "your_machine_type": "نوع جهازك",
   "the_problem_description": "وصف الخلل",
-  "explain_tour_problem": "أوصف مشكلتك هنا"
+  "explain_tour_problem": "أوصف مشكلتك هنا",
+
+  "why": "لماذا",
+  "automatic_car_wash": "غسيل السيارات الأوتوماتيكي",
+  "autoequip": "التجهيز التلقائي"
 }

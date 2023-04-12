@@ -34,7 +34,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top position-absolute pb-3">
             <div class="container-fluid col-xl-11 pt-3">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{{ route('landing.index') }}">
                     <img src="{{ asset('landing-assets/images/logo/logo-d.png') }}" class="img-fluid">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -51,8 +51,8 @@
                             <a class="nav-link" href="ACW.html"> {{ __('why_acw') }} </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 {{ __('products') }}
                             </a>
                             <ul class="dropdown-menu">
@@ -69,7 +69,7 @@
                             <a class="nav-link" href="{{ route('landing.maintenance') }}">{{ __('maintenance') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('landing.contact')}}">{{ __('contact_us') }}</a>
+                            <a class="nav-link" href="{{ route('landing.contact') }}">{{ __('contact_us') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link nav-icon-s"
@@ -188,7 +188,7 @@
                                 <div class="text-center selling-text position-relative">
                                     <img src="{{ $product->image_url }}" class="img-fluid img-Machine" />
                                     <h3>{{ $product['name_' . app()->getLocale()] }}</h3>
-                                    <a href="{{route('landing.product-details', $product->id)}}">
+                                    <a href="{{ route('landing.product-details', $product->id) }}">
                                         <div>{{ __('see_more') }} <img
                                                 src="{{ asset('landing-assets/images/sahem.png') }}"
                                                 class="ps-2  sahem" /> </div>

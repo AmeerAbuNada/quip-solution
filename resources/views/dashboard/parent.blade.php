@@ -45,7 +45,7 @@
                                 <!--begin::Info-->
                                 <div class="flex-grow-1 me-2">
                                     <!--begin::Username-->
-                                    <a href="{{route('account.settings')}}"
+                                    <a href="{{ route('account.settings') }}"
                                         class="text-white text-hover-primary fs-6 fw-bold">{{ auth()->user()->name }}</a>
                                     <!--end::Username-->
                                     <!--begin::Description-->
@@ -53,7 +53,7 @@
                                     <!--end::Description-->
                                     <!--begin::Label-->
                                     <div class="d-flex align-items-center text-success fs-9">
-                                        <span class="bullet bullet-dot bg-success me-1"></span>{{__('navbar.online')}}
+                                        <span class="bullet bullet-dot bg-success me-1"></span>{{ __('navbar.online') }}
                                     </div>
                                     <!--end::Label-->
                                 </div>
@@ -105,7 +105,8 @@
                                         <!--end::Menu separator-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-5">
-                                            <a href="{{ route('account.profile') }}" class="menu-link px-5">{{__('navbar.my_profile')}}</a>
+                                            <a href="{{ route('account.profile') }}"
+                                                class="menu-link px-5">{{ __('navbar.my_profile') }}</a>
                                         </div>
                                         <!--end::Menu item-->
                                         <!--begin::Menu separator-->
@@ -115,16 +116,16 @@
                                         <div class="menu-item px-5" data-kt-menu-trigger="hover"
                                             data-kt-menu-placement="right-start">
                                             <a href="#" class="menu-link px-5">
-                                                <span class="menu-title position-relative">{{__('navbar.language')}}
+                                                <span class="menu-title position-relative">{{ __('navbar.language') }}
                                                     @if (app()->isLocale('en'))
                                                         <span
-                                                            class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">{{__('navbar.english')}}
+                                                            class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">{{ __('navbar.english') }}
                                                             <img class="w-15px h-15px rounded-1 ms-2"
                                                                 src="{{ asset('dashboard-assets/media/flags/united-states.svg') }}"
                                                                 alt="" /></span>
                                                     @else
                                                         <span
-                                                            class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">{{__('navbar.arabic')}}
+                                                            class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">{{ __('navbar.arabic') }}
                                                             <img class="w-15px h-15px rounded-1 ms-2"
                                                                 src="{{ asset('dashboard-assets/media/flags/kuwait.svg') }}"
                                                                 alt="" /></span>
@@ -136,23 +137,23 @@
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
                                                     <a href="{{ route('dashboard.locale', 'en') }}"
-                                                        class="menu-link d-flex px-5 {{app()->isLocale('en') ? 'active' : ''}}">
+                                                        class="menu-link d-flex px-5 {{ app()->isLocale('en') ? 'active' : '' }}">
                                                         <span class="symbol symbol-20px me-4">
                                                             <img class="rounded-1"
                                                                 src="{{ asset('dashboard-assets/media/flags/united-states.svg') }}"
                                                                 alt="" />
-                                                        </span>{{__('navbar.english')}}</a>
+                                                        </span>{{ __('navbar.english') }}</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
                                                     <a href="{{ route('dashboard.locale', 'ar') }}"
-                                                        class="menu-link d-flex px-5 {{app()->isLocale('ar') ? 'active' : ''}}">
+                                                        class="menu-link d-flex px-5 {{ app()->isLocale('ar') ? 'active' : '' }}">
                                                         <span class="symbol symbol-20px me-4">
                                                             <img class="rounded-1"
                                                                 src="{{ asset('dashboard-assets/media/flags/kuwait.svg') }}"
                                                                 alt="" />
-                                                        </span>{{__('navbar.arabic')}}</a>
+                                                        </span>{{ __('navbar.arabic') }}</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                             </div>
@@ -161,12 +162,14 @@
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-5 my-1">
-                                            <a href="{{ route('account.settings') }}" class="menu-link px-5">{{__('navbar.account_settings')}}</a>
+                                            <a href="{{ route('account.settings') }}"
+                                                class="menu-link px-5">{{ __('navbar.account_settings') }}</a>
                                         </div>
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-5">
-                                            <a href="{{ route('logout') }}" class="menu-link px-5">{{__('navbar.signout')}}</a>
+                                            <a href="{{ route('logout') }}"
+                                                class="menu-link px-5">{{ __('navbar.signout') }}</a>
                                         </div>
                                         <!--end::Menu item-->
                                     </div>
@@ -324,8 +327,8 @@
                         class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
                         <!--begin::Copyright-->
                         <div class="text-dark order-2 order-md-1">
-                            <span class="text-muted fw-bold me-1">2018 - {{now()->year + 1}}©</span>
-                            <a href="#" target="_blank"
+                            <span class="text-muted fw-bold me-1">2018 - {{ now()->year + 1 }}©</span>
+                            <a href="{{ route('landing.index') }}" target="_blank"
                                 class="text-gray-800 text-hover-primary">Quip Solution</a>
                         </div>
                         <!--end::Copyright-->
@@ -335,12 +338,10 @@
                                 <a href="#" target="_blank" class="menu-link px-2">About</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#" target="_blank"
-                                    class="menu-link px-2">Support</a>
+                                <a href="#" target="_blank" class="menu-link px-2">Support</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#" target="_blank"
-                                    class="menu-link px-2">Purchase</a>
+                                <a href="#" target="_blank" class="menu-link px-2">Purchase</a>
                             </li>
                         </ul>
                         <!--end::Menu-->

@@ -65,6 +65,7 @@ Route::middleware(['auth', 'locale'])->prefix('/dashboard')->group(function () {
   Route::prefix('/settings')->controller(SettingController::class)->group(function () {
     Route::get('/', 'general')->name('settings.general');
     Route::get('/home', 'home')->name('settings.home');
+    Route::get('/autoequip', 'autoequip')->name('settings.autoequip');
     Route::post('/', 'update')->name('settings.update');
   });
 
@@ -79,6 +80,7 @@ Route::middleware(['locale', 'location'])->group(function () {
   Route::get('/products/{product}', [MainController::class, 'productDetails'])->name('landing.product-details');
   Route::get('/contact-us', [MainController::class, 'contactUs'])->name('landing.contact');
   Route::get('/maintenance', [MainController::class, 'maintenance'])->name('landing.maintenance');
+  Route::get('/acw', [MainController::class, 'acw'])->name('landing.acw');
 
   Route::get('/language/{locale}', [MainController::class, 'changeLocale'])->name('landing.locale');
   Route::post('/contact', [MainController::class, 'sendContactMessage'])->name('contact.post');

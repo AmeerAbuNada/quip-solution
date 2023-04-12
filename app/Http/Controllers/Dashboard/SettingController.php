@@ -27,6 +27,13 @@ class SettingController extends Controller
         $title = __('navbar.home_page_settings');
         return response()->view('dashboard.settings.settings', compact('settings', 'title'));
     }
+    
+    public function autoequip()
+    {
+        $settings = Setting::where('group', 'autoequip')->get();
+        $title = __('navbar.autoequip_settings');
+        return response()->view('dashboard.settings.settings', compact('settings', 'title'));
+    }
 
     public function update(Request $request)
     {

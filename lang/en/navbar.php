@@ -18,6 +18,7 @@ return [
   'website_settings' => 'WEBSITE SETTINGS',
   'general_settings' => 'General Settings',
   'home_page_settings' => 'Home Page Settings',
+  'autoequip_settings' => 'Auto Equip Settings',
 
   'landing_page' => 'Landing Page',
   
@@ -29,5 +30,4 @@ return [
   'english' => 'English',
   'account_settings' => 'Account Settings',
   'signout' => 'Sign Out',
-
 ];

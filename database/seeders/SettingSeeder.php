@@ -119,7 +119,48 @@ class SettingSeeder extends Seeder
             'type' => 'text',
             'group' => 'general',
         ]);
-        
 
+
+        //ACW Settings
+        Setting::create([
+            'key' => 'autoequip_en',
+            'value' => '<ul>
+            <li> Manage your company better with us Manage your company better with us Manage Manage your
+                company company.</li>
+            <li>better with us Manage your company better with us Manage Manage your company your
+                company.better with us Manage your company better with us.</li>
+            <li>Manage your company better with us Manage your company better with us Manage Manage your
+                company company.</li>
+            <li>better with us Manage your company better with us Manage Manage your company your
+                company.better with us Manage your company better with us Manage Manage your company your
+                company.</li>
+            <li>Manage your company better with us Manage your company better with us Manage Manage your
+                company company.</li>
+        </ul>',
+            'label_en' => 'Auto Equip Description (English)',
+            'label_ar' => 'وصف التجهير الاوتوماتيكي بالإنجليزية',
+            'type' => 'editor',
+            'group' => 'autoequip',
+        ]);
+        Setting::create([
+            'key' => 'autoequip_ar',
+            'value' => '<ul>
+            <li> Manage your company better with us Manage your company better with us Manage Manage your
+                company company.</li>
+            <li>better with us Manage your company better with us Manage Manage your company your
+                company.better with us Manage your company better with us.</li>
+            <li>Manage your company better with us Manage your company better with us Manage Manage your
+                company company.</li>
+            <li>better with us Manage your company better with us Manage Manage your company your
+                company.better with us Manage your company better with us Manage Manage your company your
+                company.</li>
+            <li>Manage your company better with us Manage your company better with us Manage Manage your
+                company company.</li>
+        </ul>',
+            'label_en' => 'Auto Equip Description (Arabic)',
+            'label_ar' => 'وصف التجهير الاوتوماتيكي بالعربية',
+            'type' => 'editor',
+            'group' => 'autoequip',
+        ]);
     }
 }

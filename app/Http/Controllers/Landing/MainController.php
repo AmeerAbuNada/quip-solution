@@ -10,6 +10,7 @@ use App\Http\Requests\Landing\StoreMaintenaceRequest;
 use App\Models\Admin;
 use App\Models\Category;
 use App\Models\Contact;
+use App\Models\Feature;
 use App\Models\Maintenance;
 use App\Models\Product;
 use App\Models\Project;
@@ -54,6 +55,12 @@ class MainController extends Controller
   public function maintenance() {
     $categories = Category::all();
     return response()->view('landing.maintenance', compact('categories'));
+  }
+
+  public function acw() {
+    $categories = Category::all();
+    $features = Feature::where('is_active', true)->get();
+    return response()->view('landing.acw', compact('categories', 'features'));
   }
 
   public function changeLocale($locale)

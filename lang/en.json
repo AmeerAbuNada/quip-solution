@@ -40,5 +40,9 @@
   "your_phone_number": "Your phone number",
   "your_machine_type": "Your machine type",
   "the_problem_description": "The problem description",
-  "explain_tour_problem": "Explain tour problem"
+  "explain_tour_problem": "Explain tour problem",
+
+  "why": "why",
+  "automatic_car_wash": "automatic car wash",
+  "autoequip": "Autoequip"
 }
