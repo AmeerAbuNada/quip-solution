@@ -126,7 +126,7 @@
                                     data-aos-easing="ease-in-sine">
                                     <span
                                         class="projects-number position-absolute translate-middle">{{ $i + 1 < 10 ? '0' . $i + 1 : $i + 1 }}</span>
-                                    <img src="{{ asset('landing-assets/images/spazzole.png') }}" class="img-fluid" />
+                                    <img src="{{ $project[$i]->image_url }}" class="img-fluid" />
                                     <h3>{{ $projects[$i]['title_' . app()->getLocale()] }}</h3>
                                     {!! $projects[$i]['description_' . app()->getLocale()] !!}
                                 </div>
@@ -135,8 +135,7 @@
                                         data-aos="fade-down-up" data-aos-easing="ease-in-sine">
                                         <span
                                             class="projects-number position-absolute translate-middle text-white ">{{ $i + 2 < 10 ? '0' . $i + 2 : $i + 2 }}</span>
-                                        <img src="{{ asset('landing-assets/images/aa8265fd-c501-492e-a327-93549d7a6f0b.jpg') }}"
-                                            class="img-fluid" />
+                                        <img src="{{ $project[$i + 1]->image_url }}" class="img-fluid" />
                                         <h3 class="text-white ">{{ $projects[$i + 1]['title_' . app()->getLocale()] }}
                                         </h3>
                                         {!! $projects[$i + 1]['description_' . app()->getLocale()] !!}
