@@ -22,6 +22,12 @@
         <link rel="stylesheet" href="{{ asset('landing-assets/css/indexAr.css') }}">
     @endif
 
+    <style>
+      .text-white * {
+          color: #fff !important;
+      }
+  </style>
+
 </head>
 
 <body>
@@ -54,7 +60,8 @@
                                         href="{{ route('landing.products') }}">{{ __('all_products') }}</a></li>
                                 @foreach ($categories as $category)
                                     <li><a class="dropdown-item"
-                                            href="{{ route('landing.products', ['category' => $category->id]) }}">{{ $category['name_' . app()->getLocale()] }}</a></li>
+                                            href="{{ route('landing.products', ['category' => $category->id]) }}">{{ $category['name_' . app()->getLocale()] }}</a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </li>
@@ -81,106 +88,126 @@
         </nav>
     </header>
 
-    <section>
-        <div class="container-fluid" data-aos="zoom-in-down">
-            <ul class="justify-content-center nav nav-pills mb-3" id="pills-tab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link {{request()->category ? '' : 'active'}}" id="pills-All-tab" data-bs-toggle="pill" data-bs-target="#pills-All"
-                        type="button" role="tab" aria-controls="pills-All"
-                        aria-selected="true">{{ __('all_products') }}</button>
-                </li>
-                @foreach ($categories as $category)
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link {{$category->id == request()->category ? 'active' : ''}}" id="category-{{ $category->id }}-tab" data-bs-toggle="pill"
-                            data-bs-target="#category-{{ $category->id }}" type="button" role="tab"
-                            aria-controls="category-{{ $category->id }}"
-                            aria-selected="false">{{ $category['name_' . app()->getLocale()] }}</button>
-                    </li>
-                @endforeach
-            </ul>
-
-
-
-            <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade {{request()->category ? '' : 'show active'}}" id="pills-All" role="tabpanel"
-                    aria-labelledby="pills-All-tab" tabindex="0">
-                    <div class="row col-lg-11 mx-auto px-0 pt-5 mt-xxl-5">
-                        @foreach ($products as $product)
-                            <div class="col-12 col-md-6 col-lg-4 col-xxl-3">
-                                <div class="text-center selling-text position-relative">
-                                    <img src="{{ $product->image_url }}" class="img-fluid p-4 p-xl-5" />
-                                    <h3 class="mt-2 mt-xl-3">{{ $product['name_' . app()->getLocale()] }}</h3>
-                                    <a href="{{route('landing.product-details', $product->id)}}">
-                                        <div>{{ __('see_more') }} <img
-                                                src="{{ asset('landing-assets/images/sahem.png') }}"
-                                                class="ps-2  sahem" /> </div>
-                                    </a>
-                                    <span class="sel-c1"><img
-                                            src="{{ asset('landing-assets/images/carcle.png') }}"></span>
-                                    <span class="sel-c2"><img
-                                            src="{{ asset('landing-assets/images/carcle.png') }}"></span>
-                                    <span class="sel-c3"><img
-                                            src="{{ asset('landing-assets/images/carcle.png') }}"></span>
+    <section class="page-padding-top">
+        <div class="container-fluid">
+            <div class="ps-1 ps-lg-5 home-text">
+                <a href="{{ route('landing.products') }}" class="text-dark"><img
+                        src="{{ asset('landing-assets/images/sahem.png') }}" width="22"
+                        class="fa-rotate-180">{{ __('back') }}</a>
+            </div>
+            <h2 class="title-page text-center" data-aos="fade-down"><span
+                    class="Machine">{{ $product['name_' . app()->getLocale()] }}</span> </h2>
+            <div class="row col-xxl-12 mx-auto justify-content-between align-items-center">
+                <div class="col-12 col-xl-7">
+                    <div class="swiper containerswiper" data-aos="zoom-in" data-aos-easing="ease-in-sine">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="{{ $product->image_url }}" class="img-fluid">
                                 </div>
+                                @foreach ($product->images as $image)
+                                    <div class="swiper-slide">
+                                        <img src="{{ Storage::url($image->path) }}" class="img-fluid">
+                                    </div>
+                                @endforeach
                             </div>
-                        @endforeach
+                        </div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
                     </div>
                 </div>
-                @foreach ($categories as $category)
-                    <div class="tab-pane fade {{request()->category == $category->id ? 'show active' : ''}}" id="category-{{ $category->id }}" role="tabpanel"
-                        aria-labelledby="category-{{ $category->id }}-tab" tabindex="0">
-                        <div class="row col-lg-11 mx-auto px-0 pt-5 mt-xxl-5">
-                            @foreach ($category->activeProducts as $product)
-                                <div class="col-12 col-md-6 col-lg-4 col-xxl-3">
-                                    <div class="text-center selling-text position-relative">
-                                        <img src="{{ $product->image_url }}" class="img-fluid p-4 p-xl-5" />
-                                        <h3 class="mt-2 mt-xl-3">{{ $product['name_' . app()->getLocale()] }}</h3>
-                                        <a href="{{route('landing.product-details', $product->id)}}">
-                                            <div>{{ __('see_more') }} <img
-                                                    src="{{ asset('landing-assets/images/sahem.png') }}"
-                                                    class="ps-2  sahem" />
-                                            </div>
-                                        </a>
-                                        <span class="sel-c1"><img
-                                                src="{{ asset('landing-assets/images/carcle.png') }}"></span>
-                                        <span class="sel-c2"><img
-                                                src="{{ asset('landing-assets/images/carcle.png') }}"></span>
-                                        <span class="sel-c3"><img
-                                                src="{{ asset('landing-assets/images/carcle.png') }}"></span>
-                                    </div>
-                                </div>
-                            @endforeach
+                <div class="col-12 col-xl-5  text-Machine px-xxl-4" data-aos="zoom-in">
+                    <h3>{{ __('machine_description') }}</h3>
+                    {!! $product['description_' . app()->getLocale()] !!}
+                    <a href="#" class="btn btn-primary rounded-pill">{{ __('ask_for_price') }}</a>
+                    <a href="{{ Storage::url($product->catalog) }}" download
+                        class="btn btn-outline-primary rounded-pill">{{ __('download_catalog') }}</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="bg-linear ">
+        <div class="container-fluid sewar">
+            <div class="row align-items-center position-relative">
+                <div class="col-12 col-lg-7">
+                    <div class="position-relative" data-aos="zoom-in" data-aos-easing="ease-in-sine">
+                        <div class="my-element">
+                            <img src="{{ asset('landing-assets/images/labtop.png') }}" alt="labtop"
+                                class="w-100">
+                            <img src="{{ asset('landing-assets/images/photo_ins.jpg') }}" class="Video-ins">
+                            <iframe src="{{ $product->video_link }}" class="Video-ins"></iframe>
                         </div>
                     </div>
+                </div>
+                <div class="col-12 col-lg-5 text-Machine text-white mt_mb" data-aos="zoom-in"
+                    data-aos-easing="ease-in-sine">
+                    <h3 class="text-white">{{ __('machine_features') }}</h3>
+                    {!! $product['features_' . app()->getLocale()] !!}
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="title-text text-center py-5" data-aos="fade-down">
+                    <h3>{{ __('related_products') }}</h3>
+                </div>
+                @foreach ($product->category->products as $p)
+                    @if ($product->id != $p->id)
+                        <div class="col-12 col-md-6 col-lg-4 col-xxl-3" data-aos="zoom-in">
+                            <div class="text-center selling-text position-relative">
+                                <img src="{{ $p->image_url }}" class="img-fluid p-4 p-xl-5" />
+                                <h3 class="mt-2 mt-xl-3">{{ $p['name_' . app()->getLocale()] }}</h3>
+                                <a href="{{route('landing.product-details', $p->id)}}">
+                                    <div>{{ __('see_more') }} <img
+                                            src="{{ asset('landing-assets/images/sahem.png') }}"
+                                            class="ps-2  sahem" /> </div>
+                                </a>
+                                <span class="sel-c1"><img
+                                        src="{{ asset('landing-assets/images/carcle.png') }}"></span>
+                                <span class="sel-c2"><img
+                                        src="{{ asset('landing-assets/images/carcle.png') }}"></span>
+                                <span class="sel-c3"><img
+                                        src="{{ asset('landing-assets/images/carcle.png') }}"></span>
+                            </div>
+                        </div>
+                    @endif
                 @endforeach
             </div>
         </div>
     </section>
 
+
+
     <div class="whats">
-        <a target="_blank" rel="noopener noreferrer"
-            href="https://wa.me/{{ $siteSettings['phone_number']->value }}"><img
-                src="{{ asset('landing-assets/images/whats.png') }}" class="img-fluid"></a>
-    </div>
+      <a target="_blank" rel="noopener noreferrer"
+          href="https://wa.me/{{ $siteSettings['phone_number']->value }}"><img
+              src="{{ asset('landing-assets/images/whats.png') }}" class="img-fluid"></a>
+  </div>
 
     <footer class="bg-imgfooter page-f">
         <div class="container-fluid h-100 col-11 col-xxl-9">
             <div class="row justify-content-between align-items-center h-100 pb-4">
                 <div class="col-12 col-lg-3 text-center">
-                    <a class="" href="#">
-                        <img src="{{ asset('landing-assets/images/logo/230.png') }}" class="img-fluid"
-                            width="235">
+                    <a class="" href="{{route('landing.index')}}">
+                        <img src="{{asset('landing-assets/images/logo/230.png')}}" class="img-fluid" width="235">
                     </a>
                 </div>
                 <div class="col-12 col-md-6   Gettouch">
-                    <h2>{{ __('get_in_touch') }}</h3>
-                        <p><a href="mailto:$siteSettings['email']->value">{{ __('email') }}:
-                                {{ $siteSettings['email']->value }}</a></p>
+                    <h2>{{__('get_in_touch')}}</h3>
+                        <p><a href="mailto:{{ $siteSettings['email']->value }}">{{ __('email') }}:
+                          {{ $siteSettings['email']->value }}</a></p>
                         <p><a href="tel:{{ $siteSettings['phone_number']->value }}">{{ __('phone_number') }}:
-                                {{ $siteSettings['phone_number']->value }}</a></p>
+                          {{ $siteSettings['phone_number']->value }}</a></p>
                         <p>
                             <a href="#">{{ __('location') }}:
-                                {{ $siteSettings['location_' . app()->getLocale()]->value }}
+                              {{ $siteSettings['location_' . app()->getLocale()]->value }}
                                 <span class="fa-rotate-180">
                                     <svg width="28" height="20" viewBox="0 0 28 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -224,11 +251,31 @@
             </div>
         </div>
     </footer>
+
     <script src="{{ asset('landing-assets/lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('landing-assets/lib/swiper/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('landing-assets/lib/animate/aso.js') }}"></script>
     <script src="{{ asset('landing-assets/js/animet.js') }}"></script>
-
+    <script>
+        var mySwiper = new Swiper('.swiper-container', {
+            slidesPerView: 3,
+            loop: true,
+            centeredSlides: true,
+            spaceBetween: 0,
+            effect: 'coverflow',
+            coverflowEffect: {
+                rotate: 90,
+                stretch: 150,
+                depth: 200,
+                modifier: 1.5,
+                slideShadows: false,
+            },
+            navigation: {
+                prevEl: ".swiper-button-prev",
+                nextEl: ".swiper-button-next"
+            },
+        });
+    </script>
 </body>
 
 </html>

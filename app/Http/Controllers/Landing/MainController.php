@@ -40,6 +40,12 @@ class MainController extends Controller
     return response()->view('landing.products', compact('categories', 'products'));
   }
 
+  public function productDetails($product) {
+    $product = Product::where('is_active', true)->findOrFail($product);
+    $categories = Category::all();
+    return response()->view('landing.product-details', compact('product', 'categories'));
+  }
+
   public function changeLocale($locale)
   {
     if (!in_array($locale, ['en', 'ar'])) return abort(Response::HTTP_NOT_FOUND);

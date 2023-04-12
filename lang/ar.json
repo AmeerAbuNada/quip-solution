@@ -27,5 +27,11 @@
   "your_email": "بريدك الإلكتروني",
   "the_message": "الرسالة",
   "send": "إرسال",
-  "write_your_message": "أكتب رسالتك هنا"
+  "write_your_message": "أكتب رسالتك هنا",
+
+  "back": "رجوع",
+  "machine_description": "وصف الجهاز",
+  "ask_for_price": "الإستفسار عن السعر",
+  "download_catalog": "تنزيل الكاتالوج",
+  "machine_features": "مزايا الجهاز"
 }
