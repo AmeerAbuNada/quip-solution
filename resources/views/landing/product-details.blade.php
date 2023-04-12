@@ -23,10 +23,10 @@
     @endif
 
     <style>
-      .text-white * {
-          color: #fff !important;
-      }
-  </style>
+        .text-white * {
+            color: #fff !important;
+        }
+    </style>
 
 </head>
 
@@ -69,7 +69,7 @@
                             <a class="nav-link" href="Maintenance.html">{{ __('maintenance') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="concatus.html">{{ __('contact_us') }}</a>
+                            <a class="nav-link" href="{{ route('landing.contact') }}">{{ __('contact_us') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link nav-icon-s"
@@ -164,7 +164,7 @@
                             <div class="text-center selling-text position-relative">
                                 <img src="{{ $p->image_url }}" class="img-fluid p-4 p-xl-5" />
                                 <h3 class="mt-2 mt-xl-3">{{ $p['name_' . app()->getLocale()] }}</h3>
-                                <a href="{{route('landing.product-details', $p->id)}}">
+                                <a href="{{ route('landing.product-details', $p->id) }}">
                                     <div>{{ __('see_more') }} <img
                                             src="{{ asset('landing-assets/images/sahem.png') }}"
                                             class="ps-2  sahem" /> </div>
@@ -186,28 +186,29 @@
 
 
     <div class="whats">
-      <a target="_blank" rel="noopener noreferrer"
-          href="https://wa.me/{{ $siteSettings['phone_number']->value }}"><img
-              src="{{ asset('landing-assets/images/whats.png') }}" class="img-fluid"></a>
-  </div>
+        <a target="_blank" rel="noopener noreferrer"
+            href="https://wa.me/{{ $siteSettings['phone_number']->value }}"><img
+                src="{{ asset('landing-assets/images/whats.png') }}" class="img-fluid"></a>
+    </div>
 
     <footer class="bg-imgfooter page-f">
         <div class="container-fluid h-100 col-11 col-xxl-9">
             <div class="row justify-content-between align-items-center h-100 pb-4">
                 <div class="col-12 col-lg-3 text-center">
-                    <a class="" href="{{route('landing.index')}}">
-                        <img src="{{asset('landing-assets/images/logo/230.png')}}" class="img-fluid" width="235">
+                    <a class="" href="{{ route('landing.index') }}">
+                        <img src="{{ asset('landing-assets/images/logo/230.png') }}" class="img-fluid"
+                            width="235">
                     </a>
                 </div>
                 <div class="col-12 col-md-6   Gettouch">
-                    <h2>{{__('get_in_touch')}}</h3>
+                    <h2>{{ __('get_in_touch') }}</h3>
                         <p><a href="mailto:{{ $siteSettings['email']->value }}">{{ __('email') }}:
-                          {{ $siteSettings['email']->value }}</a></p>
+                                {{ $siteSettings['email']->value }}</a></p>
                         <p><a href="tel:{{ $siteSettings['phone_number']->value }}">{{ __('phone_number') }}:
-                          {{ $siteSettings['phone_number']->value }}</a></p>
+                                {{ $siteSettings['phone_number']->value }}</a></p>
                         <p>
                             <a href="#">{{ __('location') }}:
-                              {{ $siteSettings['location_' . app()->getLocale()]->value }}
+                                {{ $siteSettings['location_' . app()->getLocale()]->value }}
                                 <span class="fa-rotate-180">
                                     <svg width="28" height="20" viewBox="0 0 28 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">

@@ -54,7 +54,8 @@
                                         href="{{ route('landing.products') }}">{{ __('all_products') }}</a></li>
                                 @foreach ($categories as $category)
                                     <li><a class="dropdown-item"
-                                            href="{{ route('landing.products', ['category' => $category->id]) }}">{{ $category['name_' . app()->getLocale()] }}</a></li>
+                                            href="{{ route('landing.products', ['category' => $category->id]) }}">{{ $category['name_' . app()->getLocale()] }}</a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </li>
@@ -62,7 +63,7 @@
                             <a class="nav-link" href="Maintenance.html">{{ __('maintenance') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="concatus.html">{{ __('contact_us') }}</a>
+                            <a class="nav-link" href="{{ route('landing.contact') }}">{{ __('contact_us') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link nav-icon-s"
@@ -85,13 +86,14 @@
         <div class="container-fluid" data-aos="zoom-in-down">
             <ul class="justify-content-center nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link {{request()->category ? '' : 'active'}}" id="pills-All-tab" data-bs-toggle="pill" data-bs-target="#pills-All"
-                        type="button" role="tab" aria-controls="pills-All"
-                        aria-selected="true">{{ __('all_products') }}</button>
+                    <button class="nav-link {{ request()->category ? '' : 'active' }}" id="pills-All-tab"
+                        data-bs-toggle="pill" data-bs-target="#pills-All" type="button" role="tab"
+                        aria-controls="pills-All" aria-selected="true">{{ __('all_products') }}</button>
                 </li>
                 @foreach ($categories as $category)
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link {{$category->id == request()->category ? 'active' : ''}}" id="category-{{ $category->id }}-tab" data-bs-toggle="pill"
+                        <button class="nav-link {{ $category->id == request()->category ? 'active' : '' }}"
+                            id="category-{{ $category->id }}-tab" data-bs-toggle="pill"
                             data-bs-target="#category-{{ $category->id }}" type="button" role="tab"
                             aria-controls="category-{{ $category->id }}"
                             aria-selected="false">{{ $category['name_' . app()->getLocale()] }}</button>
@@ -102,15 +104,15 @@
 
 
             <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade {{request()->category ? '' : 'show active'}}" id="pills-All" role="tabpanel"
-                    aria-labelledby="pills-All-tab" tabindex="0">
+                <div class="tab-pane fade {{ request()->category ? '' : 'show active' }}" id="pills-All"
+                    role="tabpanel" aria-labelledby="pills-All-tab" tabindex="0">
                     <div class="row col-lg-11 mx-auto px-0 pt-5 mt-xxl-5">
                         @foreach ($products as $product)
                             <div class="col-12 col-md-6 col-lg-4 col-xxl-3">
                                 <div class="text-center selling-text position-relative">
                                     <img src="{{ $product->image_url }}" class="img-fluid p-4 p-xl-5" />
                                     <h3 class="mt-2 mt-xl-3">{{ $product['name_' . app()->getLocale()] }}</h3>
-                                    <a href="{{route('landing.product-details', $product->id)}}">
+                                    <a href="{{ route('landing.product-details', $product->id) }}">
                                         <div>{{ __('see_more') }} <img
                                                 src="{{ asset('landing-assets/images/sahem.png') }}"
                                                 class="ps-2  sahem" /> </div>
@@ -127,7 +129,8 @@
                     </div>
                 </div>
                 @foreach ($categories as $category)
-                    <div class="tab-pane fade {{request()->category == $category->id ? 'show active' : ''}}" id="category-{{ $category->id }}" role="tabpanel"
+                    <div class="tab-pane fade {{ request()->category == $category->id ? 'show active' : '' }}"
+                        id="category-{{ $category->id }}" role="tabpanel"
                         aria-labelledby="category-{{ $category->id }}-tab" tabindex="0">
                         <div class="row col-lg-11 mx-auto px-0 pt-5 mt-xxl-5">
                             @foreach ($category->activeProducts as $product)
@@ -135,7 +138,7 @@
                                     <div class="text-center selling-text position-relative">
                                         <img src="{{ $product->image_url }}" class="img-fluid p-4 p-xl-5" />
                                         <h3 class="mt-2 mt-xl-3">{{ $product['name_' . app()->getLocale()] }}</h3>
-                                        <a href="{{route('landing.product-details', $product->id)}}">
+                                        <a href="{{ route('landing.product-details', $product->id) }}">
                                             <div>{{ __('see_more') }} <img
                                                     src="{{ asset('landing-assets/images/sahem.png') }}"
                                                     class="ps-2  sahem" />

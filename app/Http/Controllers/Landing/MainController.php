@@ -46,6 +46,11 @@ class MainController extends Controller
     return response()->view('landing.product-details', compact('product', 'categories'));
   }
 
+  public function contactUs() {
+    $categories = Category::all();
+    return response()->view('landing.contact-us', compact('categories'));
+  }
+
   public function changeLocale($locale)
   {
     if (!in_array($locale, ['en', 'ar'])) return abort(Response::HTTP_NOT_FOUND);

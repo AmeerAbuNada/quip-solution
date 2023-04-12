@@ -77,6 +77,7 @@ Route::middleware(['locale', 'location'])->group(function () {
   Route::get('/', [MainController::class, 'index'])->name('landing.index');
   Route::get('/products', [MainController::class, 'products'])->name('landing.products');
   Route::get('/products/{product}', [MainController::class, 'productDetails'])->name('landing.product-details');
+  Route::get('/contact-us', [MainController::class, 'contactUs'])->name('landing.contact');
 
   Route::get('/language/{locale}', [MainController::class, 'changeLocale'])->name('landing.locale');
   Route::post('/contact', [MainController::class, 'sendContactMessage'])->name('contact.post');

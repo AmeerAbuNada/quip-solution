@@ -23,11 +23,16 @@
     @endif
 
     <style>
-        .text-white p {
-            color: #fff !important;
+        body,
+        html {
+            height: auto;
+        }
+
+        body {
+            background: linear-gradient(90deg, #0D151F 45.26%, #F59378 45.78%, #101A26 46.43%);
+
         }
     </style>
-
 </head>
 
 <body>
@@ -45,7 +50,7 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                     <ul class="navbar-nav align-items-center">
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('landing.index') }}"> {{ __('home') }} </a>
+                            <a class="nav-link" href="{{ route('landing.index') }}"> {{ __('home') }} </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="ACW.html"> {{ __('why_acw') }} </a>
@@ -69,7 +74,8 @@
                             <a class="nav-link" href="Maintenance.html">{{ __('maintenance') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('landing.contact')}}">{{ __('contact_us') }}</a>
+                            <a class="nav-link active"
+                                href="{{ route('landing.contact') }}">{{ __('contact_us') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link nav-icon-s"
@@ -87,127 +93,7 @@
             </div>
         </nav>
     </header>
-    <section class="section-header-o position-relative h-100">
-        <div class=" h-100 w-100">
-            <img class="w-100 h-100" src="{{ asset('landing-assets/images/head.png') }}" alt="">
-        </div>
-        <div class="position-absolute top-50 translate-middle-y text-header-o text-white text-center "
-            data-aos="zoom-in-up" data-aos-easing="ease-in-sine">
-            <h1>{{ $siteSettings['header_title_' . app()->getLocale()]->value }}</h1>
-            <p>{{ $siteSettings['header_description_' . app()->getLocale()]->value }}</p>
-            <button class="btn btn-primary rounded-pill">{{ __('learn_more') }}</button>
-        </div>
-    </section>
 
-    <div class="container-fluid col-xxl-9">
-        <div class="row align-items-center justify-content-between pt-4">
-            <div class="col-12 col-lg-6  mt-3 mt-lg-5 pt-lg-4" data-aos="zoom-in-up" data-aos-easing="ease-out-sine">
-                <img src="{{ asset('landing-assets/images/Aboutus.png') }}" class="img-fluid">
-            </div>
-            <div class="col-12 col-lg-6 title-text" data-aos="zoom-in-up" data-aos-easing="ease-out-sine">
-                <h3>{{ __('about_us') }}</h3>
-                {!! $siteSettings['about_description_' . app()->getLocale()]->value !!}
-            </div>
-        </div>
-    </div>
-    <section>
-        <div class="container-fluid mt-lg-5 ps-lg-5 {{ app()->isLocale('ar') ? 'overflow-hidden' : '' }}">
-            <div class="row align-items-center">
-                <div class="col-12 col-xxl-5 title-text mt-lg-5 pt-5" data-aos="fade-up" data-aos-easing="ease-in-sine">
-                    <h3>{{ __('our_achievements') }}</h3>
-                    {!! $siteSettings['achievements_' . app()->getLocale()]->value !!}
-                </div>
-                <div class="col-12 col-xxl-7 ">
-                    <?php $flag = true; ?>
-                    @for ($i = 0; $i < count($projects); $i += 2)
-                        @if ($flag)
-                            <div class="d-flex flex-column flex-md-row justify-content-center align-items-center">
-                                <div class="text-center proj-color-1a2b491a projects-text " data-aos="fade-down-up"
-                                    data-aos-easing="ease-in-sine">
-                                    <span
-                                        class="projects-number position-absolute translate-middle">{{ $i + 1 < 10 ? '0' . $i + 1 : $i + 1 }}</span>
-                                    <img src="{{ asset('landing-assets/images/spazzole.png') }}" class="img-fluid" />
-                                    <h3>{{ $projects[$i]['title_' . app()->getLocale()] }}</h3>
-                                    {!! $projects[$i]['description_' . app()->getLocale()] !!}
-                                </div>
-                                @if (isset($projects[$i + 1]))
-                                    <div class="text-center proj-color-EE5A4B projects-text text-white"
-                                        data-aos="fade-down-up" data-aos-easing="ease-in-sine">
-                                        <span
-                                            class="projects-number position-absolute translate-middle text-white ">{{ $i + 2 < 10 ? '0' . $i + 2 : $i + 2 }}</span>
-                                        <img src="{{ asset('landing-assets/images/aa8265fd-c501-492e-a327-93549d7a6f0b.jpg') }}"
-                                            class="img-fluid" />
-                                        <h3 class="text-white ">{{ $projects[$i + 1]['title_' . app()->getLocale()] }}
-                                        </h3>
-                                        {!! $projects[$i + 1]['description_' . app()->getLocale()] !!}
-                                    </div>
-                                @endif
-                            </div>
-                        @else
-                            <div
-                                class="d-flex flex-column flex-md-row justify-content-center justify-content-lg-end align-items-center">
-                                <div class="text-center proj-color-1A2B49 projects-text text-white"
-                                    data-aos="fade-down-up" data-aos-easing="ease-in-sine">
-                                    <span
-                                        class="projects-number position-absolute translate-middle text-white ">{{ $i + 1 < 10 ? '0' . $i + 1 : $i + 1 }}</span>
-                                    <img src="{{ asset('landing-assets/images/spazzole.png') }}" class="img-fluid" />
-                                    <h3 class="text-white ">{{ $projects[$i]['title_' . app()->getLocale()] }}</h3>
-                                    {!! $projects[$i]['description_' . app()->getLocale()] !!}
-                                </div>
-                                @if (isset($projects[$i + 1]))
-                                    <div class="text-center proj-color-EE5A4B1A projects-text "
-                                        data-aos="fade-down-up" data-aos-easing="ease-in-sine">
-                                        <span
-                                            class="projects-number position-absolute translate-middle">{{ $i + 2 < 10 ? '0' . $i + 2 : $i + 2 }}</span>
-                                        <img src="{{ asset('landing-assets/images/spazzole.png') }}"
-                                            class="img-fluid" />
-                                        <h3>{{ $projects[$i + 1]['title_' . app()->getLocale()] }}</h3>
-                                        {!! $projects[$i + 1]['description_' . app()->getLocale()] !!}
-                                    </div>
-                                @endif
-                            </div>
-                        @endif
-                        <?php $flag = !$flag; ?>
-                    @endfor
-
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <section>
-        <div class="container-fluid mt-5 pt-5">
-            <div class="title-text text-center py-5" data-aos="fade-down">
-                <h3>{{ __('best_selling') }}</h3>
-            </div>
-            <div class="row col-lg-11 mx-auto px-0 pt-5 mt-xxl-5" data-aos="fade-up" data-aos-easing="ease-out-sine">
-                <div class="swiper Best_selling-swiper">
-                    <div class="swiper-wrapper">
-                        @foreach ($products as $product)
-                            <div class="swiper-slide">
-                                <div class="text-center selling-text position-relative">
-                                    <img src="{{ $product->image_url }}" class="img-fluid img-Machine" />
-                                    <h3>{{ $product['name_' . app()->getLocale()] }}</h3>
-                                    <a href="{{route('landing.product-details', $product->id)}}">
-                                        <div>{{ __('see_more') }} <img
-                                                src="{{ asset('landing-assets/images/sahem.png') }}"
-                                                class="ps-2  sahem" /> </div>
-                                    </a>
-                                    <span class="c1"><img
-                                            src="{{ asset('landing-assets/images/carcle.png') }}"></span>
-                                    <span class="c2"><img
-                                            src="{{ asset('landing-assets/images/carcle.png') }}"></span>
-                                    <span class="c3"><img
-                                            src="{{ asset('landing-assets/images/carcle.png') }}"></span>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-            </div>
-        </div>
-    </section>
 
 
     <div class="whats">
@@ -216,15 +102,10 @@
                 src="{{ asset('landing-assets/images/whats.png') }}" class="img-fluid"></a>
     </div>
 
-    <footer class="bg-imgfooter">
+    <footer>
         <div class="container-fluid h-100 col-11 col-xxl-10">
             <div class="row justify-content-between align-content-between h-100 pb-4">
                 <div class="col-12 col-xxl-6  Gettouch">
-                    <a class="" href="#">
-                        <img src="{{ asset('landing-assets/images/logo/logo-d.png') }}" class="img-fluid"
-                            width="160">
-                    </a>
-                    <br>
                     <h2>{{ __('get_in_touch') }}</h2>
                     <p><a href="mailto:{{ $siteSettings['email']->value }}">{{ __('email') }}:
                             {{ $siteSettings['email']->value }}</a></p>
@@ -300,37 +181,12 @@
             </div>
         </div>
     </footer>
+
     <script src="{{ asset('landing-assets/lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('landing-assets/lib/swiper/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('landing-assets/lib/animate/aso.js') }}"></script>
     <script src="{{ asset('landing-assets/js/animet.js') }}"></script>
-    <script>
-        var swiper = new Swiper(".Best_selling-swiper", {
-            slidesPerView: 1,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2,
-                },
-                900: {
-                    slidesPerView: 3,
-                },
-                993: {
-                    slidesPerView: 2,
-                },
-                1200: {
-                    slidesPerView: 3,
-                },
-                1600: {
-                    slidesPerView: 4,
-                }
-            }
 
-        });
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 
