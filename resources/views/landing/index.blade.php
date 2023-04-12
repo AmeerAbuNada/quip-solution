@@ -103,11 +103,11 @@
 
     <div class="container-fluid col-xxl-9">
         <div class="row align-items-center justify-content-between pt-4">
-            <div class="col-12 col-lg-6  mt-3 mt-lg-5 pt-lg-4" data-aos="zoom-out-right"
+            <div class="col-12 col-lg-6  mt-3 mt-lg-5 pt-lg-4" data-aos="zoom-in-up"
                 data-aos-easing="ease-out-sine">
                 <img src="{{ asset('landing-assets/images/Aboutus.png') }}" class="img-fluid">
             </div>
-            <div class="col-12 col-lg-6 title-text" data-aos="zoom-in-left" data-aos-easing="ease-out-sine">
+            <div class="col-12 col-lg-6 title-text" data-aos="zoom-in-up" data-aos-easing="ease-out-sine">
                 <h3>{{ __('about_us') }}</h3>
                 {!! $siteSettings['about_description_' . app()->getLocale()]->value !!}
             </div>
@@ -116,7 +116,7 @@
     <section>
         <div class="container-fluid mt-lg-5 ps-lg-5 {{ app()->isLocale('ar') ? 'overflow-hidden' : '' }}">
             <div class="row align-items-center">
-                <div class="col-12 col-xxl-5 title-text mt-lg-5 pt-5" data-aos="fade-right"
+                <div class="col-12 col-xxl-5 title-text mt-lg-5 pt-5" data-aos="fade-up"
                     data-aos-easing="ease-in-sine">
                     <h3>{{ __('our_achievements') }}</h3>
                     {!! $siteSettings['achievements_' . app()->getLocale()]->value !!}
@@ -126,7 +126,7 @@
                     @for ($i = 0; $i < count($projects); $i += 2)
                         @if ($flag)
                             <div class="d-flex flex-column flex-md-row justify-content-center align-items-center">
-                                <div class="text-center proj-color-1a2b491a projects-text " data-aos="fade-down-left"
+                                <div class="text-center proj-color-1a2b491a projects-text " data-aos="fade-down-up"
                                     data-aos-easing="ease-in-sine">
                                     <span
                                         class="projects-number position-absolute translate-middle">{{ $i + 1 < 10 ? '0' . $i + 1 : $i + 1 }}</span>
@@ -136,7 +136,7 @@
                                 </div>
                                 @if (isset($projects[$i + 1]))
                                     <div class="text-center proj-color-EE5A4B projects-text text-white"
-                                        data-aos="fade-down-right" data-aos-easing="ease-in-sine">
+                                        data-aos="fade-down-up" data-aos-easing="ease-in-sine">
                                         <span
                                             class="projects-number position-absolute translate-middle text-white ">{{ $i + 2 < 10 ? '0' . $i + 2 : $i + 2 }}</span>
                                         <img src="{{ asset('landing-assets/images/aa8265fd-c501-492e-a327-93549d7a6f0b.jpg') }}"
@@ -151,7 +151,7 @@
                             <div
                                 class="d-flex flex-column flex-md-row justify-content-center justify-content-lg-end align-items-center">
                                 <div class="text-center proj-color-1A2B49 projects-text text-white"
-                                    data-aos="fade-down-left" data-aos-easing="ease-in-sine">
+                                    data-aos="fade-down-up" data-aos-easing="ease-in-sine">
                                     <span
                                         class="projects-number position-absolute translate-middle text-white ">{{ $i + 1 < 10 ? '0' . $i + 1 : $i + 1 }}</span>
                                     <img src="{{ asset('landing-assets/images/spazzole.png') }}" class="img-fluid" />
@@ -160,7 +160,7 @@
                                 </div>
                                 @if (isset($projects[$i + 1]))
                                     <div class="text-center proj-color-EE5A4B1A projects-text "
-                                        data-aos="fade-down-right" data-aos-easing="ease-in-sine">
+                                        data-aos="fade-down-up" data-aos-easing="ease-in-sine">
                                         <span
                                             class="projects-number position-absolute translate-middle">{{ $i + 2 < 10 ? '0' . $i + 2 : $i + 2 }}</span>
                                         <img src="{{ asset('landing-assets/images/spazzole.png') }}"

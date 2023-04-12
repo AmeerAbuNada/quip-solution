@@ -80,14 +80,12 @@ header .navbar-dark .navbar-collapse.show {
 }
 
 .section-header-o .text-header-o h1 {
-    font-family: 'Poppins';
     font-weight: 700;
     font-size: 32px;
     color: #FFFFFF;
 }
 
 .section-header-o .text-header-o p {
-    font-family: 'Poppins';
     font-weight: 400;
     font-size: 18px;
     color: #FFFFFF;
@@ -416,7 +414,7 @@ footer .Gettouch p a {
     font-weight: 500;
     font-size: 17px;
     line-height: 29px;
-    color: #FFFFFF;
+    color: #000;
     margin-bottom: 32px;
     height: 48px;
 }
