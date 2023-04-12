@@ -66,7 +66,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Maintenance.html">{{ __('maintenance') }}</a>
+                            <a class="nav-link" href="{{ route('landing.maintenance') }}">{{ __('maintenance') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('landing.contact')}}">{{ __('contact_us') }}</a>

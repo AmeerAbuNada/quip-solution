@@ -7,7 +7,7 @@
 
   "learn_more": "المزيد",
   "home": "الرئيسية",
-  "why_acw": "لماذا غسيل السيارات الأوتوماتيكي",
+  "why_acw": "لماذا ACW",
   "products": "المنتجات",
   "all_products": "جميع المنتجات",
   "maintenance": "الصيانة",
@@ -34,5 +34,11 @@
   "ask_for_price": "الإستفسار عن السعر",
   "download_catalog": "تنزيل الكاتالوج",
   "machine_features": "مزايا الجهاز",
-  "related_products": "الأجهزة المماثلة"
+  "related_products": "الأجهزة المماثلة",
+
+  "ask_for": "طلب",
+  "your_phone_number": "رقمك الهاتف",
+  "your_machine_type": "نوع جهازك",
+  "the_problem_description": "وصف الخلل",
+  "explain_tour_problem": "أوصف مشكلتك هنا"
 }

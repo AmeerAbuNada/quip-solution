@@ -21,26 +21,15 @@
     @if (app()->isLocale('ar'))
         <link rel="stylesheet" href="{{ asset('landing-assets/css/indexAr.css') }}">
     @endif
-
-    <style>
-        body,
-        html {
-            height: auto;
-        }
-
-        body {
-            background: linear-gradient(90deg, #0D151F 45.26%, #F59378 45.78%, #101A26 46.43%);
-
-        }
-    </style>
 </head>
+
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top position-absolute pb-3">
+        <nav class="navbar navbar-expand-lg shadow-sm pb-3">
             <div class="container-fluid col-xl-11 pt-3">
                 <a class="navbar-brand" href="#">
-                    <img src="{{ asset('landing-assets/images/logo/logo-d.png') }}" class="img-fluid">
+                    <img src="{{ asset('landing-assets/images/logo/logo-l.png') }}" class="img-fluid">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -50,13 +39,13 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                     <ul class="navbar-nav align-items-center">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('landing.index') }}"> {{ __('home') }} </a>
+                            <a class="nav-link " href="{{ route('landing.index') }}"> {{ __('home') }} </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="ACW.html"> {{ __('why_acw') }} </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 {{ __('products') }}
                             </a>
@@ -71,11 +60,11 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('landing.maintenance') }}">{{ __('maintenance') }}</a>
+                            <a class="nav-link active"
+                                href="{{ route('landing.maintenance') }}">{{ __('maintenance') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active"
-                                href="{{ route('landing.contact') }}">{{ __('contact_us') }}</a>
+                            <a class="nav-link" href="{{ route('landing.contact') }}">{{ __('contact_us') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link nav-icon-s"
@@ -94,7 +83,40 @@
         </nav>
     </header>
 
+    <section class="page-padding-top">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <h2 class="title-page text-center">{{ __('ask_for') }} <span class="maintenance">
+                        {{ __('maintenance') }} </span> </h2>
 
+                <form class="col-11 col-md-10 col-lg-8 col-xl-6 from-maintenance col-5 justify-content-center" onsubmit="event.preventDefault(); sendRequest(this);">
+                    <div class="control-group mb-4">
+                        <label for="Inputemail" class="form-label">{{ __('your_email') }}</label>
+                        <input type="email" class="form-control" id="Inputemail" placeholder="example@domain.com">
+                    </div>
+                    <div class="control-group mb-4">
+                        <label for="Inputphone" class="form-label">{{ __('your_phone_number') }}</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="Inputphone" placeholder="EX: 958931574852">
+                        </div>
+                    </div>
+                    <div class="control-group mb-4">
+                        <label for="Inputmachine" class="form-label">{{ __('your_machine_type') }}</label>
+                        <input type="text" class="form-control" id="Inputmachine" placeholder="EX: NET machine">
+                    </div>
+                    <div class="control-group mb-4 ">
+                        <label for="exampleFormControlTextarea1"
+                            class="form-label">{{ __('the_problem_description') }}</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+                            placeholder="{{ __('explain_tour_problem') }}...."></textarea>
+                    </div>
+                    <div class="text-end">
+                        <button class="btn btn-primary rounded-pill">{{ __('send') }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <div class="whats">
         <a target="_blank" rel="noopener noreferrer"
@@ -102,55 +124,37 @@
                 src="{{ asset('landing-assets/images/whats.png') }}" class="img-fluid"></a>
     </div>
 
-    <footer>
-        <div class="container-fluid h-100 col-11 col-xxl-10">
-            <div class="row justify-content-between align-content-between h-100 pb-4">
-                <div class="col-12 col-xxl-6  Gettouch">
-                    <h2>{{ __('get_in_touch') }}</h2>
-                    <p><a href="mailto:{{ $siteSettings['email']->value }}">{{ __('email') }}:
-                            {{ $siteSettings['email']->value }}</a></p>
-                    <p><a href="tel:{{ $siteSettings['phone_number']->value }}">{{ __('phone_number') }}:
-                            {{ $siteSettings['phone_number']->value }}</a></p>
-                    <p>
-                        <a href="#">{{ __('location') }}:
-                            {{ $siteSettings['location_' . app()->getLocale()]->value }}
-                            <span class="fa-rotate-180">
-                                <svg width="28" height="20" viewBox="0 0 28 20" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M14.9231 1.65722L26 9.65185L14.9231 17.6465M24.4615 9.65185L2 9.65185Z"
-                                        fill="#EE5A4B" />
-                                    <path d="M14.9231 1.65722L26 9.65185L14.9231 17.6465M24.4615 9.65185L2 9.65185"
-                                        stroke="white" stroke-width="3" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
-                            </span>
-                        </a>
-                    </p>
+    <footer class="bg-imgfooter page-f">
+        <div class="container-fluid h-100 col-11 col-xxl-9">
+            <div class="row justify-content-between align-items-center h-100 pb-4">
+                <div class="col-12 col-lg-3 text-center">
+                    <a class="" href="#">
+                        <img src="{{ asset('landing-assets/images/logo/230.png') }}" class="img-fluid"
+                            width="235">
+                    </a>
                 </div>
-                <div class="col-12 col-xxl-6">
-                    <form class="form-conc pt-5" onsubmit="event.preventDefault(); sentContact(this);">
-                        <div class="row justify-content-end">
-                            <div class="control-group col-md-5">
-                                <label for="Inputname" class="form-label ">{{ __('your_name') }}</label>
-                                <input type="text" class="form-control" id="Inputname"
-                                    placeholder="{{ __('your_name') }}">
-                            </div>
-                            <div class="control-group col-md-5 ">
-                                <label for="InputEmail" class="form-label">{{ __('your_email') }}</label>
-                                <input type="email" class="form-control" id="InputEmail"
-                                    aria-describedby="emailHelp" placeholder="example@domain.com">
-                            </div>
-                            <div class="control-group col-md-10 ">
-                                <label for="exampleFormControlTextarea1" class="form-label">{{ __('the_message') }}
-                                </label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
-                                    placeholder="{{ __('write_your_message') }}"></textarea>
-                            </div>
-                            <div class="text-end">
-                                <button class="btn btn-primary rounded-pill">{{ __('send') }}</button>
-                            </div>
-                        </div>
-                    </form>
+                <div class="col-12 col-md-6   Gettouch">
+                    <h2>{{ __('get_in_touch') }}</h3>
+                        <p><a href="mailto:{{ $siteSettings['email']->value }}">{{ __('email') }}:
+                                {{ $siteSettings['email']->value }}</a></p>
+                        <p><a href="tel:{{ $siteSettings['phone_number']->value }}">{{ __('phone_number') }}:
+                                {{ $siteSettings['phone_number']->value }}</a></p>
+                        <p>
+                            <a href="#">{{ __('location') }}:
+                                {{ $siteSettings['location_' . app()->getLocale()]->value }}
+                                <span class="fa-rotate-180">
+                                    <svg width="28" height="20" viewBox="0 0 28 20" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M14.9231 1.65722L26 9.65185L14.9231 17.6465M24.4615 9.65185L2 9.65185Z"
+                                            fill="#EE5A4B" />
+                                        <path d="M14.9231 1.65722L26 9.65185L14.9231 17.6465M24.4615 9.65185L2 9.65185"
+                                            stroke="white" stroke-width="3" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                            </a>
+                        </p>
                 </div>
                 <div class="d-flex flex-column flex-lg-row align-items-center justify-content-between pt-5 mt-5 ">
                     <div>
@@ -203,15 +207,16 @@
             }
         })
 
-        function sentContact(ref) {
+        function sendRequest(ref) {
             Swal.showLoading();
             let data = {
-                name: document.getElementById('Inputname').value,
-                email: document.getElementById('InputEmail').value,
-                message: document.getElementById('exampleFormControlTextarea1').value,
+                email: document.getElementById('Inputemail').value,
+                phone_number: document.getElementById('Inputphone').value,
+                machine: document.getElementById('Inputmachine').value,
+                description: document.getElementById('exampleFormControlTextarea1').value,
             }
 
-            axios.post('{{ route('contact.post') }}', data)
+            axios.post('{{ route('maintenance.post') }}', data)
                 .then((response) => {
                     Swal.close();
                     ref.reset();

@@ -34,5 +34,11 @@
   "ask_for_price": "Ask for price",
   "download_catalog": "Download catalog",
   "machine_features": "Machine features",
-  "related_products": "Related products"
+  "related_products": "Related products",
+
+  "ask_for": "Ask for",
+  "your_phone_number": "Your phone number",
+  "your_machine_type": "Your machine type",
+  "the_problem_description": "The problem description",
+  "explain_tour_problem": "Explain tour problem"
 }

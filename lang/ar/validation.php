@@ -188,6 +188,9 @@ return [
         'video_link' => 'رابط الفيديو',
         'features_en' => 'المزايا بالإنجليزية',
         'features_ar' => 'المزايا بالعربية',
+        'phone_number' => 'رقم الهاتف',
+        'machine' => 'نوع الجهاز',
+        'description' => 'الوصف',
     ],
 
 ];
