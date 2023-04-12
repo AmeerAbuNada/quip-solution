@@ -114,7 +114,7 @@
                                                 <!--end::Label-->
                                                 <!--begin::Col-->
                                                 <div class="col-lg-8 fv-row">
-                                                    <textarea id="" rows="5" id="{{ $setting->key }}" class="form-control form-control-lg form-control-solid">{{ $setting->value }}</textarea>
+                                                    <textarea rows="5" id="{{ $setting->key }}" class="form-control form-control-lg form-control-solid">{{ $setting->value }}</textarea>
                                                 </div>
                                                 <!--end::Col-->
                                             </div>
