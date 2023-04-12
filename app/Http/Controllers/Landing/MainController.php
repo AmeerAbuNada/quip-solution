@@ -29,6 +29,17 @@ class MainController extends Controller
     return response()->view('landing.index', compact('categories', 'projects', 'products'));
   }
 
+  public function products(Request $request) {
+    $validator = validator($request->all(), [
+      'category' => 'nullable|integer|exists:categories,id',
+    ]);
+    if($validator->fails()) return abort(Response::HTTP_NOT_FOUND);
+    
+    $categories = Category::with('activeProducts')->get();
+    $products = Product::all();
+    return response()->view('landing.products', compact('categories', 'products'));
+  }
+
   public function changeLocale($locale)
   {
     if (!in_array($locale, ['en', 'ar'])) return abort(Response::HTTP_NOT_FOUND);

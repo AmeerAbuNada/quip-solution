@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>quip</title>
+    <title>Quip Solution</title>
     <link rel="shortcut icon" href="{{ asset('landing-assets/images/logo/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('landing-assets/lib/font-awesome/css/all.css') }}">
     <link rel="stylesheet" href="{{ asset('landing-assets/lib/swiper/swiper-bundle.min.css') }}">
@@ -45,7 +45,7 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                     <ul class="navbar-nav align-items-center">
                         <li class="nav-item">
-                            <a class="nav-link active" href="index.html"> {{ __('home') }} </a>
+                            <a class="nav-link active" href="{{ route('landing.index') }}"> {{ __('home') }} </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="ACW.html"> {{ __('why_acw') }} </a>
@@ -56,10 +56,12 @@
                                 {{ __('products') }}
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="Products.html">{{ __('all_products') }}</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('landing.products') }}">{{ __('all_products') }}</a></li>
                                 @foreach ($categories as $category)
                                     <li><a class="dropdown-item"
-                                            href="Products.html">{{ $category['name_' . app()->getLocale()] }}</a></li>
+                                            href="{{ route('landing.products', ['category' => $category->id]) }}">{{ $category['name_' . app()->getLocale()] }}</a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </li>
@@ -68,10 +70,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="concatus.html">{{ __('contact_us') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-icon-s" href="#"><i
-                                    class="fa-solid fa-magnifying-glass text-white"></i></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link nav-icon-s"
@@ -103,8 +101,7 @@
 
     <div class="container-fluid col-xxl-9">
         <div class="row align-items-center justify-content-between pt-4">
-            <div class="col-12 col-lg-6  mt-3 mt-lg-5 pt-lg-4" data-aos="zoom-in-up"
-                data-aos-easing="ease-out-sine">
+            <div class="col-12 col-lg-6  mt-3 mt-lg-5 pt-lg-4" data-aos="zoom-in-up" data-aos-easing="ease-out-sine">
                 <img src="{{ asset('landing-assets/images/Aboutus.png') }}" class="img-fluid">
             </div>
             <div class="col-12 col-lg-6 title-text" data-aos="zoom-in-up" data-aos-easing="ease-out-sine">
@@ -116,8 +113,7 @@
     <section>
         <div class="container-fluid mt-lg-5 ps-lg-5 {{ app()->isLocale('ar') ? 'overflow-hidden' : '' }}">
             <div class="row align-items-center">
-                <div class="col-12 col-xxl-5 title-text mt-lg-5 pt-5" data-aos="fade-up"
-                    data-aos-easing="ease-in-sine">
+                <div class="col-12 col-xxl-5 title-text mt-lg-5 pt-5" data-aos="fade-up" data-aos-easing="ease-in-sine">
                     <h3>{{ __('our_achievements') }}</h3>
                     {!! $siteSettings['achievements_' . app()->getLocale()]->value !!}
                 </div>
