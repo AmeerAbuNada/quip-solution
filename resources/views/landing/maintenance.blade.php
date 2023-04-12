@@ -42,7 +42,7 @@
                             <a class="nav-link " href="{{ route('landing.index') }}"> {{ __('home') }} </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="ACW.html"> {{ __('why_acw') }} </a>
+                            <a class="nav-link" href="{{ route('landing.acw') }}"> {{ __('why_acw') }} </a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown"
@@ -89,7 +89,8 @@
                 <h2 class="title-page text-center">{{ __('ask_for') }} <span class="maintenance">
                         {{ __('maintenance') }} </span> </h2>
 
-                <form class="col-11 col-md-10 col-lg-8 col-xl-6 from-maintenance col-5 justify-content-center" onsubmit="event.preventDefault(); sendRequest(this);">
+                <form class="col-11 col-md-10 col-lg-8 col-xl-6 from-maintenance col-5 justify-content-center"
+                    onsubmit="event.preventDefault(); sendRequest(this);">
                     <div class="control-group mb-4">
                         <label for="Inputemail" class="form-label">{{ __('your_email') }}</label>
                         <input type="email" class="form-control" id="Inputemail" placeholder="example@domain.com">

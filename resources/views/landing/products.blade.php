@@ -42,7 +42,7 @@
                             <a class="nav-link " href="{{ route('landing.index') }}"> {{ __('home') }} </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="ACW.html"> {{ __('why_acw') }} </a>
+                            <a class="nav-link" href="{{ route('landing.acw') }}"> {{ __('why_acw') }} </a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle active" href="#" role="button"
