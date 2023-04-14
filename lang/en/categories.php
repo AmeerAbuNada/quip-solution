@@ -8,4 +8,6 @@ return [
 
   'add' => 'Add New Category',
   'edit' => 'Edit Category',
+
+  'category' => 'Category',
 ];

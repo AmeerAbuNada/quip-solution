@@ -129,7 +129,7 @@
                                                     data-allow-clear="true">
                                                     <option></option>
                                                     @foreach ($categories as $category)
-                                                        <option value="{{ $category->id }}" @selected($category->id == $product->category_id)>
+                                                        <option value="{{ $category->id }}" @selected($category->id == $product->sub_category_id)>
                                                             {{ $category->name_en }} -
                                                             {{ $category->name_ar }}
                                                         </option>
@@ -357,7 +357,7 @@
             formData.append('name_en', document.getElementById('name_en').value);
             formData.append('name_ar', document.getElementById('name_ar').value);
 
-            formData.append('category_id', document.getElementById('category').value);
+            formData.append('sub_category_id', document.getElementById('category').value);
 
             if (document.getElementById('catalog').files.length > 0) {
                 formData.append('catalog', document.getElementById('catalog').files[0]);

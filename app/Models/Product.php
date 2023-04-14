@@ -16,7 +16,7 @@ class Product extends Model
         'image',
         'name_en',
         'name_ar',
-        'category_id',
+        'sub_category_id',
         'catalog',
         'video_link',
         'is_active',
@@ -37,8 +37,8 @@ class Product extends Model
         return Storage::url($this->image);
     }
 
-    public function category(): BelongsTo
+    public function subCategory(): BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(SubCategory::class);
     }
 }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('name_en');
             $table->string('name_ar');
-            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('sub_category_id')->constrained()->cascadeOnDelete();
             $table->string('catalog');
             $table->text('video_link');
             $table->boolean('is_active');

@@ -8,6 +8,7 @@ return [
   'contect_management' => 'CONTENT MANAGEMENT',
   'projects' => 'Projects',
   'categories' => 'Categories',
+  'sub-categories' => 'Sub Categories',
   'products' => 'Products',
   'features' => 'Features',
 

@@ -68,6 +68,7 @@
                                     <th>{{ __('products.ar_name') }}</th>
                                     <th>{{ __('products.active') }}</th>
                                     <th>{{ __('products.best_selling') }}</th>
+                                    <th>{{ __('categories.category') }}</th>
                                     <th>{{ __('products.created_at') }}</th>
                                     <th>{{ __('products.actions') }}</th>
                                 </tr>
@@ -179,6 +180,10 @@
                     {
                         data: 'best_selling',
                         name: 'best_selling',
+                    },
+                    {
+                        data: 'category',
+                        name: 'category',
                     },
                     {
                         data: 'created_at',

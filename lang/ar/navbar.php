@@ -7,7 +7,8 @@ return [
   
   'contect_management' => 'إدارة المحتوى',
   'projects' => 'المشاريع',
-  'categories' => 'الفئات',
+  'categories' => 'الفئات الرئيسية',
+  'sub-categories' => 'الفئات الفرعية',
   'products' => 'المنتجات',
   'features' => 'الميزات',
 

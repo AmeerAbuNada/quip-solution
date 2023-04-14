@@ -15,13 +15,8 @@ class Category extends Model
         'name_ar',
     ];
 
-    public function products(): HasMany
+    public function subCategories(): HasMany
     {
-        return $this->hasMany(Product::class);
-    }
-
-    public function activeProducts(): HasMany
-    {
-        return $this->hasMany(Product::class)->where('is_active', true);
+        return $this->hasMany(SubCategory::class);
     }
 }

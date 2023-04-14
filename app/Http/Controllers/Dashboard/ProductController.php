@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Product\StoreProductRequest;
 use App\Http\Requests\Dashboard\Product\ToggleOptionRequest;
 use App\Http\Requests\Dashboard\Product\UpdateProductRequest;
-use App\Models\Category;
 use App\Models\Image;
 use App\Models\Product;
+use App\Models\SubCategory;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +24,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Product::select('*');
+            $data = Product::with('subCategory')->select('*');
             return DataTables::of($data)->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     return '
@@ -38,6 +38,9 @@ class ProductController extends Controller
                 })
                 ->addColumn('image', function ($row) {
                     return '<img src="' .  $row->image_url  . '" class="w-100">';
+                })
+                ->addColumn('category', function ($row) {
+                    return $row->subCategory->name_en . ' - ' . $row->subCategory->name_ar;
                 })
                 ->addColumn('active', function ($row) {
                     $input = '<input onclick="toggleOptions(' . $row->id . ', \'is_active\', this)" class="form-check-input" type="checkbox"';
@@ -68,7 +71,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = SubCategory::all();
         return response()->view('dashboard.products.create', compact('categories'));
     }
 
@@ -137,7 +140,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $categories = Category::all();
+        $categories = SubCategory::all();
         return response()->view('dashboard.products.edit', compact('product', 'categories'));
     }
 
@@ -217,7 +220,7 @@ class ProductController extends Controller
         return $isSaved ? parent::successResponse() : parent::errorResponse();
     }
 
-    
+
 
     public function deleteImage(Image $image)
     {
