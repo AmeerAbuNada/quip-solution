@@ -289,7 +289,7 @@
                                 </div>
                                 <!--end::Statistics-->
                                 <!--begin::Chart-->
-                                <div id="visits-chart" class="min-h-auto ps-4 pe-6" style="height: 300px"></div>
+                                <div id="visits-chart" dir="ltr" class="min-h-auto ps-4 pe-6" style="height: 300px"></div>
                                 <!--end::Chart-->
                             </div>
                             <!--end::Card body-->
@@ -313,7 +313,7 @@
                             <!--begin::Body-->
                             <div class="card-body pt-5">
                                 <!--begin::Chart container-->
-                                <div id="kt_charts_widget_15_chart" class="w-100 h-400px"></div>
+                                <div id="kt_charts_widget_15_chart" dir="ltr" class="w-100 h-400px"></div>
                                 <!--end::Chart container-->
                             </div>
                             <!--end::Body-->
