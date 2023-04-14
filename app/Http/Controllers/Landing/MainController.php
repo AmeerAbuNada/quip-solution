@@ -8,12 +8,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Landing\StoreContactRequest;
 use App\Http\Requests\Landing\StoreMaintenaceRequest;
 use App\Models\Admin;
-use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Feature;
 use App\Models\Maintenance;
 use App\Models\Product;
 use App\Models\Project;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
@@ -24,7 +24,7 @@ class MainController extends Controller
 
   public function index()
   {
-    $categories = Category::all();
+    $categories = SubCategory::all();
     $projects = Project::where('is_active', true)->get();
     $products = Product::where('is_active', true)->where('is_best_selling', true)->get();
     return response()->view('landing.index', compact('categories', 'projects', 'products'));
@@ -36,29 +36,29 @@ class MainController extends Controller
     ]);
     if($validator->fails()) return abort(Response::HTTP_NOT_FOUND);
     
-    $categories = Category::with('activeProducts')->get();
+    $categories = SubCategory::with('activeProducts')->get();
     $products = Product::all();
     return response()->view('landing.products', compact('categories', 'products'));
   }
 
   public function productDetails($product) {
     $product = Product::where('is_active', true)->findOrFail($product);
-    $categories = Category::all();
+    $categories = SubCategory::all();
     return response()->view('landing.product-details', compact('product', 'categories'));
   }
 
   public function contactUs() {
-    $categories = Category::all();
+    $categories = SubCategory::all();
     return response()->view('landing.contact-us', compact('categories'));
   }
 
   public function maintenance() {
-    $categories = Category::all();
+    $categories = SubCategory::all();
     return response()->view('landing.maintenance', compact('categories'));
   }
 
   public function acw() {
-    $categories = Category::all();
+    $categories = SubCategory::all();
     $features = Feature::where('is_active', true)->get();
     return response()->view('landing.acw', compact('categories', 'features'));
   }
