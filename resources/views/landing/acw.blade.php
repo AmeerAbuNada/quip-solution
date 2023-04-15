@@ -50,10 +50,29 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item"
-                                        href="{{ route('landing.products') }}">{{ __('all_products') }}</a></li>
-                                @foreach ($categories as $category)
+                                        href="{{ route('landing.products') }}">{{ __('all_products') }}</a>
+                                </li>
+                                @foreach ($mainCategories as $category)
                                     <li><a class="dropdown-item"
                                             href="{{ route('landing.products', ['category' => $category->id]) }}">{{ $category['name_' . app()->getLocale()] }}</a>
+                                    </li>
+                                @endforeach
+                                @foreach ($categoriesWithSubs as $category)
+                                    <li class="nav-item dropend">
+                                        <a class="nav-link dropdown-toggle text-darck" href="#" role="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            {{ $category['name_' . app()->getLocale()] }}
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item"
+                                                    href="{{ route('landing.products', ['category' => $category->id]) }}">{{ __('all') }}</a>
+                                            </li>
+                                            @foreach ($category->subCategories as $sub)
+                                                <li><a class="dropdown-item"
+                                                        href="{{route('landing.products', ['sub_category' => $sub->id])}}">{{ $sub['name_' . app()->getLocale()] }}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
                                     </li>
                                 @endforeach
                             </ul>

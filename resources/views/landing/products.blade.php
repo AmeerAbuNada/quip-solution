@@ -51,10 +51,29 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item"
-                                        href="{{ route('landing.products') }}">{{ __('all_products') }}</a></li>
-                                @foreach ($categories as $category)
+                                        href="{{ route('landing.products') }}">{{ __('all_products') }}</a>
+                                </li>
+                                @foreach ($mainCategories as $category)
                                     <li><a class="dropdown-item"
                                             href="{{ route('landing.products', ['category' => $category->id]) }}">{{ $category['name_' . app()->getLocale()] }}</a>
+                                    </li>
+                                @endforeach
+                                @foreach ($categoriesWithSubs as $category)
+                                    <li class="nav-item dropend">
+                                        <a class="nav-link dropdown-toggle text-darck" href="#" role="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            {{ $category['name_' . app()->getLocale()] }}
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item"
+                                                    href="{{ route('landing.products', ['category' => $category->id]) }}">{{ __('all') }}</a>
+                                            </li>
+                                            @foreach ($category->subCategories as $sub)
+                                                <li><a class="dropdown-item"
+                                                        href="{{ route('landing.products', ['sub_category' => $sub->id]) }}">{{ $sub['name_' . app()->getLocale()] }}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
                                     </li>
                                 @endforeach
                             </ul>
@@ -90,18 +109,31 @@
                         data-bs-toggle="pill" data-bs-target="#pills-All" type="button" role="tab"
                         aria-controls="pills-All" aria-selected="true">{{ __('all_products') }}</button>
                 </li>
-                @foreach ($categories as $category)
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link {{ $category->id == request()->category ? 'active' : '' }}"
-                            id="category-{{ $category->id }}-tab" data-bs-toggle="pill"
-                            data-bs-target="#category-{{ $category->id }}" type="button" role="tab"
-                            aria-controls="category-{{ $category->id }}"
-                            aria-selected="false">{{ $category['name_' . app()->getLocale()] }}</button>
-                    </li>
-                @endforeach
+                @if (!request()->sub_category)
+                    @foreach ($mainCategories as $category)
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link {{ $category->id == request()->category ? 'active' : '' }}"
+                                id="category-{{ $category->id }}-tab" data-bs-toggle="pill"
+                                data-bs-target="#category-{{ $category->id }}" type="button" role="tab"
+                                aria-controls="category-{{ $category->id }}"
+                                aria-selected="false">{{ $category['name_' . app()->getLocale()] }}</button>
+                        </li>
+                    @endforeach
+                    @foreach ($categoriesWithSubs as $category)
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link {{ $category->id == request()->category ? 'active' : '' }}"
+                                id="category-{{ $category->id }}-tab" data-bs-toggle="pill"
+                                data-bs-target="#category-{{ $category->id }}" type="button" role="tab"
+                                aria-controls="category-{{ $category->id }}"
+                                aria-selected="false">{{ $category['name_' . app()->getLocale()] }}</button>
+                        </li>
+                    @endforeach
+                @endif
             </ul>
 
-
+            @php
+                $productIds = [];
+            @endphp
 
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade {{ request()->category ? '' : 'show active' }}" id="pills-All"
@@ -128,34 +160,106 @@
                         @endforeach
                     </div>
                 </div>
-                @foreach ($categories as $category)
-                    <div class="tab-pane fade {{ request()->category == $category->id ? 'show active' : '' }}"
-                        id="category-{{ $category->id }}" role="tabpanel"
-                        aria-labelledby="category-{{ $category->id }}-tab" tabindex="0">
-                        <div class="row col-lg-11 mx-auto px-0 pt-5 mt-xxl-5">
-                            @foreach ($category->activeProducts as $product)
-                                <div class="col-12 col-md-6 col-lg-4 col-xxl-3">
-                                    <div class="text-center selling-text position-relative">
-                                        <img src="{{ $product->image_url }}" class="img-fluid p-4 p-xl-5" />
-                                        <h3 class="mt-2 mt-xl-3">{{ $product['name_' . app()->getLocale()] }}</h3>
-                                        <a href="{{ route('landing.product-details', $product->id) }}">
-                                            <div>{{ __('see_more') }} <img
-                                                    src="{{ asset('landing-assets/images/sahem.png') }}"
-                                                    class="ps-2  sahem" />
+                @if (!request()->sub_category)
+                    @foreach ($mainCategories as $category)
+                        <div class="tab-pane fade {{ request()->category == $category->id ? 'show active' : '' }}"
+                            id="category-{{ $category->id }}" role="tabpanel"
+                            aria-labelledby="category-{{ $category->id }}-tab" tabindex="0">
+                            <div class="row col-lg-11 mx-auto px-0 pt-5 mt-xxl-5">
+                                @foreach ($category->activeProducts as $product)
+                                    @if (!in_array($product->id, $productIds))
+                                        <div class="col-12 col-md-6 col-lg-4 col-xxl-3">
+                                            <div class="text-center selling-text position-relative">
+                                                <img src="{{ $product->image_url }}" class="img-fluid p-4 p-xl-5" />
+                                                <h3 class="mt-2 mt-xl-3">{{ $product['name_' . app()->getLocale()] }}
+                                                </h3>
+                                                <a href="{{ route('landing.product-details', $product->id) }}">
+                                                    <div>{{ __('see_more') }} <img
+                                                            src="{{ asset('landing-assets/images/sahem.png') }}"
+                                                            class="ps-2  sahem" />
+                                                    </div>
+                                                </a>
+                                                <span class="sel-c1"><img
+                                                        src="{{ asset('landing-assets/images/carcle.png') }}"></span>
+                                                <span class="sel-c2"><img
+                                                        src="{{ asset('landing-assets/images/carcle.png') }}"></span>
+                                                <span class="sel-c3"><img
+                                                        src="{{ asset('landing-assets/images/carcle.png') }}"></span>
                                             </div>
-                                        </a>
-                                        <span class="sel-c1"><img
-                                                src="{{ asset('landing-assets/images/carcle.png') }}"></span>
-                                        <span class="sel-c2"><img
-                                                src="{{ asset('landing-assets/images/carcle.png') }}"></span>
-                                        <span class="sel-c3"><img
-                                                src="{{ asset('landing-assets/images/carcle.png') }}"></span>
-                                    </div>
-                                </div>
-                            @endforeach
+                                        </div>
+                                        @php
+                                            array_push($productIds, $product->id);
+                                        @endphp
+                                    @endif
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                    @foreach ($categoriesWithSubs as $category)
+                        <div class="tab-pane fade {{ request()->category == $category->id ? 'show active' : '' }}"
+                            id="category-{{ $category->id }}" role="tabpanel"
+                            aria-labelledby="category-{{ $category->id }}-tab" tabindex="0">
+                            <div class="row col-lg-11 mx-auto px-0 pt-5 mt-xxl-5">
+                                @foreach ($category->activeProducts as $product)
+                                    @if (!in_array($product->id, $productIds))
+                                        <div class="col-12 col-md-6 col-lg-4 col-xxl-3">
+                                            <div class="text-center selling-text position-relative">
+                                                <img src="{{ $product->image_url }}" class="img-fluid p-4 p-xl-5" />
+                                                <h3 class="mt-2 mt-xl-3">{{ $product['name_' . app()->getLocale()] }}
+                                                </h3>
+                                                <a href="{{ route('landing.product-details', $product->id) }}">
+                                                    <div>{{ __('see_more') }} <img
+                                                            src="{{ asset('landing-assets/images/sahem.png') }}"
+                                                            class="ps-2  sahem" />
+                                                    </div>
+                                                </a>
+                                                <span class="sel-c1"><img
+                                                        src="{{ asset('landing-assets/images/carcle.png') }}"></span>
+                                                <span class="sel-c2"><img
+                                                        src="{{ asset('landing-assets/images/carcle.png') }}"></span>
+                                                <span class="sel-c3"><img
+                                                        src="{{ asset('landing-assets/images/carcle.png') }}"></span>
+                                            </div>
+                                        </div>
+                                        @php
+                                            array_push($productIds, $product->id);
+                                        @endphp
+                                    @endif
+                                @endforeach
+                                @foreach ($category->subCategories as $category)
+                                    @foreach ($category->activeProducts as $product)
+                                        @if (!in_array($product->id, $productIds))
+                                            <div class="col-12 col-md-6 col-lg-4 col-xxl-3">
+                                                <div class="text-center selling-text position-relative">
+                                                    <img src="{{ $product->image_url }}"
+                                                        class="img-fluid p-4 p-xl-5" />
+                                                    <h3 class="mt-2 mt-xl-3">
+                                                        {{ $product['name_' . app()->getLocale()] }}
+                                                    </h3>
+                                                    <a href="{{ route('landing.product-details', $product->id) }}">
+                                                        <div>{{ __('see_more') }} <img
+                                                                src="{{ asset('landing-assets/images/sahem.png') }}"
+                                                                class="ps-2  sahem" />
+                                                        </div>
+                                                    </a>
+                                                    <span class="sel-c1"><img
+                                                            src="{{ asset('landing-assets/images/carcle.png') }}"></span>
+                                                    <span class="sel-c2"><img
+                                                            src="{{ asset('landing-assets/images/carcle.png') }}"></span>
+                                                    <span class="sel-c3"><img
+                                                            src="{{ asset('landing-assets/images/carcle.png') }}"></span>
+                                                </div>
+                                            </div>
+                                            @php
+                                                array_push($productIds, $product->id);
+                                            @endphp
+                                        @endif
+                                    @endforeach
+                                @endforeach
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
             </div>
         </div>
     </section>
@@ -231,7 +335,6 @@
     <script src="{{ asset('landing-assets/lib/swiper/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('landing-assets/lib/animate/aso.js') }}"></script>
     <script src="{{ asset('landing-assets/js/animet.js') }}"></script>
-
 </body>
 
 </html>

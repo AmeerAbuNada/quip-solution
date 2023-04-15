@@ -57,10 +57,29 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item"
-                                        href="{{ route('landing.products') }}">{{ __('all_products') }}</a></li>
-                                @foreach ($categories as $category)
+                                        href="{{ route('landing.products') }}">{{ __('all_products') }}</a>
+                                </li>
+                                @foreach ($mainCategories as $category)
                                     <li><a class="dropdown-item"
                                             href="{{ route('landing.products', ['category' => $category->id]) }}">{{ $category['name_' . app()->getLocale()] }}</a>
+                                    </li>
+                                @endforeach
+                                @foreach ($categoriesWithSubs as $category)
+                                    <li class="nav-item dropend">
+                                        <a class="nav-link dropdown-toggle text-darck" href="#" role="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            {{ $category['name_' . app()->getLocale()] }}
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item"
+                                                    href="{{ route('landing.products', ['category' => $category->id]) }}">{{ __('all') }}</a>
+                                            </li>
+                                            @foreach ($category->subCategories as $sub)
+                                                <li><a class="dropdown-item"
+                                                        href="{{route('landing.products', ['sub_category' => $sub->id])}}">{{ $sub['name_' . app()->getLocale()] }}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
                                     </li>
                                 @endforeach
                             </ul>
@@ -113,7 +132,8 @@
     <section>
         <div class="container-fluid mt-lg-5 ps-lg-5 {{ app()->isLocale('ar') ? 'overflow-hidden' : '' }}">
             <div class="row align-items-center">
-                <div class="col-12 col-xxl-5 title-text mt-lg-5 pt-5" data-aos="fade-up" data-aos-easing="ease-in-sine">
+                <div class="col-12 col-xxl-5 title-text mt-lg-5 pt-5" data-aos="fade-up"
+                    data-aos-easing="ease-in-sine">
                     <h3>{{ __('our_achievements') }}</h3>
                     {!! $siteSettings['achievements_' . app()->getLocale()]->value !!}
                 </div>
