@@ -350,8 +350,10 @@
             formData.append('name_en', document.getElementById('name_en').value);
             formData.append('name_ar', document.getElementById('name_ar').value);
 
-            formData.append('sub_category_id', document.getElementById('sub_category').value);
             formData.append('category_id', document.getElementById('category').value);
+            if(document.getElementById('sub_category').value != -1) {
+                formData.append('sub_category_id', document.getElementById('sub_category').value);
+            }
 
             if (document.getElementById('catalog').files.length > 0) {
                 formData.append('catalog', document.getElementById('catalog').files[0]);
