@@ -47,6 +47,11 @@ class CategoryController extends Controller
         return $isSaved ? parent::successResponse() : parent::errorResponse();
     }
 
+    public function show(Category $category) {
+        $subs = $category->subCategories;
+        return response()->view('dashboard.products.option', compact('subs'));
+    }
+
     /**
      * Update the specified resource in storage.
      */

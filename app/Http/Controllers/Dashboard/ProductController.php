@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Product\StoreProductRequest;
 use App\Http\Requests\Dashboard\Product\ToggleOptionRequest;
 use App\Http\Requests\Dashboard\Product\UpdateProductRequest;
+use App\Models\Category;
 use App\Models\Image;
 use App\Models\Product;
 use App\Models\SubCategory;
@@ -71,7 +72,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = SubCategory::all();
+        $categories = Category::all();
         return response()->view('dashboard.products.create', compact('categories'));
     }
 

@@ -25,6 +25,8 @@ return [
   'description_ar' => 'وصف المنتح بالعربية',
   'freatures_en' => 'مزايا المنتج بالإنجليزية',
   'freatures_ar' => 'مزايا المنتج بالعربية',
+  'select_sub_category' => 'إختار الفئة الفرعية',
+  'sub_category' => 'الفئة الفرعية',
 
   'edit' => 'تعديل المنتج',
   'delete_image' => 'حذف',

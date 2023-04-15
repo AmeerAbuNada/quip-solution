@@ -127,7 +127,7 @@
                                             <!--end::Label-->
                                             <!--begin::Col-->
                                             <div class="col-lg-9 fv-row">
-                                                <select id="category" class="form-select form-select-solid"
+                                                <select onchange="getSubs(this)" id="category" class="form-select form-select-solid"
                                                     data-control="select2"
                                                     data-placeholder="{{ __('products.select_category') }}"
                                                     data-allow-clear="true">
@@ -137,6 +137,22 @@
                                                             {{ $category->name_ar }}
                                                         </option>
                                                     @endforeach
+                                                </select>
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="col-lg-3 col-form-label required fw-bold fs-6">{{ __('products.sub_category') }}</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-9 fv-row">
+                                                <select id="sub_category" class="form-select form-select-solid">
+                                                    <option value="-1">{{ __('products.select_sub_category') }}
+                                                    </option>
                                                 </select>
                                             </div>
                                             <!--end::Col-->
@@ -334,7 +350,8 @@
             formData.append('name_en', document.getElementById('name_en').value);
             formData.append('name_ar', document.getElementById('name_ar').value);
 
-            formData.append('sub_category_id', document.getElementById('category').value);
+            formData.append('sub_category_id', document.getElementById('sub_category').value);
+            formData.append('category_id', document.getElementById('category').value);
 
             if (document.getElementById('catalog').files.length > 0) {
                 formData.append('catalog', document.getElementById('catalog').files[0]);
@@ -356,6 +373,19 @@
             formData.append('features_ar', tinymce.get("features_ar").getContent());
 
             return formData;
+        }
+
+        function getSubs(ref) {
+            if (ref.value != -1) {
+                axios.get(`/dashboard/categories/${ref.value}`)
+                    .then((response) => {
+                        console.log(response);
+                        document.getElementById('sub_category').innerHTML = response.data;
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
+            }
         }
 
         let myDropzone = new Dropzone("#kt_ecommerce_add_product_media", {

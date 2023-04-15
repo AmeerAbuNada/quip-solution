@@ -16,6 +16,7 @@ class Product extends Model
         'image',
         'name_en',
         'name_ar',
+        'category_id',
         'sub_category_id',
         'catalog',
         'video_link',

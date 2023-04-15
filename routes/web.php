@@ -39,7 +39,7 @@ Route::middleware(['auth', 'locale'])->prefix('/dashboard')->group(function () {
 
 
   Route::resource('admins', AdminController::class)->except(['create']);
-  Route::resource('categories', CategoryController::class)->except(['show', 'create', 'edit']);
+  Route::resource('categories', CategoryController::class)->except(['create', 'edit']);
   Route::resource('sub-categories', SubCategoryController::class)->except(['show', 'create', 'edit']);
   Route::resource('contacts', ContactController::class)->only(['index', 'show', 'destroy']);
   Route::put('/contacts/{contact}/reply', [ContactController::class, 'reply'])->name('contacts.reply');

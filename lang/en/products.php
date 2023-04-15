@@ -25,6 +25,8 @@ return [
   'description_ar' => 'Product Description (Arabic)',
   'freatures_en' => 'Product Features (English)',
   'freatures_ar' => 'Product Features (Arabic)',
+  'select_sub_category' => 'Select Sub Category',
+  'sub_category' => 'Sub Category',
 
   'edit' => 'Edit Product',
   'delete_image' => 'Delete',
