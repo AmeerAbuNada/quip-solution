@@ -34,7 +34,7 @@
     <header>
         <nav class="navbar navbar-expand-lg shadow-sm pb-3">
             <div class="container-fluid col-xl-11 pt-3">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{{ route('landing.index') }}">
                     <img src="{{ asset('landing-assets/images/logo/logo-l.png') }}" class="img-fluid">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

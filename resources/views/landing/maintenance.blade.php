@@ -28,7 +28,7 @@
     <header>
         <nav class="navbar navbar-expand-lg shadow-sm pb-3">
             <div class="container-fluid col-xl-11 pt-3">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{{ route('landing.index') }}">
                     <img src="{{ asset('landing-assets/images/logo/logo-l.png') }}" class="img-fluid">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -112,7 +112,8 @@
                     <div class="control-group mb-4">
                         <label for="Inputphone" class="form-label">{{ __('your_phone_number') }}</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="Inputphone" placeholder="EX: 958931574852">
+                            <input type="text" class="form-control" id="Inputphone"
+                                placeholder="EX: 958931574852">
                         </div>
                     </div>
                     <div class="control-group mb-4">
@@ -143,7 +144,7 @@
         <div class="container-fluid h-100 col-11 col-xxl-9">
             <div class="row justify-content-between align-items-center h-100 pb-4">
                 <div class="col-12 col-lg-3 text-center">
-                    <a class="" href="#">
+                    <a class="" href="{{ route('landing.index') }}">
                         <img src="{{ asset('landing-assets/images/logo/230.png') }}" class="img-fluid"
                             width="235">
                     </a>

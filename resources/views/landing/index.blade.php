@@ -234,7 +234,7 @@
         <div class="container-fluid h-100 col-11 col-xxl-10">
             <div class="row justify-content-between align-content-between h-100 pb-4">
                 <div class="col-12 col-xxl-6  Gettouch">
-                    <a class="" href="#">
+                    <a class="" href="{{ route('landing.index') }}">
                         <img src="{{ asset('landing-assets/images/logo/logo-d.png') }}" class="img-fluid"
                             width="160">
                     </a>
