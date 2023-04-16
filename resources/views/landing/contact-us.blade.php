@@ -64,12 +64,7 @@
                                 <li><a class="dropdown-item"
                                         href="{{ route('landing.products') }}">{{ __('all_products') }}</a>
                                 </li>
-                                @foreach ($mainCategories as $category)
-                                    <li><a class="dropdown-item"
-                                            href="{{ route('landing.products', ['category' => $category->id]) }}">{{ $category['name_' . app()->getLocale()] }}</a>
-                                    </li>
-                                @endforeach
-                                @foreach ($categoriesWithSubs as $category)
+                                @foreach ($categories as $category)
                                     <li class="nav-item dropend">
                                         <a class="nav-link dropdown-toggle text-darck" href="#" role="button"
                                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -79,9 +74,9 @@
                                             <li><a class="dropdown-item"
                                                     href="{{ route('landing.products', ['category' => $category->id]) }}">{{ __('all') }}</a>
                                             </li>
-                                            @foreach ($category->subCategories as $sub)
+                                            @foreach ($category->activeProducts as $p)
                                                 <li><a class="dropdown-item"
-                                                        href="{{route('landing.products', ['sub_category' => $sub->id])}}">{{ $sub['name_' . app()->getLocale()] }}</a>
+                                                        href="{{ route('landing.product-details', $p->id) }}">{{ $p['name_' . app()->getLocale()] }}</a>
                                                 </li>
                                             @endforeach
                                         </ul>

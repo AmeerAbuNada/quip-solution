@@ -59,12 +59,7 @@
                                 <li><a class="dropdown-item"
                                         href="{{ route('landing.products') }}">{{ __('all_products') }}</a>
                                 </li>
-                                @foreach ($mainCategories as $category)
-                                    <li><a class="dropdown-item"
-                                            href="{{ route('landing.products', ['category' => $category->id]) }}">{{ $category['name_' . app()->getLocale()] }}</a>
-                                    </li>
-                                @endforeach
-                                @foreach ($categoriesWithSubs as $category)
+                                @foreach ($categories as $category)
                                     <li class="nav-item dropend">
                                         <a class="nav-link dropdown-toggle text-darck" href="#" role="button"
                                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -74,9 +69,9 @@
                                             <li><a class="dropdown-item"
                                                     href="{{ route('landing.products', ['category' => $category->id]) }}">{{ __('all') }}</a>
                                             </li>
-                                            @foreach ($category->subCategories as $sub)
+                                            @foreach ($category->activeProducts as $p)
                                                 <li><a class="dropdown-item"
-                                                        href="{{route('landing.products', ['sub_category' => $sub->id])}}">{{ $sub['name_' . app()->getLocale()] }}</a>
+                                                        href="{{ route('landing.product-details', $p->id) }}">{{ $p['name_' . app()->getLocale()] }}</a>
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -138,7 +133,8 @@
                 <div class="col-12 col-xl-5  text-Machine px-xxl-4" data-aos="zoom-in">
                     <h3>{{ __('machine_description') }}</h3>
                     {!! $product['description_' . app()->getLocale()] !!}
-                    <a href="#" class="btn btn-primary rounded-pill">{{ __('ask_for_price') }}</a>
+                    <a href="{{ route('landing.contact') }}"
+                        class="btn btn-primary rounded-pill">{{ __('ask_for_price') }}</a>
                     <a href="{{ Storage::url($product->catalog) }}" download
                         class="btn btn-outline-primary rounded-pill">{{ __('download_catalog') }}</a>
                 </div>

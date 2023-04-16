@@ -17,7 +17,6 @@ class Product extends Model
         'name_en',
         'name_ar',
         'category_id',
-        'sub_category_id',
         'catalog',
         'video_link',
         'is_active',
@@ -40,10 +39,5 @@ class Product extends Model
 
     public function category(): BelongsTo {
         return $this->belongsTo(Category::class);
-    }
-
-    public function subCategory(): BelongsTo
-    {
-        return $this->belongsTo(SubCategory::class);
     }
 }

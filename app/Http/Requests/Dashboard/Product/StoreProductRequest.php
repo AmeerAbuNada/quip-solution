@@ -28,7 +28,6 @@ class StoreProductRequest extends FormRequest
             'name_en' => 'required|string|max:150',
             'name_ar' => 'required|string|max:150',
             'category_id' => 'required|integer|exists:categories,id',
-            'sub_category_id' => 'nullable|integer|exists:sub_categories,id',
             'catalog' => 'required|file',
             'video_link' => 'required|url|max:2048',
             'is_active' => 'required|string|in:true,false',

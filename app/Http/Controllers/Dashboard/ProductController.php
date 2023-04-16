@@ -9,7 +9,6 @@ use App\Http\Requests\Dashboard\Product\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Image;
 use App\Models\Product;
-use App\Models\SubCategory;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,7 +24,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Product::with('subCategory', 'category')->select('*');
+            $data = Product::with('category')->select('*');
             return DataTables::of($data)->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     return '
@@ -41,7 +40,7 @@ class ProductController extends Controller
                     return '<img src="' .  $row->image_url  . '" class="w-100">';
                 })
                 ->addColumn('category', function ($row) {
-                    return $row->subCategory ? $row->subCategory->name_en . ' - ' . $row->subCategory->name_ar : $row->category->name_en . ' - ' . $row->category->name_ar;
+                    return $row->category->name_en . ' - ' . $row->category->name_ar;
                 })
                 ->addColumn('active', function ($row) {
                     $input = '<input onclick="toggleOptions(' . $row->id . ', \'is_active\', this)" class="form-check-input" type="checkbox"';
@@ -153,7 +152,6 @@ class ProductController extends Controller
         $data = $request->validated();
         $data['is_active'] = $data['is_active'] == 'true';
         $data['is_best_selling'] = $data['is_best_selling'] == 'true';
-        $data['sub_category_id'] = $data['sub_category_id'] ?? null;
 
 
         if ($request->hasFile('image')) {

@@ -191,7 +191,6 @@ return [
         'phone_number' => 'رقم الهاتف',
         'machine' => 'نوع الجهاز',
         'description' => 'الوصف',
-        'sub_category_id' => 'الفئة'
     ],
 
 ];

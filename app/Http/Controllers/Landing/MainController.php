@@ -14,7 +14,6 @@ use App\Models\Feature;
 use App\Models\Maintenance;
 use App\Models\Product;
 use App\Models\Project;
-use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
@@ -25,58 +24,49 @@ class MainController extends Controller
 
   public function index()
   {
-    $mainCategories = Category::query()->whereDoesntHave('subCategories')->get();
-    $categoriesWithSubs = Category::query()->whereHas('subCategories')->get();
+    $categories = Category::with('activeProducts')->get();
     $projects = Project::where('is_active', true)->get();
     $products = Product::where('is_active', true)->where('is_best_selling', true)->get();
-    return response()->view('landing.index', compact('categoriesWithSubs', 'projects', 'products', 'mainCategories'));
+    return response()->view('landing.index', compact('categories', 'projects', 'products'));
   }
 
   public function products(Request $request)
   {
     $validator = validator($request->all(), [
       'category' => 'nullable|integer|exists:categories,id',
-      'sub_category' => 'nullable|integer|exists:sub_categories,id',
     ]);
     if ($validator->fails()) return abort(Response::HTTP_NOT_FOUND);
-    if ($request->sub_category) {
-      $products = Product::where('sub_category_id', $request->sub_category)->where('is_active', true)->get();
-    } else {
-      $products = Product::all();
-    }
-    $mainCategories = Category::query()->whereDoesntHave('subCategories')->get();
-    $categoriesWithSubs = Category::query()->whereHas('subCategories')->get();
-    return response()->view('landing.products', compact('products', 'mainCategories', 'categoriesWithSubs'));
+
+    $products = Product::where('is_active', true)->get();
+    $categories = Category::with('activeProducts')->get();
+
+    return response()->view('landing.products', compact('products', 'categories'));
   }
 
   public function productDetails($product)
   {
     $product = Product::where('is_active', true)->findOrFail($product);
-    $mainCategories = Category::query()->whereDoesntHave('subCategories')->get();
-    $categoriesWithSubs = Category::query()->whereHas('subCategories')->get();
-    return response()->view('landing.product-details', compact('product', 'mainCategories', 'categoriesWithSubs'));
+    $categories = Category::all();
+    return response()->view('landing.product-details', compact('product', 'categories'));
   }
 
   public function contactUs()
   {
-    $mainCategories = Category::query()->whereDoesntHave('subCategories')->get();
-    $categoriesWithSubs = Category::query()->whereHas('subCategories')->get();
-    return response()->view('landing.contact-us', compact('mainCategories', 'categoriesWithSubs'));
+    $categories = Category::all();
+    return response()->view('landing.contact-us', compact('categories'));
   }
 
   public function maintenance()
   {
-    $mainCategories = Category::query()->whereDoesntHave('subCategories')->get();
-    $categoriesWithSubs = Category::query()->whereHas('subCategories')->get();
-    return response()->view('landing.maintenance', compact('mainCategories', 'categoriesWithSubs'));
+    $categories = Category::all();
+    return response()->view('landing.maintenance', compact('categories'));
   }
 
   public function acw()
   {
-    $mainCategories = Category::query()->whereDoesntHave('subCategories')->get();
-    $categoriesWithSubs = Category::query()->whereHas('subCategories')->get();
+    $categories = Category::all();
     $features = Feature::where('is_active', true)->get();
-    return response()->view('landing.acw', compact('mainCategories', 'categoriesWithSubs', 'features'));
+    return response()->view('landing.acw', compact('categories', 'features'));
   }
 
   public function changeLocale($locale)

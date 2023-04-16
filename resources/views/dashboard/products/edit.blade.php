@@ -148,26 +148,6 @@
                                         <div class="row mb-6">
                                             <!--begin::Label-->
                                             <label
-                                                class="col-lg-3 col-form-label required fw-bold fs-6">{{ __('products.sub_category') }}</label>
-                                            <!--end::Label-->
-                                            <!--begin::Col-->
-                                            <div class="col-lg-9 fv-row">
-                                                <select id="sub_category" class="form-select form-select-solid">
-                                                    <option value="-1">{{ __('products.select_sub_category') }}
-                                                    </option>
-                                                    @foreach ($product->category->subCategories as $category)
-                                                        <option value="{{ $category->id }}" @selected($category->id == $product->sub_category_id)>
-                                                            {{ $category->name_en }} - {{ $category->name_ar }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <!--end::Col-->
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="row mb-6">
-                                            <!--begin::Label-->
-                                            <label
                                                 class="col-lg-3 col-form-label required fw-bold fs-6">{{ __('products.catalog') }}</label>
                                             <!--end::Label-->
                                             <!--begin::Col-->
@@ -397,9 +377,6 @@
             formData.append('name_ar', document.getElementById('name_ar').value);
 
             formData.append('category_id', document.getElementById('category').value);
-            if (document.getElementById('sub_category').value != -1) {
-                formData.append('sub_category_id', document.getElementById('sub_category').value);
-            }
 
             if (document.getElementById('catalog').files.length > 0) {
                 formData.append('catalog', document.getElementById('catalog').files[0]);

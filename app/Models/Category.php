@@ -15,11 +15,6 @@ class Category extends Model
         'name_ar',
     ];
 
-    public function subCategories(): HasMany
-    {
-        return $this->hasMany(SubCategory::class);
-    }
-
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
