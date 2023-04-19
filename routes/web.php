@@ -14,6 +14,8 @@ use App\Http\Controllers\Dashboard\ProjectController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Landing\MainController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -85,4 +87,15 @@ Route::middleware(['locale', 'location'])->group(function () {
   Route::get('/language/{locale}', [MainController::class, 'changeLocale'])->name('landing.locale');
   Route::post('/contact', [MainController::class, 'sendContactMessage'])->name('contact.post');
   Route::post('/maintenance', [MainController::class, 'sendMaintenance'])->name('maintenance.post');
+});
+
+Route::get('/start', function() {
+  if(!App::isProduction()) {
+    Artisan::call('migrate');
+    Artisan::call('db:seed');
+    Artisan::call('storage:link');
+    echo 'done';
+  } else {
+    return abort(404);
+  }
 });
