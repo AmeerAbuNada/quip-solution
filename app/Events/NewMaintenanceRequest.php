@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Maintenance;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -18,7 +19,7 @@ class NewMaintenanceRequest implements ShouldBroadcastNow
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public function __construct(public Maintenance $maintenance)
     {
         //
     }

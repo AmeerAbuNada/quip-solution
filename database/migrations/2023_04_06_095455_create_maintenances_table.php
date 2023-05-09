@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('maintenances', function (Blueprint $table) {
             $table->id();
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('phone_number');
             $table->string('machine');
             $table->text('description');

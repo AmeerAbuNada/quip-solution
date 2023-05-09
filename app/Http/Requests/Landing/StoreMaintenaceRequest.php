@@ -24,7 +24,7 @@ class StoreMaintenaceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email|max:400',
+            'email' => 'nullable|email|max:400',
             'phone_number' => 'required|string|max:20',
             'machine' => 'required|string|max:150',
             'description' => 'required|string|max:8000',

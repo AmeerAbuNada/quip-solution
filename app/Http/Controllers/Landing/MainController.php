@@ -97,7 +97,7 @@ class MainController extends Controller
     $maintenance = new Maintenance($request->validated());
     $isSaved = $maintenance->save();
     if ($isSaved) {
-      event(new NewMaintenanceRequest());
+      event(new NewMaintenanceRequest($maintenance));
       return response()->json([
         'message' => App::isLocale('en') ? 'Maintenace Request Sent Successfully!' : 'تم إرسال طلب الصيانة بنجاح'
       ], Response::HTTP_CREATED);
